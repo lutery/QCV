@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ToolWindow.qml</file>
+        <file>PreviewWindow.qml</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>resource/image/Zero1.jpg</file>
+        <file>resource/image/zero0.png</file>
+        <file>resource/image/RGB24.bmp</file>
+        <file>resource/image/RGB32.bmp</file>
+    </qresource>
+</RCC>
