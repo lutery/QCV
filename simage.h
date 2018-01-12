@@ -10,10 +10,13 @@ namespace onechchy {
     class SImage : public QObject
     {
         Q_OBJECT
+
     public:
         explicit SImage(QObject *parent = nullptr);
 
         void setTransImg(TransformImage* value);
+
+        QImage autoRotate(QImage&);
 
     signals:
 

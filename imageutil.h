@@ -12,6 +12,7 @@ namespace onechchy {
     public:
         explicit ImageUtil(QObject *parent = nullptr);
 
+        static cv::Mat convertGray(const cv::Mat&);
         static QImage cvMat2QImage(const cv::Mat& mat);
         static cv::Mat QImage2cvMat(const QImage& image );
     signals:

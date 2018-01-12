@@ -7,6 +7,37 @@ namespace onechchy {
 
     }
 
+    cv::Mat ImageUtil::convertGray(const cv::Mat& mat)
+    {
+        if(mat.type() == CV_8UC1)
+        {
+            return mat;
+        }
+        // 8-bits unsigned, NO. OF CHANNELS = 3
+        else if(mat.type() == CV_8UC3)
+        {
+            cv::Mat grayMat;
+
+            cv::cvtColor(mat, grayMat, CV_BGR2GRAY);
+
+            return grayMat;
+        }
+        else if(mat.type() == CV_8UC4)
+        {
+            cv::Mat grayMat;
+
+            cv::cvtColor(mat, grayMat, CV_BGRA2GRAY);
+
+            return grayMat;
+        }
+        else
+        {
+            //ToDo 抛出异常
+            qDebug() << "ERROR: Mat could not be converted to gray.";
+            return cv::Mat();
+        }
+    }
+
     QImage ImageUtil::cvMat2QImage(const cv::Mat &mat)
     {
         // 8-bits unsigned, NO. OF CHANNELS = 1

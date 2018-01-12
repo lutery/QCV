@@ -1,6 +1,8 @@
 import QtQuick 2.10
 import QtQuick.Window 2.10
 import QtQuick.Controls 2.2
+import ImageShowItemQML 1.0
+import SImageServiceQML 1.0
 
 Window {
     id:mainWin
@@ -15,12 +17,27 @@ Window {
         y: mainWin.y
     }
 
-    Button{
-        text: 打开预览
+    Flow{
+        anchors.fill: parent
+        anchors.margins: 4
+        spacing: 10
 
-        onClicked: {
-            if (!previewWin.visible) {
-                previewWin.show()
+        Button{
+            text: "打开预览"
+
+            onClicked: {
+                if (!previewWin.visible) {
+                    previewWin.show()
+                }
+            }
+        }
+
+        Button{
+            text: "自动纠偏"
+
+            onClicked: {
+                console.log("click auto")
+                previewWin.imageOperation(SImageService.AutoRectifying)
             }
         }
     }

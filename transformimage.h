@@ -15,7 +15,7 @@ namespace onechchy {
     public:
         explicit TransformImage(QObject *parent = nullptr);
 
-        cv::Mat inclineDFT(const cv::Mat& p);
+        cv::Mat inclineDFT(const cv::Mat&& p);
 
     signals:
 

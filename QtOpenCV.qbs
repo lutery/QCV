@@ -57,6 +57,8 @@ Project {
             "qml.qrc",
             "simage.cpp",
             "simage.h",
+            "simageservice.cpp",
+            "simageservice.h",
             "transformimage.cpp",
             "transformimage.h",
         ]

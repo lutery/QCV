@@ -1,6 +1,7 @@
 #include "imageshowitem.h"
 #include "imageshowrenderer.h"
 #include <QQuickWindow>
+#include <QImage>
 
 namespace onechchy {
     ImageShowItem::ImageShowItem()
@@ -54,9 +55,49 @@ namespace onechchy {
         }
     }
 
+    void ImageShowItem::sltQImage(QImage image)
+    {
+        std::shared_ptr<QImage> pImage(new QImage(image));
+
+        if (mpRender != nullptr)
+        {
+            mpRender->setCurImage(pImage);
+            if (window())
+            {
+                qDebug() << "window() update";
+                window()->update();
+            }
+        }
+    }
+
+    void ImageShowItem::sltQImage(QString imagePath)
+    {
+        mImagePath = imagePath;
+
+        QImage* pImg = new QImage();
+        if (pImg->load(imagePath))
+        {
+            this->sltQImage(std::shared_ptr<QImage>(pImg));
+        }
+        else
+        {
+            delete pImg;
+        }
+    }
+
     void ImageShowItem::sltUpdate()
     {
 
+    }
+
+    QImage ImageShowItem::copyImage()
+    {
+        if (mpRender != nullptr)
+        {
+            return mpRender->getCurImage();
+        }
+
+        return QImage();
     }
 
     void ImageShowItem::handleWindowChanged(QQuickWindow *win)

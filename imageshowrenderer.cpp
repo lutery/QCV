@@ -123,4 +123,9 @@ namespace onechchy {
 
         mpWindow->resetOpenGLState();
     }
+    
+    QImage ImageShowRenderer::getCurImage()
+    {
+        return *mpCurImage;
+    }
 }

@@ -1,6 +1,7 @@
- #include "transformimage.h"
+#include "transformimage.h"
 #include <vector>
 #include <math.h>
+#include "imageutil.h"
 
 namespace onechchy {
     TransformImage::TransformImage(QObject *parent) : QObject(parent)
@@ -13,7 +14,7 @@ namespace onechchy {
      * @param p
      * @return
      */
-    cv::Mat TransformImage::inclineDFT(const cv::Mat &p)
+    cv::Mat TransformImage::inclineDFT(const cv::Mat&& p)
     {
         if (p.empty())
         {
@@ -21,13 +22,15 @@ namespace onechchy {
             return cv::Mat();
         }
 
-        cv::Point center(p.cols / 2, p.rows / 2);
+        cv::Mat grayp = ImageUtil::convertGray(p);
+
+        cv::Point center(grayp.cols / 2, grayp.rows / 2);
 
         cv::Mat padded;
-        int opWidth = cv::getOptimalDFTSize(p.rows);
-        int opHeight = cv::getOptimalDFTSize(p.cols);
+        int opWidth = cv::getOptimalDFTSize(grayp.rows);
+        int opHeight = cv::getOptimalDFTSize(grayp.cols);
 
-        cv::copyMakeBorder(p, padded, 0, opWidth - p.rows, 0, opHeight - p.cols, cv::BORDER_CONSTANT, cv::Scalar::all(0));
+        cv::copyMakeBorder(grayp, padded, 0, opWidth - grayp.rows, 0, opHeight - grayp.cols, cv::BORDER_CONSTANT, cv::Scalar::all(0));
 
         cv::Mat planes[] = { cv::Mat_<float>(padded), cv::Mat::zeros(padded.size(), CV_32F) };
         cv::Mat comImg;
@@ -102,15 +105,15 @@ namespace onechchy {
 
         angel = angel<pi2 ? angel : angel-CV_PI;
         if(angel != pi2){
-            float angelT = p.rows*tan(angel)/p.cols;
+            float angelT = grayp.rows*tan(angel)/grayp.cols;
             angel = atan(angelT);
         }
         float angelD = angel*180/(float)CV_PI;
 
         //Rotate the image to recover
         cv::Mat rotMat = cv::getRotationMatrix2D(center,angelD,1.0);
-        cv::Mat dstImg = cv::Mat::ones(p.size(),CV_8UC3);
-        cv::warpAffine(p,dstImg,rotMat,p.size(),1,0,cv::Scalar(255,255,255));
+        cv::Mat dstImg = cv::Mat::ones(grayp.size(),CV_8UC3);
+        cv::warpAffine(grayp,dstImg,rotMat,grayp.size(),1,0,cv::Scalar(255,255,255));
 
         return dstImg;
     }

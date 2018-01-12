@@ -21,6 +21,7 @@ namespace onechchy {
         void setViewportSize(const QSize& size);
         void setWindow(QQuickWindow* pWin);
         void setCurImage(std::shared_ptr<QImage> pImage);
+        QImage getCurImage();
 
     signals:
 
