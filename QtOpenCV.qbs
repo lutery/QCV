@@ -47,12 +47,16 @@ Project {
 //        cpp.dynamicLibraries:"opencv_world330"
 
         files: [
+            "imageoperaparam.cpp",
+            "imageoperaparam.h",
             "imageshowitem.cpp",
             "imageshowitem.h",
             "imageshowrenderer.cpp",
             "imageshowrenderer.h",
             "imageutil.cpp",
             "imageutil.h",
+            "itrimmingborder.cpp",
+            "itrimmingborder.h",
             "main.cpp",
             "qml.qrc",
             "simage.cpp",

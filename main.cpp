@@ -6,6 +6,7 @@
 #include "imageshowitem.h"
 #include "simage.h"
 #include "simageservice.h"
+#include "imageoperaparam.h"
 //#include <tuple>
 //#include <QDebug>
 
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<onechchy::ImageShowItem>("ImageShowItemQML", 1, 0, "ImageShowItem");
     qmlRegisterType<onechchy::SImageService>("SImageServiceQML", 1, 0, "SImageService");
+    qmlRegisterType<onechchy::ImageOperaParam>("SImageOperaParamQML", 1, 0, "ImageOperaParam");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

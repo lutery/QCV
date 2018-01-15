@@ -3,6 +3,7 @@ import QtQuick.Window 2.10
 import QtQuick.Controls 2.2
 import ImageShowItemQML 1.0
 import SImageServiceQML 1.0
+import SImageOperaParamQML 1.0
 
 Window {
     id:previewWin
@@ -11,10 +12,17 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-    function imageOperation(o){
-        switch (0){
+    function imageOperation(o, param){
+        console.log(o)
+
+        switch (o){
         case SImageService.AutoRectifying:
             console.log("click auto rotate")
+            imageService.sltImageOpera(o, imageShow.copyImage())
+            break;
+
+        case SImageService.TrimBorder:
+            imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
             break;
         }

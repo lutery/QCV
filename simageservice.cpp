@@ -16,9 +16,23 @@ namespace onechchy {
         case ImageOpera::AutoRectifying:
             this->rectifyingOpera(image);
             break;
+
+        case ImageOpera::TrimBorder:
+            this->trimBorderOpera(image);
+            break;
         default:
             break;
         }
+    }
+
+    ImageOperaParam *SImageService::operaParam() const
+    {
+        return mOperaParam;
+    }
+
+    void SImageService::setOperaParam(ImageOperaParam *operaParam)
+    {
+        mOperaParam = operaParam;
     }
 
     void SImageService::rectifyingOpera(QImage &image)
@@ -31,6 +45,17 @@ namespace onechchy {
         else
         {
             qDebug() << "invalid image";
+        }
+    }
+
+    void SImageService::trimBorderOpera(QImage &image)
+    {
+        qDebug() << "trimBorderOpera";
+
+        if (mOperaParam != nullptr)
+        {
+            qDebug() << mOperaParam->bgColor();
+            qDebug() << mOperaParam->trimBorder();
         }
     }
 }
