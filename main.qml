@@ -82,6 +82,7 @@ Window {
         console.log("onTrimborder")
         console.log(border)
         console.log(background)
+        console.log("onTrimborder")
 
         operaParams.setTrimBorder(border);
         operaParams.setBgColor(background);

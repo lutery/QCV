@@ -7,6 +7,7 @@
 #include "simage.h"
 #include "simageservice.h"
 #include "imageoperaparam.h"
+#include "itrimingborder.h"
 //#include <tuple>
 //#include <QDebug>
 

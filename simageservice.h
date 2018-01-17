@@ -16,6 +16,8 @@ namespace onechchy {
     {
         Q_OBJECT
         Q_ENUMS(ImageOpera)
+        Q_ENUMS(Border)
+        Q_ENUMS(TrimType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
@@ -26,6 +28,19 @@ namespace onechchy {
         {
             AutoRectifying = 0,
             TrimBorder = 1
+        };
+
+        enum Border{
+            Left = 0x01,
+            Top = 0x02,
+            Right = 0x04,
+            Bottom = 0x08
+        };
+
+        enum TrimType{
+            Simple = 0x10,
+            Count = 0x20,
+            Map = 0x40
         };
 
         ImageOperaParam *operaParam() const;
@@ -39,6 +54,7 @@ namespace onechchy {
 
     private:
         std::unique_ptr<SImage> mpSImage = nullptr;
+        // 这里申请为指针类型，是因为QObject不支持复制、赋值构造函数，而qml能够根据指针还是值来进行赋值
         ImageOperaParam* mOperaParam = nullptr;
 
         void rectifyingOpera(QImage& image);

@@ -27,7 +27,8 @@ Project {
 
         cpp.includePaths:[
             ".",
-            "D:/DevelopmentKit/opencv/build/include"
+            "D:/DevelopmentKit/opencv/build/include",
+            "D:/DevelopmentKit/range-v3"
         ]
 
         cpp.libraryPaths:[
@@ -55,14 +56,16 @@ Project {
             "imageshowrenderer.h",
             "imageutil.cpp",
             "imageutil.h",
-            "itrimmingborder.cpp",
-            "itrimmingborder.h",
+            "itrimingborder.cpp",
+            "itrimingborder.h",
             "main.cpp",
             "qml.qrc",
             "simage.cpp",
             "simage.h",
             "simageservice.cpp",
             "simageservice.h",
+            "simpletrimborder.cpp",
+            "simpletrimborder.h",
             "transformimage.cpp",
             "transformimage.h",
         ]

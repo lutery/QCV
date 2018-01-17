@@ -1,7 +1,7 @@
 #include "imageoperaparam.h"
 
 namespace onechchy {
-    ImageOperaParam::ImageOperaParam(QObject *parent) : QObject(parent)
+    ImageOperaParam::ImageOperaParam(QObject *parent) : QObject(parent), mBgColor("0x000000")
     {
 
     }
@@ -16,12 +16,12 @@ namespace onechchy {
         mTrimBorder = trimBorder;
     }
 
-    long ImageOperaParam::bgColor() const
+    QColor ImageOperaParam::bgColor() const
     {
         return mBgColor;
     }
 
-    void ImageOperaParam::setBgColor(long bgColor)
+    void ImageOperaParam::setBgColor(QColor bgColor)
     {
         mBgColor = bgColor;
     }

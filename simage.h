@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <memory>
+#include <QColor>
 
 namespace onechchy {
     class TransformImage;
+    class ITrimingBorder;
 
     class SImage : public QObject
     {
@@ -15,8 +17,11 @@ namespace onechchy {
         explicit SImage(QObject *parent = nullptr);
 
         void setTransImg(TransformImage* value);
+        void setTrimBorder(ITrimingBorder* value);
 
         QImage autoRotate(QImage&);
+        QImage trimBorder(QImage&,int trimType, QColor bgColor);
+
 
     signals:
 
@@ -24,6 +29,7 @@ namespace onechchy {
 
     private:
         std::unique_ptr<TransformImage> mpTransImg;
+        std::unique_ptr<ITrimingBorder> mpTrimBorder;
     };
 }
 

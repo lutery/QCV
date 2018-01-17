@@ -7,6 +7,11 @@ namespace onechchy {
 
     }
 
+    int ImageUtil::rgb2gray(int red, int green, int black)
+    {
+        return (red*38 + green*75 + black*15) >> 7;
+    }
+
     cv::Mat ImageUtil::convertGray(const cv::Mat& mat)
     {
         if(mat.type() == CV_8UC1)

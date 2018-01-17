@@ -2,8 +2,13 @@
 #define IMAGEOPERAPARAM_H
 
 #include <QObject>
+#include <QColor>
 
 namespace onechchy {
+    /**
+     * @brief The ImageOperaParam class
+     * 图像操作参数
+     */
     class ImageOperaParam : public QObject
     {
         Q_OBJECT
@@ -13,16 +18,18 @@ namespace onechchy {
         int trimBorder() const;
         Q_INVOKABLE void setTrimBorder(int trimBorder);
 
-        long bgColor() const;
-        Q_INVOKABLE void setBgColor(long bgColor);
+        QColor bgColor() const;
+        Q_INVOKABLE void setBgColor(QColor bgColor);
 
     signals:
 
     public slots:
 
     private:
+        // 需要切的边
         int mTrimBorder = 0x00;
-        long mBgColor = 0x000000;
+        // 背景颜色 QColor类型与qml中color类型相同固在qml中可以使用字符串进行初始化
+        QColor mBgColor;
     };
 }
 

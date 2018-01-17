@@ -12,9 +12,10 @@ namespace onechchy {
     public:
         explicit ImageUtil(QObject *parent = nullptr);
 
+        static int rgb2gray(int red, int green, int black);
         static cv::Mat convertGray(const cv::Mat&);
         static QImage cvMat2QImage(const cv::Mat& mat);
-        static cv::Mat QImage2cvMat(const QImage& image );
+        static cv::Mat QImage2cvMat(const QImage& image);
     signals:
 
     public slots:

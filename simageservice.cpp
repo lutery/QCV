@@ -1,6 +1,7 @@
 #include "simageservice.h"
 #include "simage.h"
 #include "transformimage.h"
+#include "simpletrimborder.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -8,8 +9,15 @@ namespace onechchy {
     {
         mpSImage = std::unique_ptr<onechchy::SImage>(new SImage());
         mpSImage->setTransImg(new TransformImage());
+        mpSImage->setTrimBorder(new SimpleTrimBorder());
     }
 
+    /**
+     * @brief SImageService::sltImageOpera 图像操作方法
+     * @param opera 操作类型
+     * @param image 被操作的图像
+     * 以后如果switch case太多，可以采用广播模式进行图像的处理
+     */
     void SImageService::sltImageOpera(SImageService::ImageOpera opera, QImage image)
     {
         switch (opera) {
@@ -35,6 +43,10 @@ namespace onechchy {
         mOperaParam = operaParam;
     }
 
+    /**
+     * @brief SImageService::rectifyingOpera 图像自动纠偏，用于纯色背景的图片
+     * @param image
+     */
     void SImageService::rectifyingOpera(QImage &image)
     {
         if (!image.isNull())
@@ -48,6 +60,10 @@ namespace onechchy {
         }
     }
 
+    /**
+     * @brief SImageService::trimBorderOpera 图像切边
+     * @param image
+     */
     void SImageService::trimBorderOpera(QImage &image)
     {
         qDebug() << "trimBorderOpera";
@@ -56,6 +72,9 @@ namespace onechchy {
         {
             qDebug() << mOperaParam->bgColor();
             qDebug() << mOperaParam->trimBorder();
+
+            QImage resultImg = mpSImage->trimBorder(image, mOperaParam->trimBorder(), mOperaParam->bgColor());
+            this->updateImg(resultImg);
         }
     }
 }

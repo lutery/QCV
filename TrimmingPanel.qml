@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQml 2.2
+import SImageServiceQML 1.0
 
 Rectangle {
     id: trimPanel
@@ -96,7 +97,7 @@ Rectangle {
                     id: bgColor
                     width: 30
                     height: 60
-                    text: "0x000000"
+                    placeholderText: "000000"
                 }
             }
 
@@ -108,22 +109,32 @@ Rectangle {
                     var borderParam = 0
 
                     if (leftBorder.checked){
-                        borderParam |= 0x01;
+                        borderParam |= SImageService.Left;
                     }
 
                     if (rightBorder.checked){
-                        borderParam |= 0x02;
+                        borderParam |= SImageService.Right;
                     }
 
                     if (topBorder.checked) {
-                        borderParam |= 0x04;
+                        borderParam |= SImageService.Top;
                     }
 
                     if (bottomBorder.checked){
-                        borderParam |= 0x08;
+                        borderParam |= SImageService.Bottom;
                     }
 
-                    trimPanel.trimBorder(borderParam, bgColor.text)
+                    if (simpleTrim.checked){
+                        borderParam |= SImageService.Simple;
+                    }
+                    else if (countTrim.checked){
+                        borderParam |= SImageService.Count;
+                    }
+                    else if (mapTrim.checked){
+                        borderParam |= SImageService.Map;
+                    }
+
+                    trimPanel.trimBorder(borderParam, "#" + bgColor.text)
                 }
             }
         }
