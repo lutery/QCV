@@ -4,6 +4,7 @@
         <file>ToolWindow.qml</file>
         <file>PreviewWindow.qml</file>
         <file>TrimmingPanel.qml</file>
+        <file>ImageSplitPanel.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>

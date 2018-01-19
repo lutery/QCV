@@ -11,8 +11,16 @@ namespace onechchy {
 
     }
 
+    /**
+     * @brief SimpleTrimBorder::trimBorder 切边函数
+     * @param srcMat 源图形
+     * @param border 切边信息
+     * @param bgColor 背景颜色
+     * @return 返回切边后的图形
+     */
     cv::Mat SimpleTrimBorder::trimBorder(const cv::Mat& srcMat, int border, QColor bgColor)
     {
+        // 现在默认只支持灰度图裁边，也就是背景为黑色的图形
         cv::Mat bwMat = ImageUtil::convertGray(srcMat);
 
         if (bwMat.empty())
@@ -73,12 +81,19 @@ namespace onechchy {
         return srcMat;
     }
 
+    /**
+     * @brief SimpleTrimBorder::topBorder 顶部切边
+     * @param mat
+     * @param bgColor
+     * @return 返回边界索引
+     */
     int SimpleTrimBorder::topBorder(const cv::Mat &mat, const QColor& bgColor)
     {
         int width = mat.cols;
         int height = mat.rows;
         uchar* pStart = mat.data;
 
+        // 将背景转换为灰度信息
         int threshold = ImageUtil::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
 //        for (int y = 0; y < height; ++y)
@@ -93,6 +108,8 @@ namespace onechchy {
 //            }
 //        }
 
+        // 使用range-v3标准库进行循环遍历扫描。
+        // 因为寻找的是顶边，所以这里以行进行扫描，一旦一个行有一个亮点，那么这行将被认为是边界
         for (const auto& y : ranges::view::ints(0, height)/* | ranges::view::reverse*/)
         {
             uchar* pRow = pStart + y * width;
@@ -132,6 +149,12 @@ namespace onechchy {
         return mat.cols;
     }
 
+    /**
+     * @brief SimpleTrimBorder::leftBorder 寻找左边界
+     * @param mat
+     * @param bgColor
+     * @return 返回左边界索引
+     */
     int SimpleTrimBorder::leftBorder(const cv::Mat &mat, const QColor& bgColor)
     {
         int width = mat.cols;
@@ -140,6 +163,7 @@ namespace onechchy {
 
         int threshold = ImageUtil::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
+        // 因为是左边界，进行的是列扫描，一旦该列存在一个点事亮点，就认为该索引是边界返回
         for (const auto& x : ranges::view::ints(0, width)/* | ranges::view::reverse*/)
         {
             for (const auto& y : ranges::view::ints(0, height))

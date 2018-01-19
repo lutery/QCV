@@ -25,4 +25,14 @@ namespace onechchy {
     {
         mBgColor = bgColor;
     }
+    
+    int ImageOperaParam::clusterCount() const
+    {
+        return mClusterCount;
+    }
+    
+    void ImageOperaParam::setClusterCount(int clusterCount)
+    {
+        mClusterCount = clusterCount;
+    }
 }

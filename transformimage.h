@@ -5,6 +5,9 @@
 #include <opencv2/opencv.hpp>
 
 namespace onechchy {
+    /**
+     * @brief The TransformImage class 移动图像操作
+     */
     class TransformImage : public QObject
     {
         Q_OBJECT

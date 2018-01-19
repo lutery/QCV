@@ -19,12 +19,17 @@ Window {
         case SImageService.AutoRectifying:
             console.log("click auto rotate")
             imageService.sltImageOpera(o, imageShow.copyImage())
-            break;
+            break
 
         case SImageService.TrimBorder:
             imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
-            break;
+            break
+
+        case SImageService.SplitKmeans:
+            imageService.operaParam = param;
+            imageService.sltImageOpera(o, imageShow.copyImage())
+            break
         }
     }
 

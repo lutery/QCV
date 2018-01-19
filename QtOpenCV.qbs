@@ -54,6 +54,8 @@ Project {
             "imageshowitem.h",
             "imageshowrenderer.cpp",
             "imageshowrenderer.h",
+            "imagesplit.cpp",
+            "imagesplit.h",
             "imageutil.cpp",
             "imageutil.h",
             "itrimingborder.cpp",

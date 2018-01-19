@@ -2,6 +2,7 @@
 #include "itrimingborder.h"
 #include "simage.h"
 #include "imageutil.h"
+#include "imagesplit.h"
 
 namespace onechchy {
     SImage::SImage(QObject *parent) : QObject(parent)
@@ -26,6 +27,18 @@ namespace onechchy {
         cv::Mat mat = this->mpTrimBorder->trimBorder(ImageUtil::QImage2cvMat(image), trimType, bgColor);
 
         return ImageUtil::cvMat2QImage(mat);
+    }
+
+    QImage SImage::imageSplitKMeans(QImage& image, int clusterCount)
+    {
+        cv::Mat mat = this->mpImageSplit->kmeans(ImageUtil::QImage2cvMat(image), clusterCount);
+
+        return ImageUtil::cvMat2QImage(mat);
+    }
+
+    void SImage::setImageSplit(ImageSplit* value)
+    {
+        mpImageSplit = std::unique_ptr<ImageSplit>(value);
     }
 
     void SImage::setTrimBorder(ITrimingBorder* value)

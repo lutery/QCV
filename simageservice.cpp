@@ -2,6 +2,7 @@
 #include "simage.h"
 #include "transformimage.h"
 #include "simpletrimborder.h"
+#include "imagesplit.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -9,6 +10,7 @@ namespace onechchy {
     {
         mpSImage = std::unique_ptr<onechchy::SImage>(new SImage());
         mpSImage->setTransImg(new TransformImage());
+        mpSImage->setImageSplit(new ImageSplit());
         mpSImage->setTrimBorder(new SimpleTrimBorder());
     }
 
@@ -28,6 +30,11 @@ namespace onechchy {
         case ImageOpera::TrimBorder:
             this->trimBorderOpera(image);
             break;
+
+        case ImageOpera::SplitKmeans:
+            this->imageSplitOpera(image);
+            break;
+
         default:
             break;
         }
@@ -76,5 +83,22 @@ namespace onechchy {
             QImage resultImg = mpSImage->trimBorder(image, mOperaParam->trimBorder(), mOperaParam->bgColor());
             this->updateImg(resultImg);
         }
+    }
+
+    void SImageService::imageSplitOpera(QImage &image)
+    {
+        qDebug() << "imageSplitOpera";
+
+        int clusterCount = 2;
+
+        if (mOperaParam != nullptr)
+        {
+            clusterCount = mOperaParam->clusterCount() > 0 ? mOperaParam->clusterCount() : 2;
+        }
+
+        qDebug() << "clusterCount" << clusterCount;
+
+        QImage resultImg = mpSImage->imageSplitKMeans(image, clusterCount);
+        this->updateImg(resultImg);
     }
 }

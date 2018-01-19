@@ -8,6 +8,7 @@
 namespace onechchy {
     class TransformImage;
     class ITrimingBorder;
+    class ImageSplit;
 
     class SImage : public QObject
     {
@@ -18,9 +19,12 @@ namespace onechchy {
 
         void setTransImg(TransformImage* value);
         void setTrimBorder(ITrimingBorder* value);
+        void setImageSplit(ImageSplit *value);
 
         QImage autoRotate(QImage&);
         QImage trimBorder(QImage&,int trimType, QColor bgColor);
+        QImage imageSplitKMeans(QImage&, int);
+
 
 
     signals:
@@ -30,6 +34,7 @@ namespace onechchy {
     private:
         std::unique_ptr<TransformImage> mpTransImg;
         std::unique_ptr<ITrimingBorder> mpTrimBorder;
+        std::unique_ptr<ImageSplit> mpImageSplit;
     };
 }
 

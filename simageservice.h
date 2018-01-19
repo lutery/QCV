@@ -27,7 +27,8 @@ namespace onechchy {
         enum ImageOpera
         {
             AutoRectifying = 0,
-            TrimBorder = 1
+            TrimBorder = 1,
+            SplitKmeans = 2
         };
 
         enum Border{
@@ -59,6 +60,7 @@ namespace onechchy {
 
         void rectifyingOpera(QImage& image);
         void trimBorderOpera(QImage& image);
+        void imageSplitOpera(QImage& image);
     };
 }
 

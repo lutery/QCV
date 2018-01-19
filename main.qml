@@ -61,6 +61,21 @@ Window {
 
                 }
             }
+
+            Button {
+                text: "图像分割"
+
+                onClicked: {
+                    console.log("click image split")
+
+                    if (settingPanel.state != settingPanel.Null){
+                        settingPanel.source = ""
+                    }
+
+                    settingPanel.source = "ImageSplitPanel.qml"
+                    settingPanel.item.imgSplit.connect(onImgSplit)
+                }
+            }
         }
 
         RowLayout{
@@ -88,5 +103,14 @@ Window {
         operaParams.setBgColor(background);
 
         previewWin.imageOperation(SImageService.TrimBorder, operaParams)
+    }
+
+    function onImgSplit(cluserCount){
+        console.log("cluserCount")
+        console.log(cluserCount)
+
+        operaParams.setClusterCount(cluserCount)
+
+        previewWin.imageOperation(SImageService.SplitKmeans, operaParams);
     }
 }
