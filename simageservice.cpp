@@ -12,6 +12,9 @@ namespace onechchy {
         mpSImage->setTransImg(new TransformImage());
         mpSImage->setImageSplit(new ImageSplit());
         mpSImage->setTrimBorder(new SimpleTrimBorder());
+
+        mUnDoImg.clear();
+        mReDoImg.clear();
     }
 
     /**
@@ -22,6 +25,9 @@ namespace onechchy {
      */
     void SImageService::sltImageOpera(SImageService::ImageOpera opera, QImage image)
     {
+        mUnDoImg.push_back(image);
+        mReDoImg.clear();
+
         switch (opera) {
         case ImageOpera::AutoRectifying:
             this->rectifyingOpera(image);
@@ -50,6 +56,26 @@ namespace onechchy {
         mOperaParam = operaParam;
     }
 
+    void SImageService::undo()
+    {
+        if (mUnDoImg.size() > 0)
+        {
+            mReDoImg.push(mCurImg);
+            mCurImg = mUnDoImg.pop();
+            this->updateImg(mCurImg);
+        }
+    }
+
+    void SImageService::redo()
+    {
+        if (mReDoImg.size() > 0)
+        {
+            mUnDoImg.push(mCurImg);
+            mCurImg = mReDoImg.pop();
+            this->updateImg(mCurImg);
+        }
+    }
+
     /**
      * @brief SImageService::rectifyingOpera 图像自动纠偏，用于纯色背景的图片
      * @param image
@@ -59,6 +85,7 @@ namespace onechchy {
         if (!image.isNull())
         {
             QImage resultImg = mpSImage->autoRotate(image);
+            mCurImg = resultImg;
             this->updateImg(resultImg);
         }
         else
@@ -81,6 +108,7 @@ namespace onechchy {
             qDebug() << mOperaParam->trimBorder();
 
             QImage resultImg = mpSImage->trimBorder(image, mOperaParam->trimBorder(), mOperaParam->bgColor());
+            mCurImg = resultImg;
             this->updateImg(resultImg);
         }
     }
@@ -99,6 +127,7 @@ namespace onechchy {
         qDebug() << "clusterCount" << clusterCount;
 
         QImage resultImg = mpSImage->imageSplitKMeans(image, clusterCount);
+        mCurImg = resultImg;
         this->updateImg(resultImg);
     }
 }

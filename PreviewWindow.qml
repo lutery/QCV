@@ -58,4 +58,26 @@ Window {
             }
         }
     }
+
+    Button{
+        text: "撤销"
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        anchors.margins: 10
+
+        onClicked: {
+            imageService.undo()
+        }
+    }
+
+    Button{
+        text: "恢复"
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: 10
+
+        onClicked: {
+            imageService.redo()
+        }
+    }
 }

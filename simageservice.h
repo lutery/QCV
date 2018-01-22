@@ -5,6 +5,7 @@
 #include <memory>
 #include <QString>
 #include <QImage>
+#include <QStack>
 #include "imageoperaparam.h"
 
 namespace onechchy {
@@ -47,6 +48,9 @@ namespace onechchy {
         ImageOperaParam *operaParam() const;
         void setOperaParam(ImageOperaParam *operaParam);
 
+        Q_INVOKABLE void undo();
+        Q_INVOKABLE void redo();
+
     signals:
         void updateImg(QImage image);
 
@@ -57,6 +61,9 @@ namespace onechchy {
         std::unique_ptr<SImage> mpSImage = nullptr;
         // 这里申请为指针类型，是因为QObject不支持复制、赋值构造函数，而qml能够根据指针还是值来进行赋值
         ImageOperaParam* mOperaParam = nullptr;
+        QStack<QImage> mUnDoImg;
+        QStack<QImage> mReDoImg;
+        QImage mCurImg;
 
         void rectifyingOpera(QImage& image);
         void trimBorderOpera(QImage& image);

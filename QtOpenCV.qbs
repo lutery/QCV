@@ -48,33 +48,45 @@ Project {
 //        cpp.dynamicLibraries:"opencv_world330"
 
         files: [
-            "imageoperaparam.cpp",
-            "imageoperaparam.h",
             "imageshowitem.cpp",
             "imageshowitem.h",
             "imageshowrenderer.cpp",
             "imageshowrenderer.h",
-            "imagesplit.cpp",
-            "imagesplit.h",
-            "imageutil.cpp",
-            "imageutil.h",
-            "itrimingborder.cpp",
-            "itrimingborder.h",
             "main.cpp",
             "qml.qrc",
-            "simage.cpp",
-            "simage.h",
             "simageservice.cpp",
             "simageservice.h",
-            "simpletrimborder.cpp",
-            "simpletrimborder.h",
-            "transformimage.cpp",
-            "transformimage.h",
         ]
 
         Group {     // Properties for the produced executable
             fileTagsFilter: "application"
             qbs.install: true
         }
+
+        Group{
+            name:"imgOperation"
+            files: [
+                "simpletrimborder.cpp",
+                "simpletrimborder.h",
+                "transformimage.cpp",
+                "transformimage.h",
+                "simage.cpp",
+                "simage.h",
+                "imagesplit.cpp",
+                "imagesplit.h",
+                "imageutil.cpp",
+                "imageutil.h",
+                "itrimingborder.cpp",
+                "itrimingborder.h",
+                "imageoperaparam.cpp",
+                "imageoperaparam.h",
+            ]
+        }
+
+//        Group{
+//            name:"undoGroup"
+//            files:[
+//            ]
+//        }
     }
 }
