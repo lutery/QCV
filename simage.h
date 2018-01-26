@@ -23,7 +23,7 @@ namespace onechchy {
 
         QImage autoRotate(QImage&);
         QImage trimBorder(QImage&,int trimType, QColor bgColor);
-        QImage imageSplitKMeans(QImage&, int);
+        QImage imageSplit(QImage&, int, int);
 
 
 

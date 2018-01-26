@@ -19,17 +19,18 @@ namespace onechchy {
         Q_ENUMS(ImageOpera)
         Q_ENUMS(Border)
         Q_ENUMS(TrimType)
+        Q_ENUMS(ImageSplitType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
     public:
         explicit SImageService(QObject *parent = nullptr);
 
-        enum ImageOpera
+        enum class ImageOpera
         {
             AutoRectifying = 0,
             TrimBorder = 1,
-            SplitKmeans = 2
+            ImageSplit = 2
         };
 
         enum Border{
@@ -43,6 +44,13 @@ namespace onechchy {
             Simple = 0x10,
             Count = 0x20,
             Map = 0x40
+        };
+
+        enum ImageSplitType{
+            KMeans = 0x01,
+            GMM = 0x02,
+            Watershed = 0x04,
+            GrabCut = 0x08
         };
 
         ImageOperaParam *operaParam() const;

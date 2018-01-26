@@ -24,6 +24,9 @@ namespace onechchy {
         int clusterCount() const;
         Q_INVOKABLE void setClusterCount(int clusterCount);
 
+        int imageSplitType() const;
+        Q_INVOKABLE void setImageSplitType(int imageSplitType);
+
     signals:
 
     public slots:
@@ -35,6 +38,8 @@ namespace onechchy {
         QColor mBgColor;
         // 图像分割需要分割的分数
         int mClusterCount = 2;
+//        图像分割类型
+        int mImageSplitType = 0x01;
     };
 }
 

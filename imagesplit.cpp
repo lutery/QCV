@@ -82,7 +82,7 @@ namespace onechchy {
             }
         }
 
-         cv::imwrite("D:\\Test\\img1.jpg", img1);
+//         cv::imwrite("D:\\Test\\img1.jpg", img1);
 
         return img1;
     }

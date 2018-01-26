@@ -105,12 +105,15 @@ Window {
         previewWin.imageOperation(SImageService.TrimBorder, operaParams)
     }
 
-    function onImgSplit(cluserCount){
+    function onImgSplit(splitType, cluserCount){
+        console.log("splitType")
+        console.log(splitType)
         console.log("cluserCount")
         console.log(cluserCount)
 
         operaParams.setClusterCount(cluserCount)
+        operaParams.setImageSplitType(splitType)
 
-        previewWin.imageOperation(SImageService.SplitKmeans, operaParams);
+        previewWin.imageOperation(SImageService.ImageSplit, operaParams);
     }
 }

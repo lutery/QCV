@@ -37,7 +37,7 @@ namespace onechchy {
             this->trimBorderOpera(image);
             break;
 
-        case ImageOpera::SplitKmeans:
+        case ImageOpera::ImageSplit:
             this->imageSplitOpera(image);
             break;
 
@@ -85,8 +85,11 @@ namespace onechchy {
         if (!image.isNull())
         {
             QImage resultImg = mpSImage->autoRotate(image);
-            mCurImg = resultImg;
-            this->updateImg(resultImg);
+            if (!resultImg.isNull())
+            {
+                mCurImg = resultImg;
+                this->updateImg(resultImg);
+            }
         }
         else
         {
@@ -108,8 +111,11 @@ namespace onechchy {
             qDebug() << mOperaParam->trimBorder();
 
             QImage resultImg = mpSImage->trimBorder(image, mOperaParam->trimBorder(), mOperaParam->bgColor());
-            mCurImg = resultImg;
-            this->updateImg(resultImg);
+            if (!resultImg.isNull())
+            {
+                mCurImg = resultImg;
+                this->updateImg(resultImg);
+            }
         }
     }
 
@@ -126,8 +132,11 @@ namespace onechchy {
 
         qDebug() << "clusterCount" << clusterCount;
 
-        QImage resultImg = mpSImage->imageSplitKMeans(image, clusterCount);
-        mCurImg = resultImg;
-        this->updateImg(resultImg);
+        QImage resultImg = mpSImage->imageSplit(image, mOperaParam->imageSplitType(), clusterCount);
+        if (!resultImg.isNull())
+        {
+            mCurImg = resultImg;
+            this->updateImg(resultImg);
+        }
     }
 }

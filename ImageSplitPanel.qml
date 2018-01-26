@@ -2,12 +2,13 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQml 2.2
+import SImageServiceQML 1.0
 
 Rectangle {
     id: splitPanel
     anchors.fill: parent
 
-    signal imgSplit(real cluserCount)
+    signal imgSplit(real splitType, real cluserCount)
 
     RowLayout{
         anchors.fill: parent
@@ -20,13 +21,13 @@ Rectangle {
 //            Layout.alignment: Qt.AlignCenter
 
             ButtonGroup{
-                id: trimType
+                id: splitType
             }
 
             RadioButton{
                 id: kmeansRadio
                 text: "KMeans"
-                ButtonGroup.group: trimType
+                ButtonGroup.group: splitType
                 anchors.leftMargin: 4
                 anchors.rightMargin: 4
                 anchors.topMargin: 4
@@ -37,7 +38,7 @@ Rectangle {
             RadioButton{
                 id: gmmRadio
                 text: "高斯混合模型"
-                ButtonGroup.group: trimType
+                ButtonGroup.group: splitType
                 anchors.leftMargin: 4
                 anchors.rightMargin: 4
                 anchors.topMargin: 4
@@ -48,7 +49,7 @@ Rectangle {
             RadioButton{
                 id: watershedRadio
                 text: "分水岭"
-                ButtonGroup.group: trimType
+                ButtonGroup.group: splitType
                 anchors.leftMargin: 4
                 anchors.rightMargin: 4
                 anchors.topMargin: 4
@@ -59,7 +60,39 @@ Rectangle {
             RadioButton{
                 id: grabcutRadio
                 text: "Grabcut"
-                ButtonGroup.group: trimType
+                ButtonGroup.group: splitType
+                anchors.leftMargin: 4
+                anchors.rightMargin: 4
+                anchors.topMargin: 4
+                checked: true
+                focus: true
+            }
+        }
+
+        ColumnLayout{
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+//            Layout.alignment: Qt.AlignCenter
+
+            ButtonGroup{
+                id: trainType
+            }
+
+            RadioButton{
+                id: trainRadio
+                text: "KMeans"
+                ButtonGroup.group: trainType
+                anchors.leftMargin: 4
+                anchors.rightMargin: 4
+                anchors.topMargin: 4
+                checked: true
+                focus: true
+            }
+
+            RadioButton{
+                id: splitRadio
+                text: "高斯混合模型"
+                ButtonGroup.group: trainType
                 anchors.leftMargin: 4
                 anchors.rightMargin: 4
                 anchors.topMargin: 4
@@ -92,7 +125,19 @@ Rectangle {
                 onClicked: {
                     console.log("开始分割")
 
-                    splitPanel.imgSplit(cluserCount.text)
+                    var splitType = 0x00;
+
+                    if (kmeansRadio.checked){
+                        splitType = SImageService.KMeans
+                    }else if (gmmRadio.checked){
+                        splitType = SImageService.GMM
+                    }else if (watershedRadio.checked){
+                        splitType = SImageService.Watershed
+                    }else if (grabcutRadio.checked){
+                        splitType = SImageService.GrabCut
+                    }
+
+                    splitPanel.imgSplit(splitType, cluserCount.text)
                 }
             }
         }

@@ -35,4 +35,14 @@ namespace onechchy {
     {
         mClusterCount = clusterCount;
     }
+    
+    int ImageOperaParam::imageSplitType() const
+    {
+        return mImageSplitType;
+    }
+    
+    void ImageOperaParam::setImageSplitType(int imageSplitType)
+    {
+        mImageSplitType = imageSplitType;
+    }
 }

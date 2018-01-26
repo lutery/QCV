@@ -3,6 +3,7 @@
 #include "simage.h"
 #include "imageutil.h"
 #include "imagesplit.h"
+#include "simageservice.h"
 
 namespace onechchy {
     SImage::SImage(QObject *parent) : QObject(parent)
@@ -29,9 +30,25 @@ namespace onechchy {
         return ImageUtil::cvMat2QImage(mat);
     }
 
-    QImage SImage::imageSplitKMeans(QImage& image, int clusterCount)
+    QImage SImage::imageSplit(QImage& image, int imgSplitType, int clusterCount)
     {
-        cv::Mat mat = this->mpImageSplit->kmeans(ImageUtil::QImage2cvMat(image), clusterCount);
+        cv::Mat mat;
+
+        switch (imgSplitType) {
+        case SImageService::GMM:
+            break;
+
+        case SImageService::Watershed:
+            break;
+
+        case SImageService::GrabCut:
+            break;
+
+        default:
+        case SImageService::KMeans:
+            mat = this->mpImageSplit->kmeans(ImageUtil::QImage2cvMat(image), clusterCount);
+            break;
+        }
 
         return ImageUtil::cvMat2QImage(mat);
     }

@@ -26,7 +26,7 @@ Window {
             imageService.sltImageOpera(o, imageShow.copyImage())
             break
 
-        case SImageService.SplitKmeans:
+        case SImageService.ImageSplit:
             imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
             break
