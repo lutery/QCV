@@ -5,6 +5,7 @@ import ImageShowItemQML 1.0
 import SImageServiceQML 1.0
 import QtQuick.Layouts 1.3
 import SImageOperaParamQML 1.0
+import QtQuick.Dialogs 1.2
 
 Window {
     id:mainWin
@@ -18,6 +19,33 @@ Window {
 //        窗口跟随
         x: mainWin.x + mainWin.width
         y: mainWin.y
+    }
+
+    FileDialog{
+        id: saveDialog
+        title: "保存图片"
+        folder: shortcuts.home
+        selectFolder: false
+        selectExisting: false
+        nameFilters: ["Image files (*.jpg)", "Image files (*.png)", "Image files (*.bmp)"]
+        onAccepted: {
+            console.log("You choose: " + saveDialog.fileUrls);
+
+            var filePath = fileUrls[0].substr(8)
+
+            operaParams.setSelectPath(filePath)
+
+            previewWin.imageOperation(SImageService.Save, operaParams)
+
+            console.log(filePath)
+
+//            Qt.quit()
+        }
+
+        onRejected: {
+            console.log("Canceled")
+//            Qt.quic()
+        }
     }
 
     ColumnLayout{
@@ -76,6 +104,29 @@ Window {
                     settingPanel.item.imgSplit.connect(onImgSplit)
                 }
             }
+
+            Button {
+                text: "灰度/二值化"
+
+                onClicked: {
+                    console.log("click image split")
+
+                    if (settingPanel.state != settingPanel.Null){
+                        settingPanel.source = ""
+                    }
+
+                    settingPanel.source = "GrayBinaryPanel.qml"
+                    settingPanel.item.gbProcess.connect(onGBProcess)
+                }
+            }
+
+            Button {
+                text: "保存"
+
+                onClicked: {
+                    saveDialog.visible = true
+                }
+            }
         }
 
         RowLayout{
@@ -93,12 +144,14 @@ Window {
         id: operaParams
     }
 
-    function onTrimborder(border, background){
+    function onTrimborder(method, border, background){
         console.log("onTrimborder")
+        console.log(method)
         console.log(border)
         console.log(background)
         console.log("onTrimborder")
 
+        operaParams.setTrimType(method);
         operaParams.setTrimBorder(border);
         operaParams.setBgColor(background);
 
@@ -115,5 +168,15 @@ Window {
         operaParams.setImageSplitType(splitType)
 
         previewWin.imageOperation(SImageService.ImageSplit, operaParams);
+    }
+
+    function onGBProcess(type, param){
+        console.log(type)
+        console.log(param)
+
+        operaParams.setGBMethod(type)
+        operaParams.setGBParam(param)
+
+        previewWin.imageOperation(SImageService.GrayBinary, operaParams)
     }
 }

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QColor>
+#include <QString>
 
 namespace onechchy {
     /**
@@ -15,6 +16,9 @@ namespace onechchy {
     public:
         explicit ImageOperaParam(QObject *parent = nullptr);
 
+        int trimType() const;
+        Q_INVOKABLE void setTrimType(int trimType);
+
         int trimBorder() const;
         Q_INVOKABLE void setTrimBorder(int trimBorder);
 
@@ -26,6 +30,15 @@ namespace onechchy {
 
         int imageSplitType() const;
         Q_INVOKABLE void setImageSplitType(int imageSplitType);
+
+        QString selectPath() const;
+        Q_INVOKABLE void setSelectPath(const QString &selectPath);
+
+        int gbMethod() const;
+        Q_INVOKABLE void setGBMethod(const int method);
+
+        int gbParam() const;
+        Q_INVOKABLE void setGBParam(const int param);
 
     signals:
 
@@ -40,6 +53,9 @@ namespace onechchy {
         int mClusterCount = 2;
 //        图像分割类型
         int mImageSplitType = 0x01;
+        QString mSelectPath = "";
+        int mIntOne = 0;
+        int mIntTwo = 0;
     };
 }
 

@@ -43,7 +43,7 @@ namespace onechchy {
         this->initializeOpenGLFunctions();
 
     //    mCurTexture = new QOpenGLTexture(QImage(":/images/Image/Zero0.jpg"));
-        mpCurImage = std::shared_ptr<QImage>(new QImage(":/image/resource/image/RGB24.bmp"));
+        mpCurImage = std::shared_ptr<QImage>(new QImage(":/image/resource/image/1.bmp"));
 
         mProgram = new QOpenGLShaderProgram();
         mProgram->addCacheableShaderFromSourceCode(QOpenGLShader::Vertex,

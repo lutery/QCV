@@ -30,6 +30,15 @@ Window {
             imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
             break
+
+        case SImageService.Save:
+            imageService.operaParam = param;
+            imageService.sltImageOpera(o, imageShow.copyImage())
+            break;
+
+        case SImageService.GrayBinary:
+            imageService.operaParam = param;
+            imageService.sltImageOpera(o, imageShow.copyImage())
         }
     }
 

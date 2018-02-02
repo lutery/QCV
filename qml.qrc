@@ -5,11 +5,24 @@
         <file>PreviewWindow.qml</file>
         <file>TrimmingPanel.qml</file>
         <file>ImageSplitPanel.qml</file>
+        <file>GrayBinaryPanel.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>
         <file>resource/image/zero0.png</file>
         <file>resource/image/RGB24.bmp</file>
         <file>resource/image/RGB32.bmp</file>
+        <file>resource/image/Lenna.jpg</file>
+        <file>resource/image/1.bmp</file>
+    </qresource>
+    <qresource prefix="/qml">
+        <file>BinaryOpenCV.qml</file>
+        <file>GrayThird.qml</file>
+        <file>BinaryThird.qml</file>
+        <file>GrayOpenCV.qml</file>
+        <file>TrimBorderModel.qml</file>
+    </qresource>
+    <qresource prefix="/listview/delegate">
+        <file>LVDelegate.qml</file>
     </qresource>
 </RCC>

@@ -4,11 +4,24 @@
 #include "imageutil.h"
 #include "imagesplit.h"
 #include "simageservice.h"
+#include "imageoperaparam.h"
+#include "gopencvhandle.h"
+#include "bopencvhandle.h"
+#include "bostuopencvhandle.h"
+#include "btriangleopencvhandle.h"
 
 namespace onechchy {
     SImage::SImage(QObject *parent) : QObject(parent)
     {
+        auto pGCVHandle = new GOpenCVHandle();
+        auto pBCVHandle = new BOpenCVHandle();
+        auto pOSTUHandle = new BOSTUOpenCVHandle();
+        auto pTriangleHandle = new BTriangleOpenCVHandle();
 
+        this->mpGBHandle = std::unique_ptr<VGBHandle>(pGCVHandle);
+        pGCVHandle->setMpNext(pBCVHandle);
+        pBCVHandle->setMpNext(pOSTUHandle);
+        pOSTUHandle->setMpNext(pTriangleHandle);
     }
 
     void SImage::setTransImg(TransformImage* value)
@@ -18,16 +31,16 @@ namespace onechchy {
 
     QImage SImage::autoRotate(QImage& image)
     {
-        cv::Mat mat = mpTransImg->inclineDFT(ImageUtil::QImage2cvMat(image));
+        cv::Mat mat = mpTransImg->inclineDFT(onechchy::QImage2cvMat(image));
 
-        return ImageUtil::cvMat2QImage(mat);
+        return onechchy::cvMat2QImage(mat);
     }
 
     QImage SImage::trimBorder(QImage& image, int trimType, QColor bgColor)
     {
-        cv::Mat mat = this->mpTrimBorder->trimBorder(ImageUtil::QImage2cvMat(image), trimType, bgColor);
+        cv::Mat mat = this->mpTrimBorder->trimBorder(onechchy::QImage2cvMat(image), trimType, bgColor);
 
-        return ImageUtil::cvMat2QImage(mat);
+        return onechchy::cvMat2QImage(mat);
     }
 
     QImage SImage::imageSplit(QImage& image, int imgSplitType, int clusterCount)
@@ -46,11 +59,20 @@ namespace onechchy {
 
         default:
         case SImageService::KMeans:
-            mat = this->mpImageSplit->kmeans(ImageUtil::QImage2cvMat(image), clusterCount);
+            mat = this->mpImageSplit->kmeans(onechchy::QImage2cvMat(image), clusterCount);
             break;
         }
 
-        return ImageUtil::cvMat2QImage(mat);
+        return onechchy::cvMat2QImage(mat);
+    }
+
+    QImage SImage::grayBinary(QImage& image, ImageOperaParam *param)
+    {
+        cv::Mat mat;
+
+        mat = this->mpGBHandle->GBHanlde(param->gbMethod(), param, onechchy::QImage2cvMat(image));
+
+        return onechchy::cvMat2QImage(mat);
     }
 
     void SImage::setImageSplit(ImageSplit* value)

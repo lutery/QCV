@@ -66,8 +66,6 @@ Project {
         Group{
             name:"imgOperation"
             files: [
-                "simpletrimborder.cpp",
-                "simpletrimborder.h",
                 "transformimage.cpp",
                 "transformimage.h",
                 "simage.cpp",
@@ -76,10 +74,44 @@ Project {
                 "imagesplit.h",
                 "imageutil.cpp",
                 "imageutil.h",
-                "itrimingborder.cpp",
-                "itrimingborder.h",
                 "imageoperaparam.cpp",
                 "imageoperaparam.h",
+                "util.cpp",
+                "util.h",
+            ]
+        }
+
+        Group{
+            name:"grayBinary"
+            files: [
+                "bopencvhandle.cpp",
+                "bopencvhandle.h",
+                "bostuopencvhandle.cpp",
+                "bostuopencvhandle.h",
+                "btriangleopencvhandle.cpp",
+                "btriangleopencvhandle.h",
+                "gopencvhandle.cpp",
+                "gopencvhandle.h",
+                "vgbhandle.cpp",
+                "vgbhandle.h",
+            ]
+        }
+
+        Group{
+            name:"trimBorder"
+            files: [
+                "boundmattrimborder.cpp",
+                "boundmattrimborder.h",
+                "scannyerodetrimborder.cpp",
+                "scannyerodetrimborder.h",
+                "scannyerodiltrimborder.cpp",
+                "scannyerodiltrimborder.h",
+                "simplecannytrimborder.cpp",
+                "simplecannytrimborder.h",
+                "simpletrimborder.cpp",
+                "simpletrimborder.h",
+                "itrimingborder.cpp",
+                "itrimingborder.h",
             ]
         }
 

@@ -20,6 +20,7 @@ namespace onechchy {
         Q_ENUMS(Border)
         Q_ENUMS(TrimType)
         Q_ENUMS(ImageSplitType)
+        Q_ENUMS(GBMethodType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
@@ -30,7 +31,9 @@ namespace onechchy {
         {
             AutoRectifying = 0,
             TrimBorder = 1,
-            ImageSplit = 2
+            ImageSplit = 2,
+            Save = 3,
+            GrayBinary = 4,
         };
 
         enum Border{
@@ -40,10 +43,14 @@ namespace onechchy {
             Bottom = 0x08
         };
 
-        enum TrimType{
+        enum class TrimType{
             Simple = 0x10,
             Count = 0x20,
-            Map = 0x40
+            Map = 0x40,
+            BoundMat = 1,
+            SimpleCanny = 2,
+            SCannyErode = 3,
+            SCannyEroDil = 4,
         };
 
         enum ImageSplitType{
@@ -51,6 +58,15 @@ namespace onechchy {
             GMM = 0x02,
             Watershed = 0x04,
             GrabCut = 0x08
+        };
+
+        enum class GBMethodType{
+            GeneralGrayOpenCV = 1,
+            GeneralGrayThird = 2,
+            CustomBinaryOpenCV = 3,
+            CustomBinaryThird = 4,
+            OSTUOpenCV = 5,
+            TriangleOpenCV = 6,
         };
 
         ImageOperaParam *operaParam() const;
@@ -76,6 +92,8 @@ namespace onechchy {
         void rectifyingOpera(QImage& image);
         void trimBorderOpera(QImage& image);
         void imageSplitOpera(QImage& image);
+        void saveImage(QImage& image);
+        void grayBinary(QImage& image);
     };
 }
 

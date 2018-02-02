@@ -21,7 +21,7 @@ namespace onechchy {
     cv::Mat SimpleTrimBorder::trimBorder(const cv::Mat& srcMat, int border, QColor bgColor)
     {
         // 现在默认只支持灰度图裁边，也就是背景为黑色的图形
-        cv::Mat bwMat = ImageUtil::convertGray(srcMat);
+        cv::Mat bwMat = onechchy::convertGray(srcMat);
 
         if (bwMat.empty())
         {
@@ -71,6 +71,8 @@ namespace onechchy {
             bottom = this->bottomBorder(bwMat, bgColor);
         }
 
+        qDebug() << " left " << left << " right " << right << " top " << top << " bottom " << bottom;
+
         cv::Rect trimRect(left, top, right - left, bottom - top);
 
         if (trimRect.width > 0 && trimRect.height > 0)
@@ -94,7 +96,7 @@ namespace onechchy {
         uchar* pStart = mat.data;
 
         // 将背景转换为灰度信息
-        int threshold = ImageUtil::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
+        int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
 //        for (int y = 0; y < height; ++y)
 //        {
@@ -131,7 +133,7 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pStart = mat.data;
 
-        int threshold = ImageUtil::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
+        int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
         for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
         {
@@ -146,7 +148,7 @@ namespace onechchy {
         }
 
 
-        return mat.cols;
+        return mat.rows - 1;
     }
 
     /**
@@ -161,7 +163,7 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pStart = mat.data;
 
-        int threshold = ImageUtil::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
+        int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
         // 因为是左边界，进行的是列扫描，一旦该列存在一个点事亮点，就认为该索引是边界返回
         for (const auto& x : ranges::view::ints(0, width)/* | ranges::view::reverse*/)
@@ -184,7 +186,7 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pStart = mat.data;
 
-        int threshold = ImageUtil::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
+        int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
         for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
         {
@@ -197,6 +199,6 @@ namespace onechchy {
             }
         }
 
-        return mat.rows;
+        return mat.cols - 1;
     }
 }

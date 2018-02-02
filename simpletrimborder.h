@@ -15,7 +15,7 @@ namespace onechchy {
 
         cv::Mat trimBorder(const cv::Mat& srcMat, int border, QColor bgColor) override;
 
-    private:
+    protected:
         // 阈值抖动
         const int thresholdShake = 5;
 

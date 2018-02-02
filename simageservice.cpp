@@ -2,7 +2,12 @@
 #include "simage.h"
 #include "transformimage.h"
 #include "simpletrimborder.h"
+#include "boundmattrimborder.h"
 #include "imagesplit.h"
+#include "simplecannytrimborder.h"
+#include "scannyerodetrimborder.h"
+#include "scannyerodiltrimborder.h"
+#include "util.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -39,6 +44,14 @@ namespace onechchy {
 
         case ImageOpera::ImageSplit:
             this->imageSplitOpera(image);
+            break;
+
+        case ImageOpera::Save:
+            this->saveImage(image);
+            break;
+
+        case ImageOpera::GrayBinary:
+            this->grayBinary(image);
             break;
 
         default:
@@ -110,7 +123,44 @@ namespace onechchy {
             qDebug() << mOperaParam->bgColor();
             qDebug() << mOperaParam->trimBorder();
 
-            QImage resultImg = mpSImage->trimBorder(image, mOperaParam->trimBorder(), mOperaParam->bgColor());
+            int trimType = mOperaParam->trimType();
+
+            switch (trimType) {
+            case (SImageService::TrimType::Count):
+
+                break;
+
+            case (SImageService::TrimType::Map):
+                break;
+
+            case (SImageService::TrimType::BoundMat):
+                mpSImage->setTrimBorder(new BoundMatTrimBorder());
+                break;
+
+            case (SImageService::TrimType::SimpleCanny):
+                mpSImage->setTrimBorder(new SimpleCannyTrimBorder());
+                break;
+
+            case (SImageService::TrimType::SCannyErode):
+                mpSImage->setTrimBorder(new SCannyErodeTrimBorder());
+                break;
+
+            case (SImageService::TrimType::SCannyEroDil):
+                mpSImage->setTrimBorder(new ScannyEroDilTrimBorder());
+                break;
+
+            case (SImageService::TrimType::Simple):
+            default:
+                break;
+            }
+
+//            onechchy::tick();
+//            QImage resultImg = mpSImage->trimBorder(image, mOperaParam->trimBorder(), mOperaParam->bgColor());
+//            int timeCount = onechchy::clock<std::chrono::microseconds>();
+
+            auto [timeCount, resultImg] = onechchy::cfunClock<std::chrono::milliseconds>(&SImage::trimBorder, mpSImage.get(), image, mOperaParam->trimBorder(), mOperaParam->bgColor());
+
+            qDebug() << "time Count " << timeCount;
             if (!resultImg.isNull())
             {
                 mCurImg = resultImg;
@@ -137,6 +187,29 @@ namespace onechchy {
         {
             mCurImg = resultImg;
             this->updateImg(resultImg);
+        }
+    }
+
+    void SImageService::saveImage(QImage &image)
+    {
+        if (mOperaParam != nullptr)
+        {
+            QString savePath = mOperaParam->selectPath();
+            image.save(savePath);
+        }
+    }
+
+    void SImageService::grayBinary(QImage &image)
+    {
+        if (mOperaParam != nullptr)
+        {
+            QImage resultImg = mpSImage->grayBinary(image, mOperaParam);
+
+            if (!resultImg.isNull())
+            {
+                mCurImg = resultImg;
+                this->updateImg(resultImg);
+            }
         }
     }
 }

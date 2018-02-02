@@ -6,6 +6,16 @@ namespace onechchy {
 
     }
 
+    int ImageOperaParam::trimType() const
+    {
+        return mIntOne;
+    }
+
+    void ImageOperaParam::setTrimType(int trimType)
+    {
+        mIntOne = trimType;
+    }
+
     int ImageOperaParam::trimBorder() const
     {
         return mTrimBorder;
@@ -44,5 +54,35 @@ namespace onechchy {
     void ImageOperaParam::setImageSplitType(int imageSplitType)
     {
         mImageSplitType = imageSplitType;
+    }
+    
+    QString ImageOperaParam::selectPath() const
+    {
+        return mSelectPath;
+    }
+    
+    void ImageOperaParam::setSelectPath(const QString &selectPath)
+    {
+        mSelectPath = selectPath;
+    }
+
+    int ImageOperaParam::gbMethod() const
+    {
+        return mIntOne;
+    }
+
+    void ImageOperaParam::setGBMethod(const int method)
+    {
+        mIntOne = method;
+    }
+
+    int ImageOperaParam::gbParam() const
+    {
+        return mIntTwo;
+    }
+
+    void ImageOperaParam::setGBParam(const int param)
+    {
+        mIntTwo = param;
     }
 }

@@ -22,7 +22,7 @@ namespace onechchy {
             return cv::Mat();
         }
 
-        cv::Mat grayp = ImageUtil::convertGray(p);
+        cv::Mat grayp = onechchy::convertGray(p);
 
         cv::Point center(grayp.cols / 2, grayp.rows / 2);
 

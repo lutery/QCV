@@ -8,7 +8,7 @@ Rectangle {
     id: trimPanel
     anchors.fill: parent
 
-    signal trimBorder(real border,color background)
+    signal trimBorder(real method, real border,color background)
 
     RowLayout{
         anchors.fill: parent
@@ -20,41 +20,16 @@ Rectangle {
             Layout.fillHeight: true
 //            Layout.alignment: Qt.AlignCenter
 
-            ButtonGroup{
-                id: trimType
-            }
+//            Rectangle{
+//                anchors.fill: parent
+//                color: "red"
+//            }
 
-            RadioButton{
-                id: simpleTrim
-                text: "简单切边"
-                ButtonGroup.group: trimType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
-            }
-
-            RadioButton{
-                id: countTrim
-                text: "统计切边"
-                ButtonGroup.group: trimType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
-            }
-
-            RadioButton{
-                id: mapTrim
-                text: "映射切边"
-                ButtonGroup.group: trimType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
+            ListView {
+                id: methodType
+                anchors.fill: parent
+                delegate: Qt.createComponent("qrc:/listview/delegate/LVDelegate.qml")
+                model: methodTypeModel.item
             }
         }
 
@@ -65,21 +40,25 @@ Rectangle {
             CheckBox{
                 id: leftBorder
                 text: "左边"
+                checked: true
             }
 
             CheckBox{
                 id: rightBorder
                 text:"右边"
+                checked: true
             }
 
             CheckBox{
                 id: topBorder
                 text:"顶边"
+                checked: true
             }
 
             CheckBox{
                 id: bottomBorder
                 text:"底边"
+                checked: true
             }
         }
 
@@ -105,7 +84,7 @@ Rectangle {
                 id: trimBorder
                 text: "开始裁边"
                 onClicked: {
-                    console.log("开始裁边")
+                    console.log("开始裁边");
                     var borderParam = 0
 
                     if (leftBorder.checked){
@@ -124,19 +103,32 @@ Rectangle {
                         borderParam |= SImageService.Bottom;
                     }
 
-                    if (simpleTrim.checked){
-                        borderParam |= SImageService.Simple;
-                    }
-                    else if (countTrim.checked){
-                        borderParam |= SImageService.Count;
-                    }
-                    else if (mapTrim.checked){
-                        borderParam |= SImageService.Map;
+//                    if (simpleTrim.checked){
+//                        borderParam |= SImageService.Simple;
+//                    }
+//                    else if (countTrim.checked){
+//                        borderParam |= SImageService.Count;
+//                    }
+//                    else if (mapTrim.checked){
+//                        borderParam |= SImageService.Map;
+//                    }
+
+                    if (methodType.currentIndex >= 0){
+                        console.log(methodType.currentIndex);
+                        var method = methodType.model.get(methodType.currentIndex).method;
+
+                        console.log(method)
+                        trimPanel.trimBorder(method, borderParam, "#" + bgColor.text);
                     }
 
-                    trimPanel.trimBorder(borderParam, "#" + bgColor.text)
+//                    trimPanel.trimBorder(borderParam, "#" + bgColor.text)
                 }
             }
         }
+    }
+
+    Loader{
+        id: methodTypeModel
+        source: "qrc:/qml/TrimBorderModel.qml"
     }
 }
