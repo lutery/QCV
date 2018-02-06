@@ -1,88 +1,113 @@
 #include "imageoperaparam.h"
 
 namespace onechchy {
-    ImageOperaParam::ImageOperaParam(QObject *parent) : QObject(parent), mBgColor("0x000000")
+    ImageOperaParam::ImageOperaParam(QObject *parent) : QObject(parent)
+    {
+
+    }
+
+    ImageOperaParam::~ImageOperaParam()
     {
 
     }
 
     int ImageOperaParam::trimType() const
     {
-        return mIntOne;
+        return mParam.commonParam.intOne;
     }
 
     void ImageOperaParam::setTrimType(int trimType)
     {
-        mIntOne = trimType;
+        mParam.commonParam.intOne = trimType;
     }
 
     int ImageOperaParam::trimBorder() const
     {
-        return mTrimBorder;
+        return mParam.trimParam.trimBorder;
     }
 
     void ImageOperaParam::setTrimBorder(int trimBorder)
     {
-        mTrimBorder = trimBorder;
+        mParam.trimParam.trimBorder = trimBorder;
     }
 
     QColor ImageOperaParam::bgColor() const
     {
-        return mBgColor;
+        return mParam.trimParam.bgColor;
     }
 
     void ImageOperaParam::setBgColor(QColor bgColor)
     {
-        mBgColor = bgColor;
+        mParam.trimParam.bgColor = bgColor;
     }
     
     int ImageOperaParam::clusterCount() const
     {
-        return mClusterCount;
+        return mParam.splitParam.clusterCount;
     }
     
     void ImageOperaParam::setClusterCount(int clusterCount)
     {
-        mClusterCount = clusterCount;
+        mParam.splitParam.clusterCount = clusterCount;
     }
     
     int ImageOperaParam::imageSplitType() const
     {
-        return mImageSplitType;
+        return mParam.splitParam.imageSplitType;
     }
     
     void ImageOperaParam::setImageSplitType(int imageSplitType)
     {
-        mImageSplitType = imageSplitType;
+        mParam.splitParam.imageSplitType = imageSplitType;
     }
     
     QString ImageOperaParam::selectPath() const
     {
-        return mSelectPath;
+        return mParam.saveParam.selectPath;
     }
     
     void ImageOperaParam::setSelectPath(const QString &selectPath)
     {
-        mSelectPath = selectPath;
+        mParam.saveParam.selectPath = selectPath;
     }
 
     int ImageOperaParam::gbMethod() const
     {
-        return mIntOne;
+        return mParam.commonParam.intOne;
     }
 
     void ImageOperaParam::setGBMethod(const int method)
     {
-        mIntOne = method;
+        mParam.commonParam.intOne = method;
     }
 
     int ImageOperaParam::gbParam() const
     {
-        return mIntTwo;
+        return mParam.commonParam.intTwo;
     }
 
     void ImageOperaParam::setGBParam(const int param)
     {
-        mIntTwo = param;
+        mParam.commonParam.intTwo = param;
+    }
+
+    int ImageOperaParam::rotateMethod() const
+    {
+        return mParam.rotateParam.rotateType;
+    }
+
+    void ImageOperaParam::setRotateMethod(const int method)
+    {
+        mParam.rotateParam.rotateType = method;
+    }
+
+    int ImageOperaParam::rotateParam() const
+    {
+        return mParam.rotateParam.rotateAngle;
+    }
+
+    void ImageOperaParam::setRotateParam(const int param)
+    {
+        mParam.rotateParam.rotateAngle = param;
     }
 }

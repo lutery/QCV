@@ -3,12 +3,19 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQml 2.2
 import SImageServiceQML 1.0
+import SImageOperaParamQML 1.0
 
 Rectangle {
     id: trimPanel
     anchors.fill: parent
 
-    signal trimBorder(real method, real border,color background)
+//    signal trimBorder(real method, real border,color background)
+
+    signal imgProcess(real type, QtObject param)
+
+    ImageOperaParam {
+        id: operaParams
+    }
 
     RowLayout{
         anchors.fill: parent
@@ -30,6 +37,7 @@ Rectangle {
                 anchors.fill: parent
                 delegate: Qt.createComponent("qrc:/listview/delegate/LVDelegate.qml")
                 model: methodTypeModel.item
+                clip: true
             }
         }
 
@@ -118,10 +126,13 @@ Rectangle {
                         var method = methodType.model.get(methodType.currentIndex).method;
 
                         console.log(method)
-                        trimPanel.trimBorder(method, borderParam, "#" + bgColor.text);
-                    }
 
-//                    trimPanel.trimBorder(borderParam, "#" + bgColor.text)
+                        operaParams.setTrimType(method);
+                        operaParams.setTrimBorder(borderParam);
+                        operaParams.setBgColor("#" + bgColor.text);
+//                        trimPanel.trimBorder(method, borderParam, "#" + bgColor.text);
+                        trimPanel.imgProcess(SImageService.TrimBorder, operaParams);
+                    }
                 }
             }
         }

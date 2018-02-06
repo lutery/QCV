@@ -21,6 +21,7 @@ namespace onechchy {
         Q_ENUMS(TrimType)
         Q_ENUMS(ImageSplitType)
         Q_ENUMS(GBMethodType)
+        Q_ENUMS(RotateType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
@@ -29,7 +30,7 @@ namespace onechchy {
 
         enum class ImageOpera
         {
-            AutoRectifying = 0,
+            Rotate = 0,
             TrimBorder = 1,
             ImageSplit = 2,
             Save = 3,
@@ -67,6 +68,11 @@ namespace onechchy {
             CustomBinaryThird = 4,
             OSTUOpenCV = 5,
             TriangleOpenCV = 6,
+        };
+
+        enum class RotateType{
+            AutoRectifying,
+            ManualRotate,
         };
 
         ImageOperaParam *operaParam() const;

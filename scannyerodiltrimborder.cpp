@@ -6,6 +6,7 @@ namespace onechchy {
 
     ScannyEroDilTrimBorder::ScannyEroDilTrimBorder()
     {
+        // 将腐蚀因子扩大到16x16的大小，这种大小情况下会对原图的区域产生很大的影响，需要进行膨胀操作
         mcErodeElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(16, 16));
     }
 
@@ -30,6 +31,7 @@ namespace onechchy {
             return mat;
         }
 
+        // 对图像进行膨胀和腐蚀操作，膨胀和腐蚀的参数因子需要使用相同的参数因子，这样才可以保证区域大致与原图相同
         cv::erode(mat, mat, mcErodeElement);
 
         cv::dilate(mat, mat, mcErodeElement);

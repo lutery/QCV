@@ -3,16 +3,22 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQml 2.2
 import SImageServiceQML 1.0
+import SImageOperaParamQML 1.0
 
 Rectangle {
     id: gbPanel
     anchors.fill: parent
 
-    signal gbProcess(real type, real param)
+//    signal gbProcess(real type, real param)
+    signal imgProcess(real type, QtObject param)
 
     property var selectLib: 1
     property var selectType: 1
     property var selectMethod: 1
+
+    ImageOperaParam {
+        id: operaParams
+    }
 
     RowLayout{
         anchors.fill: parent
@@ -171,7 +177,12 @@ Rectangle {
 
                         console.log(method)
                         console.log(param)
-                        gbPanel.gbProcess(method, param);
+
+                        operaParams.setGBMethod(method)
+                        operaParams.setGBParam(param)
+
+//                        gbPanel.gbProcess(method, param);
+                        gbPanel.imgProcess(SImageService.GrayBinary, operaParams);
                     }
                 }
             }

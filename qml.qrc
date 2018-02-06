@@ -6,6 +6,9 @@
         <file>TrimmingPanel.qml</file>
         <file>ImageSplitPanel.qml</file>
         <file>GrayBinaryPanel.qml</file>
+        <file>SceneSelectionPanel.qml</file>
+        <file>Preview.qml</file>
+        <file>RotatePanel.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>
@@ -21,6 +24,7 @@
         <file>BinaryThird.qml</file>
         <file>GrayOpenCV.qml</file>
         <file>TrimBorderModel.qml</file>
+        <file>RotateModel.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>

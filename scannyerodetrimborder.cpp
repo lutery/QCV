@@ -6,6 +6,7 @@ namespace onechchy {
 
     SCannyErodeTrimBorder::SCannyErodeTrimBorder()
     {
+        // 这里使用的腐蚀因子采用3x3的尺寸，这样可以清除细线和细点。如果腐蚀因子太大，会对原图产生较大的影响，需要在腐蚀之后采用膨胀的算法
         mcErodeElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
     }
 
@@ -30,6 +31,7 @@ namespace onechchy {
             return mat;
         }
 
+        // 清除噪点和噪线
         cv::erode(mat, mat, mcErodeElement);
 
         cv::Canny(mat, mat, 25, 50);

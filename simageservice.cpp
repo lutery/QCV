@@ -34,7 +34,7 @@ namespace onechchy {
         mReDoImg.clear();
 
         switch (opera) {
-        case ImageOpera::AutoRectifying:
+        case ImageOpera::Rotate:
             this->rectifyingOpera(image);
             break;
 

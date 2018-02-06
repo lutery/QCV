@@ -12,6 +12,7 @@ namespace onechchy {
     {
         cv::Mat mat;
 
+        // 如果图像不是灰度图，那么将其转换为灰度图
         if (srcMat.channels() == 4)
         {
             cv::cvtColor(srcMat, mat, CV_BGRA2GRAY);
@@ -29,6 +30,7 @@ namespace onechchy {
             return mat;
         }
 
+        // 根据网络上的资料显示，threshold1与threshold2之间的参数比值在1:2或1:3之间比较好，这里选用25:50可以尽可能的保留边界信息的情况下减少冗余边界信息
         cv::Canny(mat, mat, 25, 50);
 
         int left = 0;

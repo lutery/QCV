@@ -5,6 +5,9 @@
 
 namespace onechchy {
 
+    /**
+     * @brief The SCannyErodeTrimBorder class 在使用腐蚀的基础上使用Canny算法
+     */
     class ScannyEroDilTrimBorder : public SimpleTrimBorder
     {
     public:

@@ -5,6 +5,10 @@
 
 namespace onechchy {
 
+    /**
+     * @brief The BoundMatTrimBorder class 使用opencv矩形查询算法进行边界的查询
+     * 效果不好，会对部分边界无黑边以及噪点给干扰
+     */
     class BoundMatTrimBorder : public ITrimingBorder
     {
     public:

@@ -18,6 +18,7 @@ Window {
         switch (o){
         case SImageService.AutoRectifying:
             console.log("click auto rotate")
+            imageService.operaParam = param
             imageService.sltImageOpera(o, imageShow.copyImage())
             break
 

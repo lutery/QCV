@@ -3,12 +3,18 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQml 2.2
 import SImageServiceQML 1.0
+import SImageOperaParamQML 1.0
 
 Rectangle {
     id: splitPanel
     anchors.fill: parent
 
-    signal imgSplit(real splitType, real cluserCount)
+//    signal imgSplit(real splitType, real cluserCount)
+    signal imgProcess(real type, QtObject param)
+
+    ImageOperaParam {
+        id: operaParams
+    }
 
     RowLayout{
         anchors.fill: parent
@@ -137,7 +143,11 @@ Rectangle {
                         splitType = SImageService.GrabCut
                     }
 
-                    splitPanel.imgSplit(splitType, cluserCount.text)
+                    operaParams.setClusterCount(cluserCount)
+                    operaParams.setImageSplitType(splitType)
+
+//                    splitPanel.imgSplit(splitType, cluserCount.text)
+                    splitPanel.imgProcess(SImageService.ImageSplit, operaParams)
                 }
             }
         }

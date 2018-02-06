@@ -48,89 +48,120 @@ Window {
         }
     }
 
-    ColumnLayout{
+    RowLayout{
+        anchors.margins: 4
         spacing: 10
+        anchors.fill: parent
 
-        RowLayout{
-            anchors.margins: 4
-            spacing: 10
+        SceneSelectionPanel{
+            id: sceneSelectionPanel
+            Layout.fillHeight: true
+            Layout.maximumWidth: sceneSelectionPanel.itemWidth + 10
+            Layout.minimumWidth: sceneSelectionPanel.itemWidth + 10
+            onSceneSourceChanged: {
 
-            Button{
-                text: "打开预览"
-
-                onClicked: {
+                if (sceneSource == "Preview.qml"){
                     if (!previewWin.visible) {
                         previewWin.show()
                     }
                 }
-            }
-
-            Button{
-                text: "自动纠偏"
-
-                onClicked: {
-                    console.log("click auto")
-                    previewWin.imageOperation(SImageService.AutoRectifying, undefined)
-                }
-            }
-
-            Button {
-                text: "切边"
-
-                onClicked: {
-                    console.log(settingPanel.status)
-
-                    if (settingPanel.status != settingPanel.Null){
-                        settingPanel.source = ""
-                    }
-
-                    settingPanel.source = "TrimmingPanel.qml"
-                    settingPanel.item.trimBorder.connect(onTrimborder)
-
-                }
-            }
-
-            Button {
-                text: "图像分割"
-
-                onClicked: {
-                    console.log("click image split")
-
-                    if (settingPanel.state != settingPanel.Null){
-                        settingPanel.source = ""
-                    }
-
-                    settingPanel.source = "ImageSplitPanel.qml"
-                    settingPanel.item.imgSplit.connect(onImgSplit)
-                }
-            }
-
-            Button {
-                text: "灰度/二值化"
-
-                onClicked: {
-                    console.log("click image split")
-
-                    if (settingPanel.state != settingPanel.Null){
-                        settingPanel.source = ""
-                    }
-
-                    settingPanel.source = "GrayBinaryPanel.qml"
-                    settingPanel.item.gbProcess.connect(onGBProcess)
-                }
-            }
-
-            Button {
-                text: "保存"
-
-                onClicked: {
-                    saveDialog.visible = true
+                else{
+                    settingPanel.source = sceneSource
+                    settingPanel.item.imgProcess.connect(onImgProcess)
                 }
             }
         }
+//    ColumnLayout{
+//        spacing: 10
+//        anchors.fill: parent
 
-        RowLayout{
+//        RowLayout{
+//            anchors.margins: 4
+//            spacing: 10
+//            Layout.fillWidth: true
+
+//            SceneSelectionPanel{
+//                anchors.fill: parent
+//            }
+
+//            Button{
+//                text: "打开预览"
+
+//                onClicked: {
+//                    if (!previewWin.visible) {
+//                        previewWin.show()
+//                    }
+//                }
+//            }
+
+//            Button{
+//                text: "自动纠偏"
+
+//                onClicked: {
+//                    console.log("click auto")
+//                    previewWin.imageOperation(SImageService.AutoRectifying, undefined)
+//                }
+//            }
+
+//            Button {
+//                text: "切边"
+
+//                onClicked: {
+//                    console.log(settingPanel.status)
+
+//                    if (settingPanel.status != settingPanel.Null){
+//                        settingPanel.source = ""
+//                    }
+
+//                    settingPanel.source = "TrimmingPanel.qml"
+//                    settingPanel.item.trimBorder.connect(onTrimborder)
+
+//                }
+//            }
+
+//            Button {
+//                text: "图像分割"
+
+//                onClicked: {
+//                    console.log("click image split")
+
+//                    if (settingPanel.state != settingPanel.Null){
+//                        settingPanel.source = ""
+//                    }
+
+//                    settingPanel.source = "ImageSplitPanel.qml"
+//                    settingPanel.item.imgSplit.connect(onImgSplit)
+//                }
+//            }
+
+//            Button {
+//                text: "灰度/二值化"
+
+//                onClicked: {
+//                    console.log("click image split")
+
+//                    if (settingPanel.state != settingPanel.Null){
+//                        settingPanel.source = ""
+//                    }
+
+//                    settingPanel.source = "GrayBinaryPanel.qml"
+//                    settingPanel.item.gbProcess.connect(onGBProcess)
+//                }
+//            }
+
+//            Button {
+//                text: "保存"
+
+//                onClicked: {
+//                    saveDialog.visible = true
+//                }
+//            }
+//        }
+
+        Rectangle{
             Layout.fillHeight: true
+            Layout.fillWidth: true
+//            color: "red"
 
             Loader{
                 id: settingPanel
@@ -144,39 +175,45 @@ Window {
         id: operaParams
     }
 
-    function onTrimborder(method, border, background){
-        console.log("onTrimborder")
-        console.log(method)
-        console.log(border)
-        console.log(background)
-        console.log("onTrimborder")
+//    function onTrimborder(method, border, background){
+//        console.log("onTrimborder")
+//        console.log(method)
+//        console.log(border)
+//        console.log(background)
+//        console.log("onTrimborder")
 
-        operaParams.setTrimType(method);
-        operaParams.setTrimBorder(border);
-        operaParams.setBgColor(background);
+//        operaParams.setTrimType(method);
+//        operaParams.setTrimBorder(border);
+//        operaParams.setBgColor(background);
 
-        previewWin.imageOperation(SImageService.TrimBorder, operaParams)
-    }
+//        previewWin.imageOperation(SImageService.TrimBorder, operaParams)
+//    }
 
-    function onImgSplit(splitType, cluserCount){
-        console.log("splitType")
-        console.log(splitType)
-        console.log("cluserCount")
-        console.log(cluserCount)
+//    function onImgSplit(splitType, cluserCount){
+//        console.log("splitType")
+//        console.log(splitType)
+//        console.log("cluserCount")
+//        console.log(cluserCount)
 
-        operaParams.setClusterCount(cluserCount)
-        operaParams.setImageSplitType(splitType)
+//        operaParams.setClusterCount(cluserCount)
+//        operaParams.setImageSplitType(splitType)
 
-        previewWin.imageOperation(SImageService.ImageSplit, operaParams);
-    }
+//        previewWin.imageOperation(SImageService.ImageSplit, operaParams);
+//    }
 
-    function onGBProcess(type, param){
-        console.log(type)
-        console.log(param)
+//    function onGBProcess(type, param){
+//        console.log(type)
+//        console.log(param)
 
-        operaParams.setGBMethod(type)
-        operaParams.setGBParam(param)
+//        operaParams.setGBMethod(type)
+//        operaParams.setGBParam(param)
 
-        previewWin.imageOperation(SImageService.GrayBinary, operaParams)
+//        previewWin.imageOperation(SImageService.GrayBinary, operaParams)
+//    }
+
+    function onImgProcess(type, param){
+        console.log("ongImgProcess" + type)
+
+        previewWin.imageOperation(type, param)
     }
 }
