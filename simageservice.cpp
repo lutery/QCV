@@ -7,6 +7,7 @@
 #include "simplecannytrimborder.h"
 #include "scannyerodetrimborder.h"
 #include "scannyerodiltrimborder.h"
+#include "partitiontrimborder.h"
 #include "util.h"
 #include <QDebug>
 
@@ -126,6 +127,10 @@ namespace onechchy {
             int trimType = mOperaParam->trimType();
 
             switch (trimType) {
+            case (SImageService::TrimType::PartitionSCanny):
+                mpSImage->setTrimBorder(new PartitionTrimBorder());
+                break;
+
             case (SImageService::TrimType::Count):
 
                 break;

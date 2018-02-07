@@ -10,7 +10,7 @@
 #include "imageoperaparam.h"
 #include "itrimingborder.h"
 //#include <tuple>
-//#include <QDebug>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +31,10 @@ int main(int argc, char *argv[])
 //    image.save(R"(D:\tmp\qimage32.jpg)");
 
 //    qDebug() << "i = " << i << ", str = " << str;
+
+#ifndef _OPENMP
+    qDebug() << "OpenMP not supported";
+#endif
 
     QGuiApplication app(argc, argv);
 

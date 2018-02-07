@@ -52,6 +52,7 @@ namespace onechchy {
             SimpleCanny = 2,
             SCannyErode = 3,
             SCannyEroDil = 4,
+            PartitionSCanny = 5,
         };
 
         enum ImageSplitType{

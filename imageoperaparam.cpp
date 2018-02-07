@@ -13,12 +13,12 @@ namespace onechchy {
 
     int ImageOperaParam::trimType() const
     {
-        return mParam.commonParam.intOne;
+        return mParam.trimParam.trimType;
     }
 
     void ImageOperaParam::setTrimType(int trimType)
     {
-        mParam.commonParam.intOne = trimType;
+        mParam.trimParam.trimType = trimType;
     }
 
     int ImageOperaParam::trimBorder() const

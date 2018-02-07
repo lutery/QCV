@@ -6,7 +6,7 @@
 namespace onechchy {
 
     /**
-     * @brief The SCannyErodeTrimBorder class 在使用腐蚀的基础上使用Canny算法
+     * @brief The SCannyErodeTrimBorder class 在使用腐蚀膨胀的基础上使用Canny算法
      */
     class ScannyEroDilTrimBorder : public SimpleTrimBorder
     {
@@ -15,7 +15,7 @@ namespace onechchy {
 
         cv::Mat trimBorder(const cv::Mat& srcMat, int border, QColor bgColor) override;
 
-    private:
+    protected:
         cv::Mat mcErodeElement;
     };
 

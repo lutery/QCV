@@ -13,6 +13,7 @@ namespace onechchy {
 
         struct{
             int trimBorder = 0x00;
+            int trimType = 0;
             QColor bgColor;
         } trimParam;
 

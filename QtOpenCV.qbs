@@ -35,6 +35,8 @@ Project {
             "D:/DevelopmentKit/opencv/build/x64/vc14/lib"
         ]
 
+        cpp.cxxFlags:["-openmp"]
+
         Properties {
             condition: qbs.buildVariant.contains("debug")
             cpp.dynamicLibraries:"opencv_world330d"
@@ -44,6 +46,8 @@ Project {
             condition: qbs.buildVariant.contains("release")
             cpp.dynamicLibraries:"opencv_world330"
         }
+
+        cpp.dynamicLibraries:["-openmp"]
 
 //        cpp.dynamicLibraries:"opencv_world330"
 
@@ -102,6 +106,8 @@ Project {
             files: [
                 "boundmattrimborder.cpp",
                 "boundmattrimborder.h",
+                "partitiontrimborder.cpp",
+                "partitiontrimborder.h",
                 "scannyerodetrimborder.cpp",
                 "scannyerodetrimborder.h",
                 "scannyerodiltrimborder.cpp",

@@ -38,4 +38,9 @@ ListModel {
         name: "腐蚀膨胀Canny简单切边"
         method: SImageService.SCannyEroDil
     }
+
+    ListElement {
+        name: "分块Canny切边"
+        method: SImageService.PartitionSCanny
+    }
 }
