@@ -1,10 +1,12 @@
 import QtQuick 2.0
 import QtMultimedia 5.8
+import CameraFilter 1.0
 
 VideoOutput {
     id: root
-    height: width
+//    height: width
     source: camera
+    filters: [cameraFilter]
 
     signal fatalError
     signal sizeChanged
@@ -27,6 +29,17 @@ VideoOutput {
 //        }
     }
 
+    CameraFilter{
+        id: "cameraFilter"
+    }
+
     function start() { camera.start() }
     function stop() { camera.stop() }
+    function switchCamera(deviceid){
+        for (var i = 0; i < QtMultimedia.availableCameras.length; ++i){
+            if (deviceid == QtMultimedia.availableCameras[i].deviceId){
+                camera.deviceId = deviceid
+            }
+        }
+    }
 }

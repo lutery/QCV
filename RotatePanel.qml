@@ -70,6 +70,6 @@ Rectangle {
 
     Loader{
         id: methodTypeModel
-        source: "qrc:/qml/RotateModel.qml"
+        source: "qrc:/listview/model/RotateModel.qml"
     }
 }

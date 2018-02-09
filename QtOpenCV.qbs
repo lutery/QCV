@@ -6,6 +6,7 @@ Project {
     CppApplication {
         Depends { name: "Qt.core" }
         Depends { name: "Qt.quick" }
+        Depends { name: "Qt.multimedia" }
 
         // Additional import path used to resolve QML modules in Qt Creator's code model
         property pathList qmlImportPaths: []
@@ -124,7 +125,10 @@ Project {
         Group{
             name:"camera"
             files: [
-                "CameraSidePanel.qml",
+                "camerafilter.cpp",
+                "camerafilter.h",
+                "camerafilterrunnable.cpp",
+                "camerafilterrunnable.h",
             ]
         }
 

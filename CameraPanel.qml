@@ -26,6 +26,51 @@ Window {
     property int scaledMargin: 2 * pixDens
     property int fontSize: 5 * pixDens
 
+    // 侧板
+    CameraSidePanel {
+        id: cameraSidePanel
+        state: "collapsed"
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: itemHeight + scaledMargin
+        z: 2
+        opacity: 0.9
+
+        states: [
+            State {
+                name: "expanded"
+                PropertyChanges {
+                    target: cameraSidePanel
+                    width: itemWidth * 1.5
+                    opacity: 0.8
+                }
+            },
+            State {
+                name: "collapsed"
+                PropertyChanges {
+                    target: cameraSidePanel
+                    width: itemHeight + scaledMargin
+                    opacity: 0.9
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                NumberAnimation { target: cameraSidePanel; property: "width"; duration: 100 }
+                NumberAnimation { target: cameraSidePanel; property: "opacity"; duration: 100 }
+            }
+        ]
+
+        onSwitchCamera: {
+            console.log("cameraId = " + cameraId)
+            cameraLoader.item.switchCamera(cameraId)
+        }
+    }
+
     Loader{
         id: cameraLoader
     }
@@ -42,6 +87,7 @@ Window {
             cameraLoader.item.sizeChanged.connect(updateRootSize)
 //            cameraLoader.item.parent = camerawWin
             cameraLoader.item.width = camerawWin.width
+            cameraLoader.item.height = camerawWin.height
 
             if (camerawWin.autoStart)
                 camerawWin.start()

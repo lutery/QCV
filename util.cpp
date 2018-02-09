@@ -3,7 +3,7 @@
 namespace onechchy {
 
     std::chrono::time_point<std::chrono::steady_clock>& preTime(){
-        static std::chrono::time_point<std::chrono::steady_clock> pretime;
+        static std::chrono::time_point<std::chrono::steady_clock> pretime = std::chrono::steady_clock::now();
         return pretime;
     }
 
@@ -12,7 +12,7 @@ namespace onechchy {
     }
 
     std::chrono::time_point<std::chrono::steady_clock>& nowTime(){
-        static std::chrono::time_point<std::chrono::steady_clock> nowtime;
+        static std::chrono::time_point<std::chrono::steady_clock> nowtime = std::chrono::steady_clock::now();
         return nowtime;
     }
 

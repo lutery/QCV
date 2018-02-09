@@ -5,6 +5,8 @@ Rectangle {
     id: root
     color: "#151515"
 
+    signal switchCamera(string cameraId)
+
     Rectangle {
         id: menuField
         height: itemHeight
@@ -22,11 +24,13 @@ Rectangle {
         }
         MouseArea {
             anchors.fill: parent
-            onClicked: fileOpen.state == "expanded" ? fileOpen.state = "collapsed" : fileOpen.state = "expanded"
+            onClicked: cameraSidePanel.state == "expanded" ? cameraSidePanel.state = "collapsed" : cameraSidePanel.state = "expanded"
         }
     }
 
     Column {
+        id: funcSelect
+
         anchors {
             top: menuField.bottom
             right: parent.right
@@ -36,7 +40,7 @@ Rectangle {
         }
 
         spacing: 10
-        visible: fileOpen.state == "expanded"
+        visible: cameraSidePanel.state == "expanded"
 
         Rectangle {
             width: 0.9 * parent.width
@@ -45,64 +49,127 @@ Rectangle {
             anchors.left: parent.left
         }
         Button {
-            text: "Start camera"
+            id: cameraListBtn
+            text: "Camera List"
             height: itemHeight
             width: parent.width
             onClicked: {
-                fileOpen.state = "collapsed"
-                root.openCamera()
+
+            }
+
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onEntered: {
+                    lvbg.visible = !lvbg.visible
+//                    listCamera.visible = !listCamera.visible
+                }
+
+                onExited: {
+                    lvbg.visible = !lvbg.visible
+//                    listCamera.visible = !listCamera.visible
+                }
             }
         }
-        Rectangle {
-            width: 0.9 * parent.width
-            height: 1
-            color: "#353535"
-            anchors.left: parent.left
+//        Rectangle {
+//            width: 0.9 * parent.width
+//            height: 1
+//            color: "#353535"
+//            anchors.left: parent.left
+//        }
+//        Button {
+//            text: "Open image"
+//            height: itemHeight
+//            width: parent.width
+//            onClicked: {
+//                cameraSidePanel.state = "collapsed"
+//                root.openImage()
+//            }
+//        }
+//        Rectangle {
+//            width: 0.9 * parent.width
+//            height: 1
+//            color: "#353535"
+//            anchors.left: parent.left
+//        }
+//        Button {
+//            text: "Open video"
+//            height: itemHeight
+//            width: parent.width
+//            onClicked: {
+//                cameraSidePanel.state = "collapsed"
+//                root.openVideo()
+//            }
+//        }
+//        Rectangle {
+//            width: 0.9 * parent.width
+//            height: 1
+//            color: "#353535"
+//            anchors.left: parent.left
+//        }
+//        Button {
+//            text: "Reset"
+//            height: itemHeight
+//            width: parent.width
+//            onClicked: {
+//                cameraSidePanel.state = "collapsed"
+//                root.close()
+//            }
+//        }
+//        Rectangle {
+//            width: 0.9 * parent.width
+//            height: 1
+//            color: "#353535"
+//            anchors.left: parent.left
+//        }
+    }
+
+    Rectangle{
+        id: lvbg
+        width: itemWidth * 2
+        opacity: 0.8
+        visible: false
+        color: "black"
+
+        anchors {
+            left: funcSelect.right
+            top: funcSelect.top
+            bottom: funcSelect.bottom
         }
-        Button {
-            text: "Open image"
-            height: itemHeight
-            width: parent.width
-            onClicked: {
-                fileOpen.state = "collapsed"
-                root.openImage()
+
+        ListView{
+            id: listCamera
+            width: itemWidth * 2
+            anchors.fill: parent
+            visible: true
+
+            model: listCameraModel.item
+            delegate: listCameraDelegate
+
+            clip: true
+            focus: true
+
+            Component {
+                id: listCameraDelegate
+                Button {
+                    text: name
+                    width: itemWidth * 2
+                    onClicked: {
+                        console.log("camera name" + name)
+                        console.log("camera id " + deviceId)
+                        listCamera.visible = false
+                        lvbg.visible = false
+
+                        root.switchCamera(deviceId)
+                    }
+                }
             }
         }
-        Rectangle {
-            width: 0.9 * parent.width
-            height: 1
-            color: "#353535"
-            anchors.left: parent.left
-        }
-        Button {
-            text: "Open video"
-            height: itemHeight
-            width: parent.width
-            onClicked: {
-                fileOpen.state = "collapsed"
-                root.openVideo()
-            }
-        }
-        Rectangle {
-            width: 0.9 * parent.width
-            height: 1
-            color: "#353535"
-            anchors.left: parent.left
-        }
-        Button {
-            text: "Reset"
-            height: itemHeight
-            width: parent.width
-            onClicked: {
-                fileOpen.state = "collapsed"
-                root.close()
-            }
-        }
-        Rectangle {
-            width: 0.9 * parent.width
-            height: 1
-            color: "#353535"
-            anchors.left: parent.left
-        }
+    }
+
+    Loader{
+        id: listCameraModel
+        source: "qrc:/listview/model/CameraSelectionList.qml"
     }
 }

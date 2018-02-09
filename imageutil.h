@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QImage>
 #include <opencv2/opencv.hpp>
+#include <QVideoFrame>
 
 namespace onechchy {
 //    class ImageUtil : public QObject
@@ -23,6 +24,8 @@ namespace onechchy {
 
     QImage cvMat2QImage(const cv::Mat& mat);
     cv::Mat QImage2cvMat(const QImage& image);
+    QVideoFrame cvMat2QVideoFrame(const cv::Mat& mat);
+    cv::Mat QVideoFrame2cvMat(QVideoFrame &frame);
     int rgb2gray(int red, int green, int black);
     cv::Mat convertGray(const cv::Mat&);
 }

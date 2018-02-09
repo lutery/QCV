@@ -9,6 +9,7 @@
 #include "simageservice.h"
 #include "imageoperaparam.h"
 #include "itrimingborder.h"
+#include "camerafilter.h"
 //#include <tuple>
 #include <QDebug>
 
@@ -41,8 +42,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<onechchy::ImageShowItem>("ImageShowItemQML", 1, 0, "ImageShowItem");
     qmlRegisterType<onechchy::SImageService>("SImageServiceQML", 1, 0, "SImageService");
     qmlRegisterType<onechchy::ImageOperaParam>("SImageOperaParamQML", 1, 0, "ImageOperaParam");
-
-    onechchy::start();
+    qmlRegisterType<onechchy::CameraFilter>("CameraFilter", 1, 0, "CameraFilter");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

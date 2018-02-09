@@ -10,8 +10,6 @@
         <file>Preview.qml</file>
         <file>RotatePanel.qml</file>
         <file>SaveImage.qml</file>
-        <file>CameraPanel.qml</file>
-        <file>CameraItem.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>
@@ -22,18 +20,21 @@
         <file>resource/image/1.bmp</file>
         <file>resource/icon/icon_menu.png</file>
     </qresource>
-    <qresource prefix="/qml">
+    <qresource prefix="/listview/model">
         <file>BinaryOpenCV.qml</file>
         <file>GrayThird.qml</file>
         <file>BinaryThird.qml</file>
         <file>GrayOpenCV.qml</file>
         <file>TrimBorderModel.qml</file>
         <file>RotateModel.qml</file>
+        <file>CameraSelectionList.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
     </qresource>
     <qresource prefix="/control">
         <file>CameraSidePanel.qml</file>
+        <file>CameraItem.qml</file>
+        <file>CameraPanel.qml</file>
     </qresource>
 </RCC>

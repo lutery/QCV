@@ -140,6 +140,6 @@ Rectangle {
 
     Loader{
         id: methodTypeModel
-        source: "qrc:/qml/TrimBorderModel.qml"
+        source: "qrc:/listview/model/TrimBorderModel.qml"
     }
 }

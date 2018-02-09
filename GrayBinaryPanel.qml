@@ -118,7 +118,7 @@ Rectangle {
                 anchors.fill: parent
 //                delegate: methodDelegate
                 delegate: Qt.createComponent("qrc:/listview/delegate/LVDelegate.qml")
-//                model: Qt.createComponent("qrc:/qml/GrayOpenCV.qml").createObject(methodType)
+//                model: Qt.createComponent("qrc:/listview/model/GrayOpenCV.qml").createObject(methodType)
                 model: methodTypeModel.item
             }
 
@@ -191,26 +191,26 @@ Rectangle {
 
     Loader{
         id: methodTypeModel
-        source: "qrc:/qml/GrayOpenCV.qml"
+        source: "qrc:/listview/model/GrayOpenCV.qml"
     }
 
     function switchMethod(){
         console.log("switchMethod")
         if (selectLib == 1 && selectType == 1){
             console.log("selectLib == 1 && selectType == 1")
-            methodTypeModel.source = "qrc:/qml/GrayOpenCV.qml"
+            methodTypeModel.source = "qrc:/listview/model/GrayOpenCV.qml"
         }
         else if (selectLib == 1 && selectType == 2){
             console.log("selectLib == 1 && selectType == 2")
-            methodTypeModel.source = "qrc:/qml/BinaryOpenCV.qml"
+            methodTypeModel.source = "qrc:/listview/model/BinaryOpenCV.qml"
         }
         else if (selectLib == 2 && selectType == 1){
             console.log("selectLib == 2 && selectType == 1")
-            methodTypeModel.source = "qrc:/qml/GrayThird.qml"
+            methodTypeModel.source = "qrc:/listview/model/GrayThird.qml"
         }
         else if (selectLib == 2 && selectType == 2){
             console.log("selectLib == 2 && selectType == 2")
-            methodTypeModel.source = "qrc:/qml/BinaryThird.qml"
+            methodTypeModel.source = "qrc:/listview/model/BinaryThird.qml"
         }
     }
 }

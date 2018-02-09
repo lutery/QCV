@@ -21,6 +21,10 @@ Window {
         y: mainWin.y
     }
 
+    Loader{
+       id: cameraWin
+    }
+
     FileDialog{
         id: saveDialog
         title: "保存图片"
@@ -65,6 +69,10 @@ Window {
                         previewWin.show()
                     }
                 }
+                else if (sceneSource == "qrc:/control/CameraPanel.qml"){
+                    cameraWin.source = sceneSource
+                }
+
                 else{
                     settingPanel.source = sceneSource
                     settingPanel.item.imgProcess.connect(onImgProcess)

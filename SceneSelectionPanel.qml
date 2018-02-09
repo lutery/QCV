@@ -16,7 +16,7 @@ Rectangle {
         ListElement { name: "切边"; source: "TrimmingPanel.qml" }
         ListElement { name: "自动纠偏"; source: "RotatePanel.qml" }
         ListElement { name: "保存"; source: "SaveImage.qml" }
-        ListElement { name: "相机"; source: "CameraPanel.qml" }
+        ListElement { name: "相机"; source: "qrc:/control/CameraPanel.qml" }
 //        ListElement { name: "Resize"; source: "CameraResize.qml" }
 //        ListElement { name: "Rotate"; source: "CameraRotate.qml" }
 //        ListElement { name: "Spin"; source: "CameraSpin.qml" }
