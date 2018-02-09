@@ -9,6 +9,9 @@
         <file>SceneSelectionPanel.qml</file>
         <file>Preview.qml</file>
         <file>RotatePanel.qml</file>
+        <file>SaveImage.qml</file>
+        <file>CameraPanel.qml</file>
+        <file>CameraItem.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>
@@ -17,6 +20,7 @@
         <file>resource/image/RGB32.bmp</file>
         <file>resource/image/Lenna.jpg</file>
         <file>resource/image/1.bmp</file>
+        <file>resource/icon/icon_menu.png</file>
     </qresource>
     <qresource prefix="/qml">
         <file>BinaryOpenCV.qml</file>
@@ -28,5 +32,8 @@
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
+    </qresource>
+    <qresource prefix="/control">
+        <file>CameraSidePanel.qml</file>
     </qresource>
 </RCC>

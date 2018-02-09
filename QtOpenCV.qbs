@@ -121,6 +121,13 @@ Project {
             ]
         }
 
+        Group{
+            name:"camera"
+            files: [
+                "CameraSidePanel.qml",
+            ]
+        }
+
 //        Group{
 //            name:"undoGroup"
 //            files:[
