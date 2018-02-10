@@ -5,6 +5,9 @@
 
 namespace onechchy {
 
+    /**
+     * @brief The CameraFilter class 相机帧过滤器
+     */
     class CameraFilter : public QAbstractVideoFilter
     {
     public:

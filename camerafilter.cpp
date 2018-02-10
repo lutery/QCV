@@ -13,6 +13,10 @@ namespace onechchy {
 
     }
 
+    /**
+     * @brief CameraFilter::createFilterRunnable 创建过滤器运行对象
+     * @return
+     */
     QVideoFilterRunnable* CameraFilter::createFilterRunnable()
     {
         return new CameraFilterRunnable(this);

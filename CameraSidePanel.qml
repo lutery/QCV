@@ -1,4 +1,4 @@
-import QtQuick 2.1
+import QtQuick 2.7
 import QtQuick.Controls 2.2
 
 Rectangle {
@@ -6,6 +6,8 @@ Rectangle {
     color: "#151515"
 
     signal switchCamera(string cameraId)
+
+    property int cameraSelHover: 0x00
 
     Rectangle {
         id: menuField
@@ -62,12 +64,17 @@ Rectangle {
                 hoverEnabled: true
 
                 onEntered: {
-                    lvbg.visible = !lvbg.visible
+                    lvbg.width = itemWidth * 2
+                    cameraSelHover |= 0xf0
+//                    lvbg.visible = !lvbg.visible
 //                    listCamera.visible = !listCamera.visible
                 }
 
                 onExited: {
-                    lvbg.visible = !lvbg.visible
+                    camera_sel_timer.restart()
+//                    lvbg.width = 0
+                    cameraSelHover &= 0x0f
+//                    lvbg.visible = !lvbg.visible
 //                    listCamera.visible = !listCamera.visible
                 }
             }
@@ -127,9 +134,9 @@ Rectangle {
 
     Rectangle{
         id: lvbg
-        width: itemWidth * 2
+        width: 0 //itemWidth * 2
         opacity: 0.8
-        visible: false
+//        visible: false
         color: "black"
 
         anchors {
@@ -158,12 +165,31 @@ Rectangle {
                     onClicked: {
                         console.log("camera name" + name)
                         console.log("camera id " + deviceId)
-                        listCamera.visible = false
-                        lvbg.visible = false
+//                        listCamera.visible = false
+//                        lvbg.visible = false
+                        lvbg.width = 0
 
                         root.switchCamera(deviceId)
                     }
                 }
+            }
+        }
+
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.NoButton
+
+            onEntered: {
+                camera_sel_timer.restart()
+//                lvbg.width = itemWidth * 2
+                cameraSelHover |= 0x0f
+            }
+
+            onExited: {
+                camera_sel_timer.restart()
+//                lvbg.width = 0
+                cameraSelHover &= 0xf0
             }
         }
     }
@@ -171,5 +197,18 @@ Rectangle {
     Loader{
         id: listCameraModel
         source: "qrc:/listview/model/CameraSelectionList.qml"
+    }
+
+    Timer{
+        id: camera_sel_timer
+        interval: 500
+        onTriggered: {
+            if (cameraSelHover == 0x00){
+                lvbg.width = 0
+            }
+            else{
+                lvbg.width = itemWidth * 2
+            }
+        }
     }
 }

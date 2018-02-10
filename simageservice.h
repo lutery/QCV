@@ -13,6 +13,9 @@ namespace onechchy {
     class TransformImage;
 //    class ImageOperaParam;
 
+    /**
+     * @brief The SImageService class 图像处理服务类
+     */
     class SImageService : public QObject
     {
         Q_OBJECT
@@ -28,6 +31,7 @@ namespace onechchy {
     public:
         explicit SImageService(QObject *parent = nullptr);
 
+        // 图像操作大类
         enum class ImageOpera
         {
             Rotate = 0,
@@ -37,6 +41,7 @@ namespace onechchy {
             GrayBinary = 4,
         };
 
+        // 切边方向
         enum Border{
             Left = 0x01,
             Top = 0x02,
@@ -44,6 +49,7 @@ namespace onechchy {
             Bottom = 0x08
         };
 
+        // 切边类型
         enum class TrimType{
             Simple = 0x10,
             Count = 0x20,
@@ -55,6 +61,7 @@ namespace onechchy {
             PartitionSCanny = 5,
         };
 
+        // 图像分割类型
         enum ImageSplitType{
             KMeans = 0x01,
             GMM = 0x02,
@@ -62,6 +69,7 @@ namespace onechchy {
             GrabCut = 0x08
         };
 
+        // 灰度二值化方法
         enum class GBMethodType{
             GeneralGrayOpenCV = 1,
             GeneralGrayThird = 2,
@@ -71,6 +79,7 @@ namespace onechchy {
             TriangleOpenCV = 6,
         };
 
+        // 旋转类型
         enum class RotateType{
             AutoRectifying,
             ManualRotate,

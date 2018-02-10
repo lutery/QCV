@@ -32,7 +32,7 @@
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
     </qresource>
-    <qresource prefix="/control">
+    <qresource prefix="/camera">
         <file>CameraSidePanel.qml</file>
         <file>CameraItem.qml</file>
         <file>CameraPanel.qml</file>

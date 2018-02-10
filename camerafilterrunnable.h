@@ -6,6 +6,9 @@
 
 namespace onechchy {
 
+    /**
+     * @brief The CameraFilterRunnable class 相机帧过滤器
+     */
     class CameraFilterRunnable : public QVideoFilterRunnable
     {
     public:
@@ -17,6 +20,7 @@ namespace onechchy {
         QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) override;
 
     private:
+        // 保存相机过滤器
         QAbstractVideoFilter* pCameraFilter = nullptr;
     };
 
