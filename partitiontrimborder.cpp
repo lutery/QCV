@@ -41,16 +41,19 @@ namespace onechchy {
 //        cv::Rect rtRect{halfWidth, 0, halfWidth, halfHeight};
 //        cv::Rect lbRect{0, halfHeight, halfWidth, halfHeight};
 //        cv::Rect rbRect{halfWidth, halfHeight, halfWidth, halfHeight};
-        std::array<cv::Point, 4> iPoint;
+        std::array<cv::Point, 4> iPoint = { cv::Point{-1, -1}, cv::Point{-1, -1}, cv::Point{-1, -1}, cv::Point{-1, -1}};
 
          cv::erode(mat, mat, mcErodeElement);
 
-        #pragma omp parallel for
+//        #pragma omp parallel for
         for (int i = 0; i < 4; ++i)
         {
             cv::Mat tempMat = mat(iarray[i]);
 
             cv::Canny(tempMat, tempMat, 25, 50);
+
+//            std::string fileName = std::string(R"(D:\Test\Test)") + std::to_string(i) + std::string(".jpg");
+//            cv::imwrite(fileName, tempMat);
 
             if (this->leftTopPoint(tempMat, iPoint[i], i, bgColor)){}
             else if (this->rightTopPoint(tempMat, iPoint[i], i, bgColor)){}
@@ -115,7 +118,7 @@ namespace onechchy {
             return false;
         }
 
-        int width = mat.cols;
+        int width = mat.step;
         int height = mat.rows;
         uchar* pData = mat.data;
 
@@ -131,6 +134,11 @@ namespace onechchy {
                     break;
                 }
             }
+
+            if (point.y != -1)
+            {
+                break;
+            }
         }
 
         for (const auto& x : ranges::view::ints(0, width))
@@ -142,6 +150,11 @@ namespace onechchy {
                     point.x = y;
                     break;
                 }
+            }
+
+            if (point.x != -1)
+            {
+                break;
             }
         }
 
@@ -155,7 +168,7 @@ namespace onechchy {
             return false;
         }
 
-        int width = mat.cols;
+        int width = mat.step;
         int height = mat.rows;
         uchar* pData = mat.data;
 
@@ -171,6 +184,11 @@ namespace onechchy {
                     break;
                 }
             }
+
+            if (point.y != -1)
+            {
+                break;
+            }
         }
 
         for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
@@ -182,6 +200,11 @@ namespace onechchy {
                     point.x = y;
                     break;
                 }
+            }
+
+            if (point.x != -1)
+            {
+                break;
             }
         }
 
@@ -195,7 +218,7 @@ namespace onechchy {
             return false;
         }
 
-        int width = mat.cols;
+        int width = mat.step;
         int height = mat.rows;
         uchar* pData = mat.data;
 
@@ -211,6 +234,11 @@ namespace onechchy {
                     break;
                 }
             }
+
+            if (point.y != -1)
+            {
+                break;
+            }
         }
 
         for (const auto& x : ranges::view::ints(0, width))
@@ -222,6 +250,11 @@ namespace onechchy {
                     point.x = y;
                     break;
                 }
+            }
+
+            if (point.x != -1)
+            {
+                break;
             }
         }
 
@@ -235,7 +268,7 @@ namespace onechchy {
             return false;
         }
 
-        int width = mat.cols;
+        int width = mat.step;
         int height = mat.rows;
         uchar* pData = mat.data;
 
@@ -251,6 +284,11 @@ namespace onechchy {
                     break;
                 }
             }
+
+            if (point.y != -1)
+            {
+                break;
+            }
         }
 
         for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
@@ -262,6 +300,11 @@ namespace onechchy {
                     point.x = y;
                     break;
                 }
+            }
+
+            if (point.x != -1)
+            {
+                break;
             }
         }
 
