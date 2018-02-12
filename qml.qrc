@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ToolWindow.qml</file>
         <file>PreviewWindow.qml</file>
         <file>TrimmingPanel.qml</file>
         <file>ImageSplitPanel.qml</file>

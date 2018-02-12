@@ -28,24 +28,29 @@ Project {
 
         cpp.includePaths:[
             ".",
-            "D:/DevelopmentKit/opencv/build/include",
-            "D:/DevelopmentKit/range-v3"
+            "F:/DevelopmentKit/opencv-build/build/include",
+            "F:/DevelopmentKit/range-v3"
+//            "D:/DevelopmentKit/opencv/build/include",
+//            "D:/DevelopmentKit/range-v3"
         ]
 
         cpp.libraryPaths:[
-            "D:/DevelopmentKit/opencv/build/x64/vc14/lib"
+            "F:/DevelopmentKit/opencv-build/build/x64/vc14/lib"
+//            "D:/DevelopmentKit/opencv/build/x64/vc14/lib"
         ]
 
         cpp.cxxFlags:["-openmp"]
 
         Properties {
             condition: qbs.buildVariant.contains("debug")
-            cpp.dynamicLibraries:"opencv_world330d"
+            cpp.dynamicLibraries:["opencv_world340d", "opencv_img_hash340d"]
+//            cpp.dynamicLibraries:"opencv_world330d"
         }
 
         Properties {
             condition: qbs.buildVariant.contains("release")
-            cpp.dynamicLibraries:"opencv_world330"
+            cpp.dynamicLibraries:["opencv_world340", "opencv_img_hash340"]
+//            cpp.dynamicLibraries:"opencv_world330"
         }
 
         cpp.dynamicLibraries:["-openmp"]
