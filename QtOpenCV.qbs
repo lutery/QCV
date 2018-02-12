@@ -140,6 +140,12 @@ Project {
         Group{
             name:"FaceIdentify"
             files:[
+                "FaceDected.cpp",
+                "FaceDected.h",
+                "FaceIdentify.cpp",
+                "FaceIdentify.h",
+                "faceutil.cpp",
+                "faceutil.h",
             ]
         }
 

@@ -179,9 +179,9 @@ Window {
         }
     }
 
-    ImageOperaParam {
-        id: operaParams
-    }
+//    ImageOperaParam {
+//        id: operaParams
+//    }
 
 //    function onTrimborder(method, border, background){
 //        console.log("onTrimborder")

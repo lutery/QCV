@@ -3,6 +3,7 @@
 #include "imageutil.h"
 #include <QDebug>
 #include <opencv2/opencv.hpp>
+#include "faceutil.h"
 
 namespace onechchy {
 
@@ -33,7 +34,9 @@ namespace onechchy {
 
         qDebug() << "input pixelFormat " << input->pixelFormat();
 
-//        cv::Mat frameMat = onechchy::QVideoFrame2cvMat(*input);
+        cv::Mat frameMat = onechchy::QVideoFrame2cvMat(*input);
+
+        FaceIdentify::FaceDectedHelper(frameMat);
 
 //        cv::imwrite(R"(D:\Test\frameMat.jpg)", frameMat);
 
