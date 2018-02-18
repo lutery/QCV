@@ -30,7 +30,7 @@ VideoOutput {
     }
 
     CameraFilter{
-        id: "cameraFilter"
+        id: cameraFilter
     }
 
     function start() { camera.start() }

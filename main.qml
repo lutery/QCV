@@ -6,6 +6,7 @@ import SImageServiceQML 1.0
 import QtQuick.Layouts 1.3
 import SImageOperaParamQML 1.0
 import QtQuick.Dialogs 1.2
+import QtQuick.Window 2.3
 
 Window {
     id:mainWin
@@ -70,6 +71,10 @@ Window {
                     }
                 }
                 else if (sceneSource == "qrc:/control/CameraPanel.qml"){
+//                    if (cameraWin.status != cameraWin.Null){
+                        cameraWin.source = ""
+//                    }
+
                     cameraWin.source = sceneSource
                 }
 
@@ -224,4 +229,9 @@ Window {
 
         previewWin.imageOperation(type, param)
     }
+
+//    function onWinClosing(){
+//        console.log("onWinClosing");
+//        cameraWin.source = "";
+//    }
 }

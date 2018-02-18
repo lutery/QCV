@@ -58,6 +58,8 @@ Project {
 //        cpp.dynamicLibraries:"opencv_world330"
 
         files: [
+            "faceidentifydaemon.cpp",
+            "faceidentifydaemon.h",
             "imageshowitem.cpp",
             "imageshowitem.h",
             "imageshowrenderer.cpp",

@@ -12,6 +12,8 @@
 #include "camerafilter.h"
 //#include <tuple>
 #include <QDebug>
+#include <QList>
+#include <QRect>
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +38,9 @@ int main(int argc, char *argv[])
 #ifndef _OPENMP
     qDebug() << "OpenMP not supported";
 #endif
+
+    qRegisterMetaType<QRect>("QRect");
+    qRegisterMetaType<QList<QRect>>("QList<QRect>");
 
     QGuiApplication app(argc, argv);
 

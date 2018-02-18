@@ -5,7 +5,7 @@ ListModel {
     id: rootModel
 
     Component.onCompleted: {
-        QtMultimedia.availableCameras[1].deviceId
+//        QtMultimedia.availableCameras[1].deviceId
 
         for (var i = 0; i < QtMultimedia.availableCameras.length; ++i){
             rootModel.append({

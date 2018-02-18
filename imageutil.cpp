@@ -325,22 +325,34 @@ namespace onechchy {
             case QVideoFrame::Format_RGB32:
             case QVideoFrame::Format_ARGB32_Premultiplied:
                 mat = cv::Mat(frame.height(), frame.width(), CV_8UC4, (void*)((const uchar*)frame.bits()), frame.bytesPerLine());
-                verticalMirror(mat.data, mat.step, mat.rows);
+//                verticalMirror(mat.data, mat.step, mat.rows);
                 break;
             case QVideoFrame::Format_RGB24:
                 mat = cv::Mat(frame.height(), frame.width(), CV_8UC3, (void*)((const uchar*)frame.bits()), frame.bytesPerLine());
                 cv::cvtColor(mat, mat, CV_BGR2RGB);
-                verticalMirror(mat.data, mat.step, mat.rows);
+//                verticalMirror(mat.data, mat.step, mat.rows);
                 break;
             case QVideoFrame::Format_Y8:
                 mat = cv::Mat(frame.height(), frame.width(), CV_8UC1, (void*)((const uchar*)frame.bits()), frame.bytesPerLine());
-                verticalMirror(mat.data, mat.step, mat.rows);
+//                verticalMirror(mat.data, mat.step, mat.rows);
                 break;
             }
 
             frame.unmap();
         }
         return mat;
+    }
+
+    cv::Rect qRect2cvRect(const QRect& qrect)
+    {
+        cv::Rect cvRect{qrect.x(), qrect.y(), qrect.width(), qrect.height()};
+
+        return cvRect;
+    }
+
+    QRect cvRect2qRect(const cv::Rect& cvRect)
+    {
+        return QRect(cvRect.x, cvRect.y, cvRect.width, cvRect.height);
     }
 
 

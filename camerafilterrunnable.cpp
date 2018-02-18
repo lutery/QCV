@@ -4,12 +4,15 @@
 #include <QDebug>
 #include <opencv2/opencv.hpp>
 #include "faceutil.h"
+#include "camerafilter.h"
+#include <QMutexLocker>
 
 namespace onechchy {
 
     CameraFilterRunnable::CameraFilterRunnable(QAbstractVideoFilter *cameraFilter)
     {
         pCameraFilter = cameraFilter;
+        mFaceROIs.clear();
     }
 
     CameraFilterRunnable::~CameraFilterRunnable()
@@ -36,11 +39,38 @@ namespace onechchy {
 
         cv::Mat frameMat = onechchy::QVideoFrame2cvMat(*input);
 
-        FaceIdentify::FaceDectedHelper(frameMat);
+        qDebug() << "mFaceRects size " << mFaceROIs.size();
+        {
+            QMutexLocker locker(&this->mFaceROILocker);
+            if (mFaceROIs.size() > 0)
+            {
+    //            auto faceRIOs = mFaceROIs[0];
+    //            mFaceROIs.removeFirst();
+
+                for (const auto& faceRIO : mFaceROIs)
+                {
+                    cv::rectangle(frameMat, onechchy::qRect2cvRect(faceRIO), cv::Scalar(0, 0, 255), 3);
+                }
+            }
+        }
+
+        static_cast<CameraFilter*>(this->pCameraFilter)->faceMat(frameMat);
+
+//        FaceIdentify::FaceDectedHelper(frameMat);
 
 //        cv::imwrite(R"(D:\Test\frameMat.jpg)", frameMat);
 
         return *input;
     }
 
+    void CameraFilterRunnable::setFaceROI(const QList<QRect> &faceRects)
+    {
+        if (faceRects.size() <= 0)
+        {
+            return;
+        }
+
+        QMutexLocker locker(&this->mFaceROILocker);
+        mFaceROIs = faceRects;
+    }
 }

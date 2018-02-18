@@ -3,9 +3,12 @@
 
 #include <QVideoFilterRunnable>
 #include <QAbstractVideoFilter>
+#include <QObject>
+#include <QRect>
+#include <opencv2/opencv.hpp>
+#include <QMutex>
 
 namespace onechchy {
-
     /**
      * @brief The CameraFilterRunnable class 相机帧过滤器
      */
@@ -18,10 +21,13 @@ namespace onechchy {
         // QVideoFilterRunnable interface
     public:
         QVideoFrame run(QVideoFrame *input, const QVideoSurfaceFormat &surfaceFormat, RunFlags flags) override;
+        void setFaceROI(const QList<QRect> &faceRects);
 
     private:
         // 保存相机过滤器
         QAbstractVideoFilter* pCameraFilter = nullptr;
+        QList<QRect> mFaceROIs;
+        QMutex mFaceROILocker;
     };
 
 }

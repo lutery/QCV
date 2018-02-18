@@ -26,6 +26,8 @@ Window {
     property int scaledMargin: 2 * pixDens
     property int fontSize: 5 * pixDens
 
+//    signal winClosing()
+
     // 侧板
     CameraSidePanel {
         id: cameraSidePanel
@@ -75,6 +77,11 @@ Window {
         id: cameraLoader
     }
 
+    Component.onDestruction: {
+        console.log("CameraPanel onDestruction")
+    }
+
+
     Component.onCompleted: {
         cameraLoader.source = "CameraItem.qml"
 
@@ -102,6 +109,12 @@ Window {
     onHeightChanged: {
         if (contentItem())
             contentItem().height = height
+    }
+
+    onClosing:{
+        console.log("onclosing")
+//        camerawWin.winClosing();
+        cameraLoader.source = ""
     }
 
     function start() {

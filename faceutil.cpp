@@ -1,6 +1,7 @@
 #include "faceutil.h"
 #include "FaceDected.h"
 #include <QDebug>
+#include <vector>
 
 namespace FaceIdentify {
 
@@ -56,4 +57,14 @@ namespace FaceIdentify {
         }
     }
 
+    std::vector<cv::Rect> FaceRectHelper(cv::Mat &mat)
+    {
+        static FaceDected faceDected;
+
+        auto FaceRIOs = faceDected.dectedROI(mat);
+
+        qDebug() << "FaceRIOs size " << FaceRIOs.size();
+
+        return FaceRIOs;
+    }
 }

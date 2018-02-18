@@ -28,6 +28,8 @@ namespace onechchy {
     cv::Mat QVideoFrame2cvMat(QVideoFrame &frame);
     int rgb2gray(int red, int green, int black);
     cv::Mat convertGray(const cv::Mat&);
+    cv::Rect qRect2cvRect(const QRect &qrect);
+    QRect cvRect2qRect(const cv::Rect &cvRect);
 }
 
 #endif // IMAGEUTIL_H
