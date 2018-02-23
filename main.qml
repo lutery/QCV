@@ -63,21 +63,43 @@ Window {
             Layout.fillHeight: true
             Layout.maximumWidth: sceneSelectionPanel.itemWidth + 10
             Layout.minimumWidth: sceneSelectionPanel.itemWidth + 10
-            onSceneSourceChanged: {
+//            onSceneSourceChanged: {
+
+//                console.log("sceneSource = " + sceneSource)
+
+//                if (sceneSource == "Preview.qml"){
+//                    if (!previewWin.visible) {
+//                        previewWin.show()
+//                    }
+//                }
+//                else if (sceneSource == "qrc:/control/CameraPanel.qml"){
+////                    if (cameraWin.status != cameraWin.Null){
+////                        cameraWin.source = ""
+////                        console.log("Null")
+////                    }
+////                    else {
+//                        cameraWin.source = sceneSource
+////                        console.log(sceneSource);
+////                    }
+//                }
+//                else{
+//                    settingPanel.source = sceneSource
+//                    settingPanel.item.imgProcess.connect(onImgProcess)
+//                }
+//            }
+
+            onSceneChange: {
+                console.log("sceneSource = " + sceneSource)
 
                 if (sceneSource == "Preview.qml"){
                     if (!previewWin.visible) {
                         previewWin.show()
                     }
                 }
-                else if (sceneSource == "qrc:/control/CameraPanel.qml"){
-//                    if (cameraWin.status != cameraWin.Null){
-                        cameraWin.source = ""
-//                    }
-
+                else if (sceneSource == "qrc:/camera/CameraPanel.qml"){
+                    cameraWin.source = ""
                     cameraWin.source = sceneSource
                 }
-
                 else{
                     settingPanel.source = sceneSource
                     settingPanel.item.imgProcess.connect(onImgProcess)

@@ -8,6 +8,8 @@ Rectangle {
     property int itemWidth: 100
     property string sceneSource: ""
 
+    signal sceneChange(string scene)
+
     ListModel {
         id: functionList
         ListElement { name: "打开预览"; source: "Preview.qml" }
@@ -34,7 +36,10 @@ Rectangle {
                 anchors.rightMargin: 2.5
                 anchors.bottomMargin: 0
                 text: name
-                onClicked: root.sceneSource = source
+                onClicked: {
+                    root.sceneSource = source
+                    root.sceneChange(root.sceneSource)
+                }
             }
         }
     }
