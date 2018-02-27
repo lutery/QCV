@@ -28,28 +28,32 @@ Project {
 
         cpp.includePaths:[
             ".",
-            "F:/DevelopmentKit/opencv-build/build/include",
-            "F:/DevelopmentKit/range-v3"
+//            "F:/DevelopmentKit/opencv-build/build/include",
+//            "F:/DevelopmentKit/range-v3"
 //            "D:/DevelopmentKit/opencv/build/include",
-//            "D:/DevelopmentKit/range-v3"
+            "D:/DevelopmentKit/opencv-build/build/include",
+            "D:/DevelopmentKit/range-v3",
+            "D:/DevelopmentKit/dlib/inc/"
         ]
 
         cpp.libraryPaths:[
-            "F:/DevelopmentKit/opencv-build/build/x64/vc14/lib"
-//            "D:/DevelopmentKit/opencv/build/x64/vc14/lib"
+//            "F:/DevelopmentKit/opencv-build/build/x64/vc14/lib"
+//            "D:/DevelopmentKit/opencv/build/x64/vc14/lib",
+            "D:/DevelopmentKit/opencv-build/build/x64/vc14/lib",
+            "D:/DevelopmentKit/dlib/lib/x64/"
         ]
 
         cpp.cxxFlags:["-openmp"]
 
         Properties {
             condition: qbs.buildVariant.contains("debug")
-            cpp.dynamicLibraries:["opencv_world340d", "opencv_img_hash340d"]
+            cpp.dynamicLibraries:["opencv_world340d", "opencv_img_hash340d", "dlibd"]
 //            cpp.dynamicLibraries:"opencv_world330d"
         }
 
         Properties {
             condition: qbs.buildVariant.contains("release")
-            cpp.dynamicLibraries:["opencv_world340", "opencv_img_hash340"]
+            cpp.dynamicLibraries:["opencv_world340", "opencv_img_hash340", "dlib"]
 //            cpp.dynamicLibraries:"opencv_world330"
         }
 
@@ -146,8 +150,13 @@ Project {
                 "FaceDected.h",
                 "FaceIdentify.cpp",
                 "FaceIdentify.h",
+                "facedectedcv.cpp",
+                "facedectedcv.h",
+                "facedecteddlib.cpp",
+                "facedecteddlib.h",
                 "faceutil.cpp",
                 "faceutil.h",
+                "ifacedected.h",
             ]
         }
 

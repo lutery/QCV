@@ -10,12 +10,16 @@ VideoOutput {
 
     signal fatalError
     signal sizeChanged
+//    signal captureImage(QtObject image)
+
+    property var captureReady:camera.imageCapture.ready
 
     onHeightChanged: root.sizeChanged()
 
     Camera {
         id: camera
 //        deviceId: QtMultimedia.availableCameras[1].deviceId
+        captureMode: Camera.CaptureStillImage
 
         onError: {
             if (Camera.NoError != error) {
@@ -24,9 +28,9 @@ VideoOutput {
             }
         }
 
-//        imageCapture.onImageCaptured: {
-//            preview
-//        }
+        imageCapture.onImageCaptured: {
+//            root.captureImage(preview);
+        }
     }
 
     CameraFilter{
@@ -41,5 +45,10 @@ VideoOutput {
                 camera.deviceId = deviceid
             }
         }
+    }
+
+    function captureCamera(){
+        camera.captureMode = Camera.CaptureStillImage
+        camera.imageCapture.captureToLocation("D:/Test/qtopencv.jpg")
     }
 }

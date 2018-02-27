@@ -67,4 +67,19 @@ namespace FaceIdentify {
 
         return FaceRIOs;
     }
+
+    std::vector<cv::Rect> dlibRect2cvRect(std::vector<dlib::rectangle> dlibRects)
+    {
+        std::vector<cv::Rect> cvRects;
+
+        for (const auto& dlibRect : dlibRects)
+        {
+            cv::Rect cvRect{dlibRect.left(), dlibRect.top(), (int)dlibRect.width(), (int)dlibRect.height()};
+
+            cvRects.push_back(cvRect);
+        }
+
+        return cvRects;
+    }
+
 }

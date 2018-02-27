@@ -343,6 +343,50 @@ namespace onechchy {
         return mat;
     }
 
+    cv::Mat cvMatAlign3(const cv::Mat& srcMat)
+    {
+        cv::Mat alignMat(srcMat.rows, srcMat.cols, CV_8UC3, cv::Scalar::all(1));
+
+        if (srcMat.channels() == 4)
+        {
+            for (int i = 0; i < srcMat.rows; ++i)
+            {
+                uchar* palignRow = alignMat.ptr(i);
+                const uchar* psrcRow = srcMat.ptr(i);
+
+                for (int j = 0; j < srcMat.cols; ++j)
+                {
+                    palignRow[j * 3 + 0] = psrcRow[j * 4 + 0];
+                    palignRow[j * 3 + 1] = psrcRow[j * 4 + 1];
+                    palignRow[j * 3 + 2] = psrcRow[j * 4 + 2];
+                }
+            }
+        }
+        else if (srcMat.channels() == 3)
+        {
+            alignMat = srcMat;
+        }
+        else if (srcMat.channels() == 1)
+        {
+            for (int i = 0; i < srcMat.rows; ++i)
+            {
+                uchar* palignRow = alignMat.ptr(i);
+                const uchar* psrcRow = srcMat.ptr(i);
+
+                for (int j = 0; j < srcMat.cols; ++j)
+                {
+                    palignRow[j * 3 + 0] = psrcRow[j + 0];
+                    palignRow[j * 3 + 1] = psrcRow[j + 0];
+                    palignRow[j * 3 + 2] = psrcRow[j + 0];
+                }
+            }
+        }
+
+        verticalMirror(alignMat.data, alignMat.step, alignMat.rows);
+
+        return alignMat;
+    }
+
     cv::Rect qRect2cvRect(const QRect& qrect)
     {
         cv::Rect cvRect{qrect.x(), qrect.y(), qrect.width(), qrect.height()};

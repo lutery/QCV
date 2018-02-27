@@ -77,6 +77,21 @@ Window {
         id: cameraLoader
     }
 
+    Button {
+        anchors{
+            bottom: parent.bottom
+            right: parent.right
+            bottomMargin: 10
+            rightMargin: 10
+        }
+
+        enabled: cameraLoader.item.captureReady
+        text: "拍照"
+        onClicked: {
+            cameraLoader.item.captureCamera()
+        }
+    }
+
     Component.onDestruction: {
         console.log("CameraPanel onDestruction")
     }

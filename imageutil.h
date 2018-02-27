@@ -30,6 +30,7 @@ namespace onechchy {
     cv::Mat convertGray(const cv::Mat&);
     cv::Rect qRect2cvRect(const QRect &qrect);
     QRect cvRect2qRect(const cv::Rect &cvRect);
+    cv::Mat cvMatAlign3(const cv::Mat& srcMat);
 }
 
 #endif // IMAGEUTIL_H

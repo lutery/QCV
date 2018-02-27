@@ -41,11 +41,13 @@ namespace onechchy {
                 continue;
             }
 
+            cv::Mat mat3 = onechchy::cvMatAlign3(*mpMat);
+
             qDebug() << "FaceRectHelper";
 
-            cv::imwrite(R"(D:\Test\frameMat.jpg)", *mpMat);
+            cv::imwrite(R"(D:\Test\frameMat.jpg)", mat3);
 
-            auto faces = FaceIdentify::FaceRectHelper(*mpMat);
+            auto faces = FaceIdentify::FaceRectHelper(mat3);
 
             qDebug() << "faces size is " << faces.size();
 
