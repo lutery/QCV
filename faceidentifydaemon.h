@@ -10,6 +10,9 @@
 
 namespace onechchy {
 
+    /**
+     * @brief The FaceIdentifyDaemon class 人脸识别后台线程
+     */
     class FaceIdentifyDaemon : public QThread
     {
         Q_OBJECT
@@ -28,8 +31,11 @@ namespace onechchy {
         void quit();
 
     protected:
+        // 是否运行
         bool mbExit = false;
+        // 识别矩阵锁
         QMutex mLock;
+        // 图像识别矩阵
         std::shared_ptr<cv::Mat> mpMat = nullptr;
     };
 

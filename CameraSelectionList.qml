@@ -10,7 +10,8 @@ ListModel {
         for (var i = 0; i < QtMultimedia.availableCameras.length; ++i){
             rootModel.append({
                               name: QtMultimedia.availableCameras[i].displayName,
-                              deviceId: QtMultimedia.availableCameras[i].deviceId
+                              deviceId: QtMultimedia.availableCameras[i].deviceId,
+                              type: 1
                              });
         }
     }

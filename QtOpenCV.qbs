@@ -136,6 +136,8 @@ Project {
         Group{
             name:"camera"
             files: [
+                "camerabridgeface.cpp",
+                "camerabridgeface.h",
                 "camerafilter.cpp",
                 "camerafilter.h",
                 "camerafilterrunnable.cpp",
@@ -154,9 +156,12 @@ Project {
                 "facedectedcv.h",
                 "facedecteddlib.cpp",
                 "facedecteddlib.h",
+                "faceservice.cpp",
+                "faceservice.h",
                 "faceutil.cpp",
                 "faceutil.h",
                 "ifacedected.h",
+                "ifaceservice.h",
             ]
         }
 

@@ -316,7 +316,7 @@ namespace onechchy {
     cv::Mat QVideoFrame2cvMat(QVideoFrame &frame)
     {
         cv::Mat mat;
-        qDebug() << frame.pixelFormat();
+//        qDebug() << frame.pixelFormat();
 
         if (frame.map(QAbstractVideoBuffer::ReadOnly)){
             switch(frame.pixelFormat())

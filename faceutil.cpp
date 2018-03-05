@@ -57,6 +57,11 @@ namespace FaceIdentify {
         }
     }
 
+    /**
+     * @brief FaceRectHelper 人脸识别帮助类
+     * @param mat
+     * @return
+     */
     std::vector<cv::Rect> FaceRectHelper(cv::Mat &mat)
     {
         static FaceDected faceDected;

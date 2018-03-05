@@ -6,6 +6,8 @@ import SImageServiceQML 1.0
 import SImageOperaParamQML 1.0
 import QtQuick.Dialogs 1.2
 import QtMultimedia 5.9
+import FaceService 1.0
+import QtQuick.Layouts 1.3
 
 Window {
     id:camerawWin
@@ -25,6 +27,9 @@ Window {
     property int windowHeight: Screen.desktopAvailableHeight
     property int scaledMargin: 2 * pixDens
     property int fontSize: 5 * pixDens
+
+    property string curFPS: "-1"
+    property string curPixelFormat: "unknown"
 
 //    signal winClosing()
 
@@ -71,6 +76,23 @@ Window {
             console.log("cameraId = " + cameraId)
             cameraLoader.item.switchCamera(cameraId)
         }
+
+        onSwitchMethod: {
+            console.log("methodId = " + methodId)
+            faceService.switchFaceDectedMethod(methodId)
+        }
+    }
+
+    FaceService{
+        id: faceService
+
+        onSigFps: {
+            curFPS = curFps
+        }
+
+        onSigPixelFormat: {
+            curPixelFormat = curPF
+        }
     }
 
     Loader{
@@ -78,6 +100,7 @@ Window {
     }
 
     Button {
+        id: captureBtn
         anchors{
             bottom: parent.bottom
             right: parent.right
@@ -91,6 +114,46 @@ Window {
             cameraLoader.item.captureCamera()
         }
     }
+
+
+    CameraInfoPanel{
+        anchors{
+            left: cameraSidePanel.right
+            leftMargin: 16
+            right: parent.right
+            rightMargin: 16
+            top: parent.top
+            topMargin: 16
+            bottom: captureBtn.top
+            bottomMargin: 16
+        }
+    }
+
+//    Rectangle{
+//                anchors{
+//                    left: parent.left + 10
+//                    right: parent.right - 10
+//                    top: parent.top + 10
+//                    bottom: parent.bottom - 10
+//                }
+
+//        GridLayout{
+//            columns:2
+
+//            Text{
+//                text:"帧数："
+//            }
+
+//            Text{
+//                id: fps
+//                text: "0"
+//            }
+
+//            Text{
+//                text:"图片格式："
+//            }
+//        }
+//    }
 
     Component.onDestruction: {
         console.log("CameraPanel onDestruction")

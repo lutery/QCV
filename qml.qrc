@@ -27,6 +27,7 @@
         <file>TrimBorderModel.qml</file>
         <file>RotateModel.qml</file>
         <file>CameraSelectionList.qml</file>
+        <file>FacesMethodList.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
@@ -35,5 +36,6 @@
         <file>CameraSidePanel.qml</file>
         <file>CameraItem.qml</file>
         <file>CameraPanel.qml</file>
+        <file>CameraInfoPanel.qml</file>
     </qresource>
 </RCC>

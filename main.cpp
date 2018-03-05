@@ -10,7 +10,7 @@
 #include "imageoperaparam.h"
 #include "itrimingborder.h"
 #include "camerafilter.h"
-//#include <tuple>
+#include "faceservice.h"
 #include <QDebug>
 #include <QList>
 #include <QRect>
@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<onechchy::SImageService>("SImageServiceQML", 1, 0, "SImageService");
     qmlRegisterType<onechchy::ImageOperaParam>("SImageOperaParamQML", 1, 0, "ImageOperaParam");
     qmlRegisterType<onechchy::CameraFilter>("CameraFilter", 1, 0, "CameraFilter");
+    qmlRegisterType<FaceIdentify::FaceService>("FaceService", 1, 0, "FaceService");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

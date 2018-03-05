@@ -3,8 +3,16 @@
 
 #include <chrono>
 #include <tuple>
+#include <string>
+#include <QMetaEnum>
 
 namespace onechchy {
+
+    template<typename QEnum>
+    std::string QtEnum2String(const QEnum value)
+    {
+        return std::string(QMetaEnum::fromType<QEnum>().valueToKey(value));
+    }
 
     std::chrono::time_point<std::chrono::steady_clock>& preTime();
 

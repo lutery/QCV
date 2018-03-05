@@ -6,6 +6,7 @@
 #include "faceutil.h"
 #include "camerafilter.h"
 #include <QMutexLocker>
+#include "camerabridgeface.h"
 
 namespace onechchy {
 
@@ -33,11 +34,23 @@ namespace onechchy {
 
         int fps = 1 / ((float)millisecond / 1000);
 
-        qDebug() << "fps = " << fps;
+//        qDebug() << "fps = " << fps;
 
-        qDebug() << "input pixelFormat " << input->pixelFormat();
+//        qDebug() << "input pixelFormat " << input->pixelFormat();
+
+        QString strPixelFormat;
+        QDebug(&strPixelFormat) << input->pixelFormat();
 
         cv::Mat frameMat = onechchy::QVideoFrame2cvMat(*input);
+
+//        cv::putText(frameMat, std::to_string(fps), cv::Point(frameMat.cols - 64, frameMat.rows - 40), cv::FONT_HERSHEY_SIMPLEX, 0.75, cv::Scalar(255, 253, 50), 2, cv::LINE_8, true);
+
+//        int baseLine = 0;
+//        cv::Size sizePixelFormat = cv::getTextSize(strPixelFormat.toStdString(), cv::FONT_HERSHEY_SIMPLEX, 0.75, 2, &baseLine);
+//        cv::putText(frameMat, strPixelFormat.toStdString(), cv::Point(frameMat.cols - 10 - sizePixelFormat.width, frameMat.rows - 40 - 10 - sizePixelFormat.height), cv::FONT_HERSHEY_SIMPLEX, 0.75, cv::Scalar(255, 253, 50), 2, cv::LINE_8, true);
+
+        CameraBridgeFace::getInstance()->curFps(QString::number(fps));
+        CameraBridgeFace::getInstance()->curPixelFormat(strPixelFormat);
 
         qDebug() << "mFaceRects size " << mFaceROIs.size();
         {
