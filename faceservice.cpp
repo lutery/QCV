@@ -7,7 +7,7 @@
 
 namespace FaceIdentify {
 
-    class FaceServiceImpl : public IFaceService
+    class FaceServiceImpl : public IFaceService, public IFaceDected
     {
     protected:
         FaceServiceImpl();
@@ -15,17 +15,23 @@ namespace FaceIdentify {
 
         // IFaceService interface
     public:
-        static IFaceService* getInstance();
+        static FaceServiceImpl* getInstance();
 
         void switchFaceDectedMethod(int methodId) override;
 
     private:
         std::unique_ptr<FaceDected> mpFaceDected;
-        static IFaceService* mpSInstance;
+        static FaceServiceImpl* mpSInstance;
         static std::mutex sMutex;
+
+        // IFaceDected interface
+    public:
+        std::vector<cv::Rect> dectedROI(const cv::Mat &) override;
+        std::vector<cv::Mat> dectedMat(const cv::Mat &) override;
+        std::vector<cv::Mat> acquireFace(const std::vector<cv::Rect> &faceROIs, const cv::Mat &srcMat) override;
     };
 
-    IFaceService* FaceServiceImpl::mpSInstance = nullptr;
+    FaceServiceImpl* FaceServiceImpl::mpSInstance = nullptr;
     std::mutex FaceServiceImpl::sMutex;
 
     FaceServiceImpl::FaceServiceImpl():mpFaceDected(new FaceDected())
@@ -33,7 +39,7 @@ namespace FaceIdentify {
 
     }
 
-    IFaceService *FaceServiceImpl::getInstance()
+    FaceServiceImpl *FaceServiceImpl::getInstance()
     {
         if (mpSInstance == nullptr)
         {
@@ -60,10 +66,26 @@ namespace FaceIdentify {
         }
     }
 
-    FaceService::FaceService(QObject *parent) : QObject(parent), mpFaceServiceImpl(FaceServiceImpl::getInstance())
+    std::vector<cv::Rect> FaceServiceImpl::dectedROI(const cv::Mat &srcMat)
+    {
+        return mpFaceDected->dectedROI(srcMat);
+    }
+
+    std::vector<cv::Mat> FaceServiceImpl::dectedMat(const cv::Mat &srcMat)
+    {
+        return mpFaceDected->dectedMat(srcMat);
+    }
+
+    std::vector<cv::Mat> FaceServiceImpl::acquireFace(const std::vector<cv::Rect> &faceROIs, const cv::Mat &srcMat)
+    {
+        return mpFaceDected->acquireFace(faceROIs, srcMat);
+    }
+
+    FaceService::FaceService(QObject *parent) : QObject(parent), mpFaceServiceImpl(FaceServiceImpl::getInstance()), mpFaceDectedImpl(FaceServiceImpl::getInstance())
     {
         connect(onechchy::CameraBridgeFace::getInstance(), SIGNAL(curFps(QString)), this, SIGNAL(sigFps(QString)));
         connect(onechchy::CameraBridgeFace::getInstance(), SIGNAL(curPixelFormat(QString)), this, SIGNAL(sigPixelFormat(QString)));
+        connect(onechchy::CameraBridgeFace::getInstance(), SIGNAL(curFaceCount(int)), this, SIGNAL(sigFaceCount(int)));
     }
 
     void FaceService::switchFaceDectedMethod(int methodId)
@@ -71,6 +93,30 @@ namespace FaceIdentify {
         if (mpFaceServiceImpl != nullptr)
         {
             mpFaceServiceImpl->switchFaceDectedMethod(methodId);
+        }
+    }
+
+    std::vector<cv::Rect> FaceService::dectedROI(const cv::Mat &srcMat)
+    {
+        if (mpFaceServiceImpl != nullptr)
+        {
+            return mpFaceDectedImpl->dectedROI(srcMat);
+        }
+    }
+
+    std::vector<cv::Mat> FaceService::dectedMat(const cv::Mat &srcMat)
+    {
+        if (mpFaceServiceImpl != nullptr)
+        {
+            return mpFaceDectedImpl->dectedMat(srcMat);
+        }
+    }
+
+    std::vector<cv::Mat> FaceService::acquireFace(const std::vector<cv::Rect> &faceROIs, const cv::Mat &srcMat)
+    {
+        if (mpFaceServiceImpl != nullptr)
+        {
+            return mpFaceDectedImpl->acquireFace(faceROIs, srcMat);
         }
     }
 }

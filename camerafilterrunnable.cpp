@@ -51,8 +51,9 @@ namespace onechchy {
 
         CameraBridgeFace::getInstance()->curFps(QString::number(fps));
         CameraBridgeFace::getInstance()->curPixelFormat(strPixelFormat);
+        CameraBridgeFace::getInstance()->curFaceCount(mFaceROIs.size());
 
-        qDebug() << "mFaceRects size " << mFaceROIs.size();
+//        qDebug() << "mFaceRects size " << mFaceROIs.size();
         {
             QMutexLocker locker(&this->mFaceROILocker);
             if (mFaceROIs.size() > 0)

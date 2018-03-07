@@ -49,12 +49,14 @@ Project {
             condition: qbs.buildVariant.contains("debug")
             cpp.dynamicLibraries:["opencv_world340d", "opencv_img_hash340d", "dlibd"]
 //            cpp.dynamicLibraries:"opencv_world330d"
+            cpp.defines: ["IDEBUG"]
         }
 
         Properties {
             condition: qbs.buildVariant.contains("release")
             cpp.dynamicLibraries:["opencv_world340", "opencv_img_hash340", "dlib"]
 //            cpp.dynamicLibraries:"opencv_world330"
+            cpp.defines: ["NDEBUG"]
         }
 
         cpp.dynamicLibraries:["-openmp"]
@@ -62,8 +64,7 @@ Project {
 //        cpp.dynamicLibraries:"opencv_world330"
 
         files: [
-            "faceidentifydaemon.cpp",
-            "faceidentifydaemon.h",
+            "cameratodo.h",
             "imageshowitem.cpp",
             "imageshowitem.h",
             "imageshowrenderer.cpp",
@@ -162,6 +163,8 @@ Project {
                 "faceutil.h",
                 "ifacedected.h",
                 "ifaceservice.h",
+                "faceidentifydaemon.cpp",
+                "faceidentifydaemon.h",
             ]
         }
 

@@ -20,6 +20,7 @@ namespace onechchy {
     signals:
         void curFps(QString);
         void curPixelFormat(QString);
+        void curFaceCount(int);
 
     public slots:
 

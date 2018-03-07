@@ -30,6 +30,7 @@ Window {
 
     property string curFPS: "-1"
     property string curPixelFormat: "unknown"
+    property int curFaceCount: 0
 
 //    signal winClosing()
 
@@ -92,6 +93,10 @@ Window {
 
         onSigPixelFormat: {
             curPixelFormat = curPF
+        }
+
+        onSigFaceCount: {
+            curFaceCount = curCount;
         }
     }
 

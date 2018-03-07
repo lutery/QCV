@@ -23,8 +23,6 @@ namespace FaceIdentify {
     {
         std::vector<cv::Rect> faceRIOs;
 
-        qDebug() << "srcMat channels: " << srcMat.channels();
-
         if (srcMat.channels() == 3)
         {
             dlib::cv_image<dlib::bgr_pixel> cvImg(srcMat);
@@ -32,10 +30,6 @@ namespace FaceIdentify {
             auto faces = mDetector(cvImg);
 
             faceRIOs = FaceIdentify::dlibRect2cvRect(faces);
-        }
-        else if (srcMat.channels() == 4)
-        {
-
         }
 
         return faceRIOs;
@@ -56,10 +50,6 @@ namespace FaceIdentify {
                 faceMats.push_back(std::move(tmp));
             }
         }
-        else if (srcMat.channels() == 4)
-        {
-
-        }
 
         return faceMats;
     }
@@ -76,10 +66,6 @@ namespace FaceIdentify {
                 srcMat(faceRIO).copyTo(tmp);
                 faceMats.push_back(std::move(tmp));
             }
-        }
-        else if (srcMat.channels() == 4)
-        {
-
         }
 
         return faceMats;

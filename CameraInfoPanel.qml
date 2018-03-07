@@ -32,5 +32,18 @@ Rectangle{
             color: "white"
             text: curPixelFormat
         }
+
+        Text{
+            text:"检测人脸数："
+            font.pointSize: 16
+            color: "white"
+        }
+
+        Text{
+            id: faceCount
+            font.pointSize: 16
+            color: "white"
+            text: parseInt(curFaceCount)
+        }
     }
 }
