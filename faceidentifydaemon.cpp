@@ -75,10 +75,12 @@ namespace onechchy {
 //            qDebug() << "faces size is " << faces.size();
 
             QList<QRect> qlistFaces;
+            long heightMat = mpMat->rows;
 #ifdef IDEBUG
-            auto costTime3 = onechchy::funNClock<std::chrono::milliseconds>([&qlistFaces, &faces]{
+            auto costTime3 = onechchy::funNClock<std::chrono::milliseconds>([&qlistFaces, &faces, &heightMat]{
                 for (auto& faceRect : faces)
                 {
+                    faceRect.y = heightMat - (faceRect.y + faceRect.height);
                     qlistFaces.append(onechchy::cvRect2qRect(faceRect));
                 }
             });
@@ -87,6 +89,7 @@ namespace onechchy {
 #else
             for (auto& faceRect : faces)
             {
+                faceRect.y = heightMat - (faceRect.y + faceRect.height);
                 qlistFaces.append(onechchy::cvRect2qRect(faceRect));
             }
 #endif
