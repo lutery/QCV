@@ -3,12 +3,18 @@
 namespace FaceIdentify {
 
 //    const cv::String FaceDectedCV::scFaceCascadeName = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\haarcascades\haarcascade_frontalface_default.xml)";
-    const cv::String FaceDectedCV::scFaceCascadeName = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalface_default.xml)";
-    const cv::String FaceDectedCV::scTrainingFaces = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\data\faces.txt)";
+    cv::String FaceDectedCV::scFaceCascadeName = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalface_default.xml)";
+    cv::String FaceDectedCV::scFrontalFaceAltTree = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalface_alt_tree.xml)";
+    cv::String FaceDectedCV::scFrontalFaceAlt = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalface_alt.xml)";
+    cv::String FaceDectedCV::scFrontalFaceAlt2 = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalface_alt2.xml)";
+    cv::String FaceDectedCV::scFrontalFace = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalcatface.xml)";
+    cv::String FaceDectedCV::scFrontalFaceExtended = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalcatface_extended.xml)";
+    cv::String FaceDectedCV::scTrainingFaces = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\data\faces.txt)";
 
-    FaceDectedCV::FaceDectedCV():mMinFace(10, 10), mMaxFace(1000, 1000)
+    FaceDectedCV::FaceDectedCV(cv::String cascadeName):mMinFace(10, 10), mMaxFace(1000, 1000)
     {
-        mbLoad = mFaceCascade.load(FaceDectedCV::scFaceCascadeName);
+//        mbLoad = mFaceCascade.load(FaceDectedCV::scFaceCascadeName);
+        mbLoad = mFaceCascade.load(cascadeName);
     }
 
     FaceDectedCV::~FaceDectedCV()
@@ -69,5 +75,4 @@ namespace FaceIdentify {
 
         return faceMats;
     }
-
 }

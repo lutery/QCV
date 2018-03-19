@@ -20,7 +20,12 @@ namespace FaceIdentify {
         enum class DectedMethod
         {
             OpencvHaarcascade,
-            Dlib
+            CVFrontalFaceAltTree,
+            CVFrontalFaceAlt,
+            CVFrontalFaceAlt2,
+            CVFrontalFace,
+            CVFrontalFaceExtended,
+            Dlib,
         };
 
     signals:

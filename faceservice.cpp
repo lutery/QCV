@@ -3,6 +3,7 @@
 #include "facedectedcv.h"
 #include "facedecteddlib.h"
 #include "camerabridgeface.h"
+#include "faceutil.h"
 #include <mutex>
 
 namespace FaceIdentify {
@@ -60,8 +61,28 @@ namespace FaceIdentify {
             mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedDlib>(new FaceDectedDlib));
             break;
 
+        case FaceService::DectedMethod::CVFrontalFace:
+            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV(FaceDectedCV::scFrontalFace)));
+            break;
+
+        case FaceService::DectedMethod::CVFrontalFaceAlt:
+            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV(FaceDectedCV::scFrontalFaceAlt)));
+            break;
+
+        case FaceService::DectedMethod::CVFrontalFaceAlt2:
+            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV(FaceDectedCV::scFrontalFaceAlt2)));
+            break;
+
+        case FaceService::DectedMethod::CVFrontalFaceAltTree:
+            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV(FaceDectedCV::scFrontalFaceAltTree)));
+            break;
+
+        case FaceService::DectedMethod::CVFrontalFaceExtended:
+            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV(FaceDectedCV::scFrontalFaceExtended)));
+            break;
+
         default:
-            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV));
+            mpFaceDected->setMpFaceDected(std::shared_ptr<FaceDectedCV>(new FaceDectedCV(FaceDectedCV::scFaceCascadeName)));
             break;
         }
     }

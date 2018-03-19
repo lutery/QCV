@@ -8,7 +8,7 @@ namespace FaceIdentify {
     class FaceDectedCV : public IFaceDected
     {
     public:
-        FaceDectedCV();
+        FaceDectedCV(cv::String cascadeName);
         virtual ~FaceDectedCV();
 
         // IFaceDected interface
@@ -17,8 +17,13 @@ namespace FaceIdentify {
         std::vector<cv::Mat> dectedMat(const cv::Mat &) override;
         std::vector<cv::Mat> acquireFace(const std::vector<cv::Rect> &faceROIs, const cv::Mat &srcMat) override;
 
-        static const cv::String scFaceCascadeName;
-        static const cv::String scTrainingFaces;
+        static cv::String scFaceCascadeName;
+        static cv::String scFrontalFaceAltTree;
+        static cv::String scFrontalFaceAlt;
+        static cv::String scFrontalFaceAlt2;
+        static cv::String scFrontalFace;
+        static cv::String scFrontalFaceExtended;
+        static cv::String scTrainingFaces;
 
     private:
         bool mbLoad = false;

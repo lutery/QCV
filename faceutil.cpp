@@ -89,5 +89,4 @@ namespace FaceIdentify {
 
         return cvRects;
     }
-
 }
