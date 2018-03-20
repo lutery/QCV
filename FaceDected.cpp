@@ -40,7 +40,7 @@ namespace FaceIdentify {
 //        }
 
 //        return faceMats;
-
+        QMutexLocker locker(&mFaceLock);
         return mpFaceDected->dectedMat(srcMat);
     }
 
@@ -56,11 +56,13 @@ namespace FaceIdentify {
 //        }
 
 //        return faceMats;
+        QMutexLocker locker(&mFaceLock);
         return mpFaceDected->acquireFace(faceROIs, srcMat);
     }
 
     void FaceDected::setMpFaceDected(const std::shared_ptr<IFaceDected> &value)
     {
+        QMutexLocker locker(&mFaceLock);
         mpFaceDected = value;
     }
 
@@ -87,6 +89,7 @@ namespace FaceIdentify {
 //        } while (false);
 
 //        return faces;
+        QMutexLocker locker(&mFaceLock);
         return mpFaceDected->dectedROI(srcMat);
     }
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "ifacedected.h"
 #include <memory>
+#include <QMutex>
 
 namespace FaceIdentify {
 
@@ -20,6 +21,7 @@ namespace FaceIdentify {
         void setMpFaceDected(const std::shared_ptr<IFaceDected> &value);
 
     private:
+        QMutex mFaceLock;
         std::shared_ptr<IFaceDected> mpFaceDected;
         //        bool mbLoad = false;
 //        cv::Size mMinFace;
