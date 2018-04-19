@@ -18,6 +18,8 @@
         <file>resource/image/Lenna.jpg</file>
         <file>resource/image/1.bmp</file>
         <file>resource/icon/icon_menu.png</file>
+        <file>resource/assets/faceConfig.json</file>
+        <file>resource/assets/faceInfos.json</file>
     </qresource>
     <qresource prefix="/listview/model">
         <file>BinaryOpenCV.qml</file>
@@ -28,6 +30,7 @@
         <file>RotateModel.qml</file>
         <file>CameraSelectionList.qml</file>
         <file>FacesMethodList.qml</file>
+        <file>FaceInfoModel.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
@@ -37,5 +40,8 @@
         <file>CameraItem.qml</file>
         <file>CameraPanel.qml</file>
         <file>CameraInfoPanel.qml</file>
+        <file>FaceRecognition.qml</file>
+        <file>FaceListPanel.qml</file>
+        <file>FaceInfoPanel.qml</file>
     </qresource>
 </RCC>

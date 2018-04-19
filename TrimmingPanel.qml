@@ -92,7 +92,7 @@ Rectangle {
                 id: trimBorder
                 text: "开始裁边"
                 onClicked: {
-                    console.log("开始裁边");
+                    console.log("开始裁边")
                     var borderParam = 0
 
                     if (leftBorder.checked){
