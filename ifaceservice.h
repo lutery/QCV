@@ -1,7 +1,7 @@
 #ifndef IFACESERVICE_H
 #define IFACESERVICE_H
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     class IFaceService
     {

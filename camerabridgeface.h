@@ -21,6 +21,7 @@ namespace onechchy {
         void curFps(QString);
         void curPixelFormat(QString);
         void curFaceCount(int);
+        void startFaceIdentify(bool, QString);
 
     public slots:
 

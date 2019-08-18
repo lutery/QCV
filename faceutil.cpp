@@ -1,10 +1,11 @@
 #include "faceutil.h"
 #include "FaceDected.h"
 #include "faceservice.h"
+#include "FaceIdentify.h"
 #include <QDebug>
 #include <vector>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     void readCSVData(const std::string & filename, std::vector<cv::Mat>& images, std::vector<int>& labels, char separator)
     {
@@ -76,6 +77,12 @@ namespace FaceIdentify {
         return FaceRIOs;
     }
 
+    void FaceIDentifyHelper(std::vector<QString> faceId, QVector<cv::Mat> faces)
+    {
+        static FaceService faceService;
+        faceService.RecordFace(faceId, faces.toStdVector());
+    }
+
     std::vector<cv::Rect> dlibRect2cvRect(std::vector<dlib::rectangle> dlibRects)
     {
         std::vector<cv::Rect> cvRects;
@@ -88,5 +95,20 @@ namespace FaceIdentify {
         }
 
         return cvRects;
+    }
+
+    int string2int(QString strValue)
+    {
+        const ushort* pStr = strValue.utf16();
+
+        int index = 0;
+        int intValue = 0;
+        while ((*pStr) != '\0')
+        {
+            ++index;
+            intValue += (*pStr);
+        }
+
+        return intValue;
     }
 }

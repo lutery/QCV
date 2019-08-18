@@ -10,6 +10,8 @@
 
 namespace onechchy {
 
+    class FaceRecognitionDaemon;
+
     /**
      * @brief The FaceIdentifyDaemon class 人脸识别后台线程
      */
@@ -22,6 +24,8 @@ namespace onechchy {
         explicit FaceIdentifyDaemon(QObject* parent = nullptr);
         virtual ~FaceIdentifyDaemon();
 
+        void setMpFaceRecognitionDaemon(FaceRecognitionDaemon *value);
+
     signals:
         void testRects();
         void faceRects(QList<QRect>);
@@ -29,14 +33,18 @@ namespace onechchy {
     public slots:
         void faceMat(cv::Mat &);
         void quit();
+        void faceIdentify(bool bstart, QString faceId);
 
     protected:
         // 是否运行
         bool mbExit = false;
+        bool mbFaceRecognition = false;
+        QString mCurFaceId;
         // 识别矩阵锁
         QMutex mLock;
         // 图像识别矩阵
         std::shared_ptr<cv::Mat> mpMat = nullptr;
+        FaceRecognitionDaemon* mpFaceRecognitionDaemon;
     };
 
 }

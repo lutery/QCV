@@ -5,11 +5,12 @@
 #include "camerabridgeface.h"
 #include "faceutil.h"
 #include "facerecognition.h"
+#include "camerabridgeface.h"
 #include <mutex>
 #include <QDir>
 #include <QDirIterator>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     /**
      * @brief The FaceServiceImpl class 人脸识别服务实现类
@@ -48,6 +49,8 @@ namespace FaceIdentify {
         // IFaceRecognition interface
     public:
         QStringList scanFaceInfos() override;
+        void RecordFace(std::vector<QString> faceId, std::vector<cv::Mat> faceMat) override;
+        void save() override;
     };
 
     FaceServiceImpl* FaceServiceImpl::mpSInstance = nullptr;
@@ -176,6 +179,16 @@ namespace FaceIdentify {
         return mpFaceRecognition->scanFaceInfos();
     }
 
+    void FaceServiceImpl::RecordFace(std::vector<QString> faceId, std::vector<cv::Mat> faceMat)
+    {
+        mpFaceRecognition->RecordFace(faceId, faceMat);
+    }
+
+    void FaceServiceImpl::save()
+    {
+        mpFaceRecognition->save();
+    }
+
     /**
      * @brief FaceService::FaceService 人脸识别服务器，使用实现类单例
      * @param parent
@@ -235,5 +248,26 @@ namespace FaceIdentify {
         {
             return mpFaceRecongnition->scanFaceInfos();
         }
+    }
+
+    void FaceService::RecordFace(std::vector<QString> faceId, std::vector<cv::Mat> faceMat)
+    {
+        if (mpFaceRecongnition != nullptr)
+        {
+            mpFaceRecongnition->RecordFace(faceId, faceMat);
+        }
+    }
+
+    void FaceService::save()
+    {
+        if (mpFaceRecongnition != nullptr)
+        {
+            mpFaceRecongnition->save();
+        }
+    }
+
+    void FaceService::addFace(QString faceId)
+    {
+        
     }
 }

@@ -6,6 +6,7 @@
 namespace onechchy {
     ImageShowItem::ImageShowItem()
     {
+        // 监控控件尺寸改变信号
         connect(this, &QQuickItem::windowChanged, this, &ImageShowItem::handleWindowChanged);
     }
 
@@ -18,12 +19,16 @@ namespace onechchy {
         }
     }
 
+    /**
+     * @brief ImageShowItem::sync 设置绘制对象与窗口控件画面同步
+     */
     void ImageShowItem::sync()
     {
         if (mpRender == nullptr)
         {
             qDebug() << "sync mpRender create";
             mpRender = new ImageShowRenderer();
+            // 监听控件绘制信号进行绘制操作
             connect(window(), &QQuickWindow::beforeRendering, mpRender, &ImageShowRenderer::sltPaint, Qt::DirectConnection);
             mpRender->sltInit();
         }
@@ -32,6 +37,9 @@ namespace onechchy {
         mpRender->setWindow(window());
     }
 
+    /**
+     * @brief ImageShowItem::cleanup 清空
+     */
     void ImageShowItem::cleanup()
     {
         if (mpRender != nullptr)
@@ -41,6 +49,10 @@ namespace onechchy {
         }
     }
 
+    /**
+     * @brief ImageShowItem::sltQImage 设置需要显示的图像
+     * @param image
+     */
     void ImageShowItem::sltQImage(std::shared_ptr<QImage> image)
     {
         qDebug() << "sltTexture std::shared_ptr<QImage>";
@@ -90,6 +102,10 @@ namespace onechchy {
 
     }
 
+    /**
+     * @brief ImageShowItem::copyImage 获取新的图像
+     * @return
+     */
     QImage ImageShowItem::copyImage()
     {
         if (mpRender != nullptr)
@@ -100,6 +116,10 @@ namespace onechchy {
         return QImage();
     }
 
+    /**
+     * @brief ImageShowItem::handleWindowChanged 窗口改变槽函数，设置相关的信号与槽关联的信息
+     * @param win
+     */
     void ImageShowItem::handleWindowChanged(QQuickWindow *win)
     {
         if (win != nullptr)

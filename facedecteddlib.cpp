@@ -2,7 +2,7 @@
 #include "faceutil.h"
 #include <QDebug>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     FaceDectedDlib::FaceDectedDlib():mDetector(dlib::get_frontal_face_detector())
     {
@@ -29,7 +29,7 @@ namespace FaceIdentify {
 
             auto faces = mDetector(cvImg);
 
-            faceRIOs = FaceIdentify::dlibRect2cvRect(faces);
+            faceRIOs = FaceIdentifion::dlibRect2cvRect(faces);
         }
 
         return faceRIOs;

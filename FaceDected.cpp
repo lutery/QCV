@@ -3,7 +3,7 @@
 #include "facedecteddlib.h"
 #include <iostream>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
 //    const cv::String FaceDected::scFaceCascadeName = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\haarcascades\haarcascade_frontalface_default.xml)";
 //    const cv::String FaceDected::scTrainingFaces = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\data\faces.txt)";

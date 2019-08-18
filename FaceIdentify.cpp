@@ -4,7 +4,7 @@
 #include <range\v3\core.hpp>
 #include <fstream>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     const std::string FaceIdentify::scEigenModelPath = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\MyFacePCAModel.xml)";
     const std::string FaceIdentify::scFisherModelPath = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\MyFaceFisherModel.xml)";

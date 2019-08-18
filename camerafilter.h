@@ -7,6 +7,7 @@
 namespace onechchy {
 
     class FaceIdentifyDaemon;
+    class FaceRecognitionDaemon;
     class CameraFilterRunnable;
 
     /**
@@ -30,6 +31,7 @@ namespace onechchy {
 
     protected:
         FaceIdentifyDaemon* mpFaceIdentifyDaemon;
+        FaceRecognitionDaemon* mpFaceRecognitionDaemon;
         CameraFilterRunnable* mpFilter;
     };
 

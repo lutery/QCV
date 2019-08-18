@@ -9,6 +9,7 @@
 class QQuickWindow;
 class QOpenGLTexture;
 
+// qt quick显示控件
 namespace onechchy {
     class ImageShowRenderer;
 
@@ -37,7 +38,9 @@ namespace onechchy {
 
     private:
     //    std::shared_ptr<QImage> mpCurImage = nullptr;
+        // 绘制逻辑控件
         ImageShowRenderer* mpRender = nullptr;
+        // 图像路径
         QString mImagePath;
     };
 }

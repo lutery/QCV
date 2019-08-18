@@ -5,7 +5,7 @@
 #include <dlib/opencv.h>
 #include <dlib/image_processing/frontal_face_detector.h>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     class FaceDectedDlib : public IFaceDected
     {

@@ -1,6 +1,8 @@
 #include "camerafilter.h"
 #include "camerafilterrunnable.h"
 #include "faceidentifydaemon.h"
+#include "facerecognitiondaemon.h"
+#include "camerabridgeface.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -10,19 +12,41 @@ namespace onechchy {
         mpFaceIdentifyDaemon = new FaceIdentifyDaemon(this);
         QObject::connect(mpFaceIdentifyDaemon, SIGNAL(faceRects(QList<QRect>)), this, SLOT(setFaceROI(QList<QRect>)));
         QObject::connect(mpFaceIdentifyDaemon, SIGNAL(testRects()), this, SLOT(testSlot()));
+        QObject::connect(CameraBridgeFace::getInstance(), SIGNAL(startFaceIdentify(bool, QString)), mpFaceIdentifyDaemon, SLOT(faceIdentify(bool, QString)));
         mpFaceIdentifyDaemon->start();
+
+        mpFaceRecognitionDaemon = new FaceRecognitionDaemon(this);
+        mpFaceRecognitionDaemon->start();
+        mpFaceIdentifyDaemon->setMpFaceRecognitionDaemon(mpFaceRecognitionDaemon);
     }
 
     CameraFilter::~CameraFilter()
     {
         qDebug() << "CameraFilter quit";
+        if (mpFaceRecognitionDaemon != nullptr)
+        {
+            mpFaceRecognitionDaemon->quit();
+        }
+
+        if (mpFaceIdentifyDaemon != nullptr)
+        {
+            mpFaceIdentifyDaemon->quit();
+        }
+
         if (mpFaceIdentifyDaemon != nullptr)
         {
             qDebug() << "FaceIdentifyDeamon quit";
 
-            mpFaceIdentifyDaemon->quit();
+//            mpFaceIdentifyDaemon->quit();
 
             while (mpFaceIdentifyDaemon->isRunning()) {}
+            delete mpFaceIdentifyDaemon;
+        }
+
+        if (mpFaceRecognitionDaemon != nullptr)
+        {
+            while (mpFaceRecognitionDaemon->isRunning()) {}
+            delete mpFaceRecognitionDaemon;
         }
     }
 

@@ -4,7 +4,7 @@
 #include <opencv2\opencv.hpp>
 #include <vector>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     class IFaceDected
     {

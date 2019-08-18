@@ -3,7 +3,7 @@
 #include <opencv2\face.hpp>
 #include <vector>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     class FaceIdentify
     {

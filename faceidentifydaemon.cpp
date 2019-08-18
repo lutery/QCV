@@ -2,14 +2,19 @@
 #include <QMutexLocker>
 #include "faceutil.h"
 #include "imageutil.h"
+#include "facerecognitiondaemon.h"
 #include "util.h"
+#include <opencv2/opencv.hpp>
 #include <QDebug>
+#include <QVector>
+#include <QUuid>
+#include <QCryptographicHash>
 
 namespace onechchy {
 
     FaceIdentifyDaemon::FaceIdentifyDaemon(QObject *parent):QThread(parent)
     {
-
+        mCurFaceId = QUuid::createUuid().toString();
     }
 
     FaceIdentifyDaemon::~FaceIdentifyDaemon()
@@ -63,14 +68,14 @@ namespace onechchy {
 
             std::vector<cv::Rect> faces;
 #ifdef IDEBUG
-            auto& [costTime2, facesTmp] = onechchy::funClock<std::chrono::milliseconds>(FaceIdentify::FaceRectHelper, mat3);
+            auto& [costTime2, facesTmp] = onechchy::funClock<std::chrono::milliseconds>(FaceIdentifion::FaceRectHelper, mat3);
             faces = facesTmp;
             qDebug() << "FaceRectHelper cost time: " << costTime2;
             qDebug() << "faces size is " << faces.size();
 #else
-            faces = FaceIdentify::FaceRectHelper(mat3);
+            faces = FaceIdentifion::FaceRectHelper(mat3);
 #endif
-//            auto faces = FaceIdentify::FaceRectHelper(mat3);
+//            auto faces = FaceIdentifion::FaceRectHelper(mat3);
 //            qDebug() << "FaceRectHelper cost time: " << costTime;
 //            qDebug() << "faces size is " << faces.size();
 
@@ -108,6 +113,26 @@ namespace onechchy {
             qDebug() << "emit signal faceRects";
             emit faceRects(qlistFaces);
 
+            if (mbFaceRecognition)
+            {
+                QVector<cv::Mat> curFaces;
+
+                cv::Rect maxFace{0, 0, 0, 0};
+
+                for (auto& face: faces)
+                {
+                    if (face.area() > maxFace.area())
+                    {
+                        maxFace = face;
+                    }
+                }
+
+                cv::Mat curFace = (*mpMat)(maxFace).clone();
+                curFaces.push_back(curFace);
+
+                this->mpFaceRecognitionDaemon->pushFaces(mCurFaceId, curFaces);
+            }
+
             mpMat = nullptr;
         }
     }
@@ -118,6 +143,17 @@ namespace onechchy {
 
         QMutexLocker locker(&this->mLock);
         mbExit = true;
+    }
+
+    void FaceIdentifyDaemon::faceIdentify(bool bstart, QString faceId)
+    {
+        mbFaceRecognition = bstart;
+        mCurFaceId = faceId;
+    }
+
+    void FaceIdentifyDaemon::setMpFaceRecognitionDaemon(FaceRecognitionDaemon *value)
+    {
+        mpFaceRecognitionDaemon = value;
     }
 
 }

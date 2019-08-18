@@ -44,18 +44,18 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    FaceIdentify::FaceService* sFaceService = new FaceIdentify::FaceService();
+    FaceIdentifion::FaceService* sFaceService = new FaceIdentifion::FaceService();
 
     qmlRegisterType<onechchy::ImageShowItem>("ImageShowItemQML", 1, 0, "ImageShowItem");
     qmlRegisterType<onechchy::SImageService>("SImageServiceQML", 1, 0, "SImageService");
     qmlRegisterType<onechchy::ImageOperaParam>("SImageOperaParamQML", 1, 0, "ImageOperaParam");
     qmlRegisterType<onechchy::CameraFilter>("CameraFilter", 1, 0, "CameraFilter");
-//    qmlRegisterType<FaceIdentify::FaceService>("FaceService", 1, 0, "FaceService");
-    qmlRegisterSingletonType<FaceIdentify::FaceService>("FaceService", 1, 0, "FaceService", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+//    qmlRegisterType<FaceIdentifion::FaceService>("FaceService", 1, 0, "FaceService");
+    qmlRegisterSingletonType<FaceIdentifion::FaceService>("FaceService", 1, 0, "FaceService", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
         Q_UNUSED(engine)
         Q_UNUSED(scriptEngine)
 
-        FaceIdentify::FaceService* faceService = new FaceIdentify::FaceService();
+        FaceIdentifion::FaceService* faceService = new FaceIdentifion::FaceService();
 
         return faceService;
     });

@@ -1,6 +1,6 @@
 #include "facedectedcv.h"
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
 //    const cv::String FaceDectedCV::scFaceCascadeName = R"(F:\Projects\Windows\C++\VC\FaceDetectedIdentify\FaceDetectedIdentify\haarcascades\haarcascade_frontalface_default.xml)";
     cv::String FaceDectedCV::scFaceCascadeName = R"(D:\DevelopmentKit\opencv-build\build\etc\haarcascades\haarcascade_frontalface_default.xml)";

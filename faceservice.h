@@ -8,7 +8,7 @@
 #include "ifacedected.h"
 #include "ifacerecognition.h"
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     /**
      * @brief The FaceService class 人脸识别服务器类
@@ -38,6 +38,8 @@ namespace FaceIdentify {
         void sigFps(QString curFps);
         void sigPixelFormat(QString curPF);
         void sigFaceCount(int curCount);
+        void sigFaceIdentify();
+        void sigFaceAdd();
 
     public slots:
 
@@ -63,6 +65,9 @@ namespace FaceIdentify {
         // IFaceRecognition interface
     public:
         Q_INVOKABLE QStringList scanFaceInfos() override;
+        void RecordFace(std::vector<QString> faceId, std::vector<cv::Mat> faceMat) override;
+        Q_INVOKABLE void save() override;
+        Q_INVOKABLE void addFace(QString faceId);
     };
 
 }

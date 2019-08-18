@@ -161,6 +161,8 @@ Project {
                 "faceinfo.h",
                 "facerecognition.cpp",
                 "facerecognition.h",
+                "facerecognitiondaemon.cpp",
+                "facerecognitiondaemon.h",
                 "faceservice.cpp",
                 "faceservice.h",
                 "faceutil.cpp",

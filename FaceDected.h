@@ -3,7 +3,7 @@
 #include <memory>
 #include <QMutex>
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     class FaceDected : public IFaceDected
     {

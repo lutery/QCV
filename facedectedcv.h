@@ -3,7 +3,7 @@
 
 #include "ifacedected.h"
 
-namespace FaceIdentify {
+namespace FaceIdentifion {
 
     class FaceDectedCV : public IFaceDected
     {

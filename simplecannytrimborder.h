@@ -5,6 +5,9 @@
 
 namespace onechchy {
 
+    /**
+     * @brief The SimpleCannyTrimBorder class 使用canny进行边界的查找
+     */
     class SimpleCannyTrimBorder : public SimpleTrimBorder
     {
     public:
