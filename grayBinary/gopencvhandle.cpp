@@ -28,11 +28,11 @@ namespace onechchy {
 
         if (srcMat.channels() == 4)
         {
-            cv::cvtColor(srcMat, dstMat, CV_BGRA2GRAY);
+            cv::cvtColor(srcMat, dstMat, cv::COLOR_BGRA2GRAY);
         }
         else if (srcMat.channels() == 3)
         {
-            cv::cvtColor(srcMat, dstMat, CV_BGR2GRAY);
+            cv::cvtColor(srcMat, dstMat, cv::COLOR_BGR2GRAY);
         }
 
         return dstMat;

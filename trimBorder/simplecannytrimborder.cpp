@@ -1,26 +1,25 @@
-#include "scannyerodetrimborder.h"
+#include "simplecannytrimborder.h"
 #include "simageservice.h"
 #include <QDebug>
 
 namespace onechchy {
-
-    SCannyErodeTrimBorder::SCannyErodeTrimBorder()
+    SimpleCannyTrimBorder::SimpleCannyTrimBorder()
     {
-        // 这里使用的腐蚀因子采用3x3的尺寸，这样可以清除细线和细点。如果腐蚀因子太大，会对原图产生较大的影响，需要在腐蚀之后采用膨胀的算法
-        mcErodeElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+
     }
 
-    cv::Mat SCannyErodeTrimBorder::trimBorder(const cv::Mat &srcMat, int border, QColor bgColor)
+    cv::Mat SimpleCannyTrimBorder::trimBorder(const cv::Mat &srcMat, int border, QColor bgColor)
     {
         cv::Mat mat;
 
+        // 如果图像不是灰度图，那么将其转换为灰度图
         if (srcMat.channels() == 4)
         {
-            cv::cvtColor(srcMat, mat, CV_BGRA2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGRA2GRAY);
         }
         else if (srcMat.channels() == 3)
         {
-            cv::cvtColor(srcMat, mat, CV_BGR2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGR2GRAY);
         }
         else if (srcMat.channels() == 1)
         {
@@ -31,9 +30,7 @@ namespace onechchy {
             return mat;
         }
 
-        // 清除噪点和噪线
-        cv::erode(mat, mat, mcErodeElement);
-
+        // 根据网络上的资料显示，threshold1与threshold2之间的参数比值在1:2或1:3之间比较好，这里选用25:50可以尽可能的保留边界信息的情况下减少冗余边界信息
         cv::Canny(mat, mat, 25, 50);
 
         int left = 0;
@@ -72,5 +69,4 @@ namespace onechchy {
 
         return srcMat;
     }
-
 }

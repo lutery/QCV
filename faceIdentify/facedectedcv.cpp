@@ -40,7 +40,7 @@ namespace FaceIdentifion {
             }
 
             //关键在最后两个参数是检测脸的最小尺寸以及最大的尺寸，如果不在这两个尺寸范围内的点是检测不出来的
-            mFaceCascade.detectMultiScale(srcMat, faces, 1.1, 4, CV_HAAR_DO_ROUGH_SEARCH, mMinFace, mMaxFace);
+            mFaceCascade.detectMultiScale(srcMat, faces, 1.1, 4, cv::CASCADE_DO_ROUGH_SEARCH, mMinFace, mMaxFace);
 
         } while (false);
 

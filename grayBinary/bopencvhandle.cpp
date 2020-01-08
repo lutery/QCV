@@ -37,7 +37,7 @@ namespace onechchy{
             threshold = 254;
         }
 
-        cv::threshold(srcMat, dstMat, threshold, 255, CV_THRESH_BINARY);
+        cv::threshold(srcMat, dstMat, threshold, 255, cv::THRESH_BINARY);
 
         return dstMat;
     }

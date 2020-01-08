@@ -64,11 +64,11 @@ namespace onechchy {
         q3.copyTo(q1);
         tmp.copyTo(q3);
 
-        cv::normalize(magMat, magMat, 0, 1, CV_MINMAX);
+        cv::normalize(magMat, magMat, 0, 1, cv::NORM_MINMAX);
         cv::Mat magImg(magMat.size(), CV_8UC1);
         magMat.convertTo(magImg, CV_8UC1, 255, 0);
 
-        cv::threshold(magImg, magImg, GRAY_THRESH, 255, CV_THRESH_BINARY);
+        cv::threshold(magImg, magImg, GRAY_THRESH, 255, cv::THRESH_BINARY);
 
         std::vector<cv::Vec2f> lines;
         float pi180 = (float)CV_PI / 180;

@@ -6,7 +6,7 @@
 #include <QString>
 #include <QImage>
 #include <QStack>
-#include "imageoperaparam.h"
+#include "imgOperation/imageoperaparam.h"
 
 namespace onechchy {
     class SImage;

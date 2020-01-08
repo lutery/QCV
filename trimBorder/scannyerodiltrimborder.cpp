@@ -1,25 +1,26 @@
-#include "simplecannytrimborder.h"
+#include "scannyerodiltrimborder.h"
 #include "simageservice.h"
 #include <QDebug>
 
 namespace onechchy {
-    SimpleCannyTrimBorder::SimpleCannyTrimBorder()
-    {
 
+    ScannyEroDilTrimBorder::ScannyEroDilTrimBorder()
+    {
+        // 将腐蚀因子扩大到16x16的大小，这种大小情况下会对原图的区域产生很大的影响，需要进行膨胀操作
+        mcErodeElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(16, 16));
     }
 
-    cv::Mat SimpleCannyTrimBorder::trimBorder(const cv::Mat &srcMat, int border, QColor bgColor)
+    cv::Mat ScannyEroDilTrimBorder::trimBorder(const cv::Mat &srcMat, int border, QColor bgColor)
     {
         cv::Mat mat;
 
-        // 如果图像不是灰度图，那么将其转换为灰度图
         if (srcMat.channels() == 4)
         {
-            cv::cvtColor(srcMat, mat, CV_BGRA2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGRA2GRAY);
         }
         else if (srcMat.channels() == 3)
         {
-            cv::cvtColor(srcMat, mat, CV_BGR2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGR2GRAY);
         }
         else if (srcMat.channels() == 1)
         {
@@ -30,7 +31,11 @@ namespace onechchy {
             return mat;
         }
 
-        // 根据网络上的资料显示，threshold1与threshold2之间的参数比值在1:2或1:3之间比较好，这里选用25:50可以尽可能的保留边界信息的情况下减少冗余边界信息
+        // 对图像进行膨胀和腐蚀操作，膨胀和腐蚀的参数因子需要使用相同的参数因子，这样才可以保证区域大致与原图相同
+        cv::erode(mat, mat, mcErodeElement);
+
+        cv::dilate(mat, mat, mcErodeElement);
+
         cv::Canny(mat, mat, 25, 50);
 
         int left = 0;
@@ -69,4 +74,5 @@ namespace onechchy {
 
         return srcMat;
     }
+
 }

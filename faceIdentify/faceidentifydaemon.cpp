@@ -1,9 +1,9 @@
 #include "faceidentifydaemon.h"
 #include <QMutexLocker>
 #include "faceutil.h"
-#include "imageutil.h"
+#include "imgOperation/imageutil.h"
 #include "facerecognitiondaemon.h"
-#include "util.h"
+#include "imgOperation/util.h"
 #include <opencv2/opencv.hpp>
 #include <QDebug>
 #include <QVector>
@@ -54,6 +54,7 @@ namespace onechchy {
             // 这里将所有的矩阵类型转换为3通道，因为dlib目前只能将三通道的opencv图像转换为可处理的类型
             cv::Mat mat3;
 #ifdef IDEBUG
+//            onechchy::funClock<std::chrono::milliseconds>(onechchy::cvMatAlign3, *mpMat);
             auto& [costTime1, matTmp1] = onechchy::funClock<std::chrono::milliseconds>(onechchy::cvMatAlign3, *mpMat);
             mat3 = matTmp1;
             qDebug() << "cvMatAlign3 cost time: " << costTime1;

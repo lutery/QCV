@@ -1,7 +1,7 @@
 #ifndef SCANNYERODILTRIMBORDER_H
 #define SCANNYERODILTRIMBORDER_H
 
-#include "simpletrimborder.h".h"
+#include "simpletrimborder.h"
 
 namespace onechchy {
 

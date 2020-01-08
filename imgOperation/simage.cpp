@@ -1,14 +1,14 @@
 #include "transformimage.h"
-#include "itrimingborder.h"
+#include "trimBorder/itrimingborder.h"
 #include "simage.h"
 #include "imageutil.h"
 #include "imagesplit.h"
 #include "simageservice.h"
 #include "imageoperaparam.h"
-#include "gopencvhandle.h"
-#include "bopencvhandle.h"
-#include "bostuopencvhandle.h"
-#include "btriangleopencvhandle.h"
+#include "grayBinary/gopencvhandle.h"
+#include "grayBinary/bopencvhandle.h"
+#include "grayBinary/bostuopencvhandle.h"
+#include "grayBinary/btriangleopencvhandle.h"
 
 namespace onechchy {
     SImage::SImage(QObject *parent) : QObject(parent)

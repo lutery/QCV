@@ -1,9 +1,12 @@
 #include "camerafilterrunnable.h"
-#include "util.h"
-#include "imageutil.h"
+//#include "util.h"
+//#include "imageutil.h"
+#include "imgOperation/util.h"
+#include "imgOperation/imageutil.h"
 #include <QDebug>
 #include <opencv2/opencv.hpp>
-#include "faceutil.h"
+//#include "faceutil.h"
+#include "faceIdentify/faceutil.h"
 #include "camerafilter.h"
 #include <QMutexLocker>
 #include "camerabridgeface.h"

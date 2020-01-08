@@ -26,7 +26,7 @@ namespace onechchy {
             return dstMat;
         }
 
-        int threshold = cv::threshold(srcMat, dstMat, 0, 255, CV_THRESH_TRIANGLE);
+        int threshold = cv::threshold(srcMat, dstMat, 0, 255, cv::THRESH_TRIANGLE);
 
         return dstMat;
     }

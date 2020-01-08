@@ -174,7 +174,7 @@ namespace onechchy {
             break;
         case QImage::Format_RGB888:
             mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
-            cv::cvtColor(mat, mat, CV_BGR2RGB);
+            cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
             break;
         case QImage::Format_Indexed8:
         case QImage::Format_Grayscale8:
@@ -200,7 +200,7 @@ namespace onechchy {
         {
             cv::Mat grayMat;
 
-            cv::cvtColor(mat, grayMat, CV_BGR2GRAY);
+            cv::cvtColor(mat, grayMat, cv::COLOR_BGR2GRAY);
 
             return grayMat;
         }
@@ -208,7 +208,7 @@ namespace onechchy {
         {
             cv::Mat grayMat;
 
-            cv::cvtColor(mat, grayMat, CV_BGRA2GRAY);
+            cv::cvtColor(mat, grayMat, cv::COLOR_BGRA2GRAY);
 
             return grayMat;
         }
@@ -329,7 +329,7 @@ namespace onechchy {
                 break;
             case QVideoFrame::Format_RGB24:
                 mat = cv::Mat(frame.height(), frame.width(), CV_8UC3, (void*)((const uchar*)frame.bits()), frame.bytesPerLine());
-                cv::cvtColor(mat, mat, CV_BGR2RGB);
+                cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
 //                verticalMirror(mat.data, mat.step, mat.rows);
                 break;
             case QVideoFrame::Format_Y8:

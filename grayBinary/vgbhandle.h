@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <opencv2/opencv.hpp>
-#include "imageoperaparam.h"
+#include "imgOperation/imageoperaparam.h"
 
 namespace onechchy {
 
@@ -13,7 +13,8 @@ namespace onechchy {
         VGBHandle();
         virtual ~VGBHandle();
 
-        cv::Mat GBHanlde(int method, ImageOperaParam* param, cv::Mat& srcMat);
+        cv::Mat GBHanlde(int method, ImageOperaParam* param, cv::Mat&& srcMat);
+        cv::Mat GBHanlde(int method, ImageOperaParam *param, cv::Mat& srcMat);
 
         VGBHandle* getMpNext() const;
         void setMpNext(VGBHandle* value);

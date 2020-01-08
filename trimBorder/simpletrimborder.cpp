@@ -1,5 +1,5 @@
 #include "simpletrimborder.h"
-#include "imageutil.h"
+#include "imgOperation/imageutil.h"
 #include <range/v3/core.hpp>
 #include <range/v3/view.hpp>
 #include <QDebug>

@@ -2,10 +2,10 @@
 #include "FaceDected.h"
 #include "facedectedcv.h"
 #include "facedecteddlib.h"
-#include "camerabridgeface.h"
+#include "camera/camerabridgeface.h"
 #include "faceutil.h"
 #include "facerecognition.h"
-#include "camerabridgeface.h"
+#include "camera/camerabridgeface.h"
 #include <mutex>
 #include <QDir>
 #include <QDirIterator>

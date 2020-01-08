@@ -1,7 +1,7 @@
 #include "camerafilter.h"
 #include "camerafilterrunnable.h"
-#include "faceidentifydaemon.h"
-#include "facerecognitiondaemon.h"
+#include "faceIdentify/faceidentifydaemon.h"
+#include "faceIdentify/facerecognitiondaemon.h"
 #include "camerabridgeface.h"
 #include <QDebug>
 

@@ -1,7 +1,7 @@
 #ifndef SIMPLECANNYTRIMBORDER_H
 #define SIMPLECANNYTRIMBORDER_H
 
-#include "simpletrimborder.h".h"
+#include "simpletrimborder.h"
 
 namespace onechchy {
 

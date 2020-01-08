@@ -63,7 +63,7 @@ namespace onechchy {
 
         cv::Mat centers(clusterCount, 1, samples.type());
         cv::kmeans(samples, clusterCount, labels,
-                   cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0),
+                   cv::TermCriteria( cv::TermCriteria::EPS+cv::TermCriteria::MAX_ITER, 10, 1.0),
                    3, cv::KMEANS_PP_CENTERS, centers);
         //我们已知有3个聚类，用不同的灰度层表示。
         cv::Mat img1(srcMat.rows, srcMat.cols, CV_8UC1);
