@@ -1,7 +1,7 @@
 #include "FaceIdentify.h"
 #include <opencv2\opencv.hpp>
 #include <opencv2\face\facerec.hpp>
-#include <range\v3\core.hpp>
+//#include <range\v3\core.hpp>
 #include <fstream>
 
 namespace FaceIdentifion {

@@ -55,7 +55,7 @@ namespace onechchy {
             cv::Mat mat3;
 #ifdef IDEBUG
 //            onechchy::funClock<std::chrono::milliseconds>(onechchy::cvMatAlign3, *mpMat);
-            auto& [costTime1, matTmp1] = onechchy::funClock<std::chrono::milliseconds>(onechchy::cvMatAlign3, *mpMat);
+            auto [costTime1, matTmp1] = onechchy::funClock<std::chrono::milliseconds>(onechchy::cvMatAlign3, *mpMat);
             mat3 = matTmp1;
             qDebug() << "cvMatAlign3 cost time: " << costTime1;
 #else
@@ -69,7 +69,7 @@ namespace onechchy {
 
             std::vector<cv::Rect> faces;
 #ifdef IDEBUG
-            auto& [costTime2, facesTmp] = onechchy::funClock<std::chrono::milliseconds>(FaceIdentifion::FaceRectHelper, mat3);
+            auto [costTime2, facesTmp] = onechchy::funClock<std::chrono::milliseconds>(FaceIdentifion::FaceRectHelper, mat3);
             faces = facesTmp;
             qDebug() << "FaceRectHelper cost time: " << costTime2;
             qDebug() << "faces size is " << faces.size();

@@ -2,8 +2,12 @@
 #include "simageservice.h"
 #include <QDebug>
 #include <array>
-#include <range/v3/core.hpp>
-#include <range/v3/view.hpp>
+//#include <range/v3/core.hpp>
+//#include <range/v3/view.hpp>
+//#include <range/v3/view/iota.hpp>
+//#include <range/v3/action/reverse.hpp>
+//#include <range/v3/view/for_each.hpp>
+//#include <range/v3/view/repeat_n.hpp>
 
 namespace onechchy {
 
@@ -18,11 +22,11 @@ namespace onechchy {
 
         if (srcMat.channels() == 4)
         {
-            cv::cvtColor(srcMat, mat, CV_BGRA2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGRA2GRAY);
         }
         else if (srcMat.channels() == 3)
         {
-            cv::cvtColor(srcMat, mat, CV_BGR2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGR2GRAY);
         }
         else if (srcMat.channels() == 1)
         {
@@ -122,10 +126,12 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pData = mat.data;
 
-        for (const auto& y : ranges::view::ints(0, height))
+//        for (const auto& y : ranges::view::ints(0, height))
+        for (int y = 0; y < height; ++y)
         {
             uchar* pCurLine = pData + y * width;
-            for (const auto& x : ranges::view::ints(0, width))
+//            for (const auto& x : ranges::view::ints(0, width))
+            for (int x = 0; x < width; ++x)
             {
                 if (pCurLine[x] > 0)
                 {
@@ -141,9 +147,11 @@ namespace onechchy {
             }
         }
 
-        for (const auto& x : ranges::view::ints(0, width))
+//        for (const auto& x : ranges::view::ints(0, width))
+        for (int x = 0; x < width; ++x)
         {
-            for (const auto& y : ranges::view::ints(0, height))
+//            for (const auto& y : ranges::view::ints(0, height))
+            for (int y = 0; y < height; ++y)
             {
                 if (pData[y * width + x] > 0)
                 {
@@ -172,10 +180,13 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pData = mat.data;
 
-        for (const auto& y : ranges::view::ints(0, height))
+//        for (const auto& y : ranges::view::ints(0, height))
+        for (int y = 0; y < height; ++y)
         {
             uchar* pCurLine = pData + y * width;
-            for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+//            std::vector<int> v = ranges::view::ints(0, 6) | ranges::action::reverse;
+//            for (const auto& x : ranges::view::ints(0, width) | ranges::action::reverse)
+            for (int x = width - 1; x >= 0; --x)
             {
                 if (pCurLine[x] > 0)
                 {
@@ -191,9 +202,11 @@ namespace onechchy {
             }
         }
 
-        for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+//        for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+        for (int x = width - 1; x >= 0; --x)
         {
-            for (const auto& y : ranges::view::ints(0, height))
+//            for (const auto& y : ranges::view::ints(0, height))
+            for (int y = 0; y < height; ++y)
             {
                 if (pData[y * width + x] > 0)
                 {
@@ -222,10 +235,12 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pData = mat.data;
 
-        for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+//        for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+        for (int y = height - 1; height >= 0; --height)
         {
             uchar* pCurLine = pData + y * width;
-            for (const auto& x : ranges::view::ints(0, width))
+//            for (const auto& x : ranges::view::ints(0, width))
+            for (int x = 0; x < width; ++x)
             {
                 if (pCurLine[x] > 0)
                 {
@@ -241,9 +256,12 @@ namespace onechchy {
             }
         }
 
-        for (const auto& x : ranges::view::ints(0, width))
+//        for (const auto& x : ranges::view::ints(0, width))
+        for (int x = 0; x < width; ++x)
         {
-            for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+//            for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+//            for (const auto& y : ranges::view::ints(0, height) | ranges::action::reverse)
+            for (int y = height - 1; height >= 0; --height)
             {
                 if (pData[y * width + x] > 0)
                 {
@@ -272,10 +290,12 @@ namespace onechchy {
         int height = mat.rows;
         uchar* pData = mat.data;
 
-        for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+//        for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+        for (int y = height - 1; y >= 0; --y)
         {
             uchar* pCurLine = pData + y * width;
-            for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+//            for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+            for (int x = width - 1; x >= 0; --x)
             {
                 if (pCurLine[x] > 0)
                 {
@@ -291,9 +311,11 @@ namespace onechchy {
             }
         }
 
-        for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+//        for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+        for (int x = width - 1; x >= 0; --x)
         {
-            for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+//            for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+            for (int y = height - 1; y >= 0; --y)
             {
                 if (pData[y * width + x] > 0)
                 {

@@ -1,7 +1,7 @@
 #include "simpletrimborder.h"
 #include "imgOperation/imageutil.h"
-#include <range/v3/core.hpp>
-#include <range/v3/view.hpp>
+//#include <range/v3/core.hpp>
+//#include <range/v3/view.hpp>
 #include <QDebug>
 #include "simageservice.h"
 
@@ -112,10 +112,12 @@ namespace onechchy {
 
         // 使用range-v3标准库进行循环遍历扫描。
         // 因为寻找的是顶边，所以这里以行进行扫描，一旦一个行有一个亮点，那么这行将被认为是边界
-        for (const auto& y : ranges::view::ints(0, height)/* | ranges::view::reverse*/)
+//        for (const auto& y : ranges::view::ints(0, height)/* | ranges::view::reverse*/)
+        for (int y = 0; y < height; ++y)
         {
             uchar* pRow = pStart + y * width;
-            for (const auto& x : ranges::view::ints(0, width))
+//            for (const auto& x : ranges::view::ints(0, width))
+            for (int x = 0; x < width; ++x)
             {
                 if (pRow[x] > threshold)
                 {
@@ -135,10 +137,12 @@ namespace onechchy {
 
         int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
-        for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+//        for (const auto& y : ranges::view::ints(0, height) | ranges::view::reverse)
+        for (int y = height - 1; y >= 0; --y)
         {
             uchar* pRow = pStart + y * width;
-            for (const auto& x : ranges::view::ints(0, width)/* | ranges::view::reverse*/)
+//            for (const auto& x : ranges::view::ints(0, width)/* | ranges::view::reverse*/)
+            for (int x = 0; x < width; ++x)
             {
                 if (pRow[x] > threshold)
                 {
@@ -166,9 +170,11 @@ namespace onechchy {
         int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
         // 因为是左边界，进行的是列扫描，一旦该列存在一个点事亮点，就认为该索引是边界返回
-        for (const auto& x : ranges::view::ints(0, width)/* | ranges::view::reverse*/)
+//        for (const auto& x : ranges::view::ints(0, width)/* | ranges::view::reverse*/)
+        for (int x = 0; x < width; ++x)
         {
-            for (const auto& y : ranges::view::ints(0, height))
+//            for (const auto& y : ranges::view::ints(0, height))
+            for (int y = 0; y < height; ++y)
             {
                 if (pStart[width * y + x] > threshold)
                 {
@@ -188,9 +194,11 @@ namespace onechchy {
 
         int threshold = onechchy::rgb2gray(bgColor.red(), bgColor.green(), bgColor.blue()) + this->thresholdShake;
 
-        for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+//        for (const auto& x : ranges::view::ints(0, width) | ranges::view::reverse)
+        for (int x = width - 1; x >= 0; --x)
         {
-            for (const auto& y : ranges::view::ints(0, height)/* | ranges::view::reverse*/)
+//            for (const auto& y : ranges::view::ints(0, height)/* | ranges::view::reverse*/)
+            for (int y = 0; y < height; ++y)
             {
                 if (pStart[width * y + x] > threshold)
                 {

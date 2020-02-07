@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <dlib/opencv.h>
 #include <opencv2\opencv.hpp>
 #include <vector>
-#include <dlib/opencv.h>
 #include <QVector>
 
 namespace FaceIdentifion {

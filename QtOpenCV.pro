@@ -32,21 +32,21 @@ RESOURCES += qml.qrc
 LIBS += -fopenmp
 
 CONFIG (debug, debug|release){
-    win32: LIBS += -lopencv_world410d -ldlibd
+    LIBS += -lopencv_world420d -ldlib19.17.0_debug_64bit_msvc1916
     DEFINES += IDEBUG
 }else{
-    win32: LIBS += -lopencv_world410 -ldlib
+    LIBS += -lopencv_world420 -ldlib19.19.0_release_64bit_msvc1916
     DEFINES += NDEBUG
 }
 
 INCLUDEPATH += \
     E:/DevelopmentKit/opencv/include \
-    E:/DevelopmentKit/range-v3/include \
-    F:/DevelopmentKit/dlib/inc
+    E:/DevelopmentKit/range-v3-17/include/include \
+    E:/DevelopmentKit/dlib-17/inc
 
 LIBS += \
     -LE:/DevelopmentKit/opencv/x64/vc16/lib \
-    -LF:/DevelopmentKit/dlib/lib/x64
+    -LE:/DevelopmentKit/dlib-17/lib/
 
 SUBDIRS += camera \
             faceIdentify \

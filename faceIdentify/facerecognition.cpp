@@ -6,7 +6,20 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <range/v3/all.hpp>
+//#include <range/v3/core.hpp>
+//#include <range/v3/algorithm/copy.hpp>
+//#include <range/v3/algorithm/move.hpp>
+//#include <range/v3/utility/copy.hpp>
+//#include <range/v3/utility/iterator.hpp>
+//#include <range/v3/view/bounded.hpp>
+//#include <range/v3/view/for_each.hpp>
+//#include <range/v3/view/iota.hpp>
+//#include <range/v3/view/map.hpp>
+//#include <range/v3/view/move.hpp>
+//#include <range/v3/view/stride.hpp>
+//#include <range/v3/view/take_while.hpp>
+//#include <range/v3/view/zip.hpp>
+//#include <range/v3/view/zip_with.hpp>
 
 namespace FaceIdentifion {
 
@@ -176,8 +189,12 @@ namespace FaceIdentifion {
         mpFaceIDentify->trainEigenModel(faceMat, faceIdInt);
 
         // 将面部信息的名字和标识整形存储到内存中
-        for (const auto& [faceName, face] : ranges::view::zip(faceId, faceIdInt))
+//        auto testzip = ranges::view::zip(faceId, faceIdInt);
+//        for (const auto& [faceName, face] : ranges::view::zip(faceId, faceIdInt))
+        for (int i = 0, count = faceId.size(); i < count; ++i)
         {
+            auto faceName = faceId[i];
+            auto face = faceIdInt[i];
             bool bFind = false;
             QVector<QPair<QString, int>>::iterator iter = mFaceInfos.begin();
 
@@ -242,7 +259,8 @@ namespace FaceIdentifion {
     {
         cv::Size standard(mNormalWidth, mNormalHeight);
         cv::Mat resizeFace;
-        cv::resize(faceImg, resizeFace, standard, 0, 0, CV_INTER_AREA);
+//        cv::resize(faceImg, resizeFace, standard, 0, 0, CV_INTER_AREA);
+        cv::resize(faceImg, resizeFace, standard, 0, 0, cv::INTER_AREA);
 
         cv::normalize(resizeFace,resizeFace,0, 255, cv::NORM_MINMAX, CV_8UC1);
     }

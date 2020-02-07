@@ -1,6 +1,7 @@
 #include "boundmattrimborder.h"
-#include <range/v3/core.hpp>
-#include <range/v3/view.hpp>
+//#include <range/v3/core.hpp>
+//#include <range/v3/view.hpp>
+//#include <range/v3/view/iota.hpp>
 
 namespace onechchy {
 
@@ -15,11 +16,11 @@ namespace onechchy {
 
         if (srcMat.channels() == 4)
         {
-            cv::cvtColor(srcMat, mat, CV_BGRA2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGRA2GRAY);
         }
         else if (srcMat.channels() == 3)
         {
-            cv::cvtColor(srcMat, mat, CV_BGR2GRAY);
+            cv::cvtColor(srcMat, mat, cv::COLOR_BGR2GRAY);
         }
         else if (srcMat.channels() == 1)
         {
@@ -38,13 +39,15 @@ namespace onechchy {
 //        std::vector<cv::Vec4i> hierachy;
 
         // 查询外接多边形
-        cv::findContours(mat, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE);
+//        cv::findContours(mat, contours, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE);
+        cv::findContours(mat, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
 
         std::vector<std::vector<cv::Point>> contours_poly(contours.size());
         std::vector<cv::Rect> boundRect(contours.size());
 
         // 判断外接多边形
-        for (const auto& index : ranges::view::ints(0, (int)contours.size()))
+//        for (const auto& index : ranges::view::ints(0, (int)contours.size()))
+        for (int index = 0, count = contours.size(); index < count; ++index)
         {
             // 对多边形矩阵做逼近处理
             cv::approxPolyDP(cv::Mat(contours[index]), contours_poly[index], 3, true);

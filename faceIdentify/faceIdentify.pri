@@ -1,4 +1,5 @@
 SOURCES += \
+    $$PWD/facerecognitiondaemon.cpp \
     $$PWD\FaceDected.cpp \
     $$PWD\facedectedcv.cpp \
     $$PWD\facedecteddlib.cpp \
@@ -10,6 +11,7 @@ SOURCES += \
     $$PWD\faceutil.cpp
 
 HEADERS += \
+    $$PWD/facerecognitiondaemon.h \
     $$PWD\FaceDected.h \
     $$PWD\facedectedcv.h \
     $$PWD\facedecteddlib.h \

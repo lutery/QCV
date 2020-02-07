@@ -1,9 +1,9 @@
 #ifndef FACEDECTEDDLIB_H
 #define FACEDECTEDDLIB_H
 
-#include "ifacedected.h"
 #include <dlib/opencv.h>
 #include <dlib/image_processing/frontal_face_detector.h>
+#include "ifacedected.h"
 
 namespace FaceIdentifion {
 
