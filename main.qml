@@ -15,6 +15,7 @@ Window {
     height: 480
     title: qsTr("Tool Windows")
 
+    // 显示预览窗口
     PreviewWindow{
         id: previewWin
 //        窗口跟随
@@ -22,10 +23,12 @@ Window {
         y: mainWin.y
     }
 
+    // 加载控件，用于加载qml控件
     Loader{
        id: cameraWin
     }
 
+    // 保存文件对话框
     FileDialog{
         id: saveDialog
         title: "保存图片"

@@ -7,13 +7,18 @@
 
 namespace onechchy {
 
+    // 图像处理参数联合体
     union ParamUnion{
         ParamUnion(){}
         ~ParamUnion(){}
 
+        // 切边参数
         struct{
+            // 切哪个方向的边
             int trimBorder = 0x00;
+            // 切边的方法
             int trimType = 0;
+            // 背景颜色
             QColor bgColor;
         } trimParam;
 
@@ -26,6 +31,7 @@ namespace onechchy {
             QString selectPath = "";
         }saveParam;
 
+        // 通用参数 双整形
         struct{
             int intOne = 0;
             int intTwo = 0;

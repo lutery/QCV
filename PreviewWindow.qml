@@ -1,3 +1,6 @@
+/**
+  * 预览窗口面板，实际进行图像处理的地方
+  */
 import QtQuick 2.10
 import QtQuick.Window 2.10
 import QtQuick.Controls 2.2
@@ -12,6 +15,11 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
+    /**
+      * 图像处理函数
+      * param 0: 处理类型
+      * param param: 处理参数
+      */
     function imageOperation(o, param){
         console.log(o)
 
@@ -37,6 +45,7 @@ Window {
             imageService.sltImageOpera(o, imageShow.copyImage())
             break;
 
+        // 图像二值化
         case SImageService.GrayBinary:
             imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
@@ -48,14 +57,17 @@ Window {
         anchors.fill: parent
     }
 
+    // 图像处理服务
     SImageService{
         id: imageService;
 
+        // 处理完成更新图像信号
         onUpdateImg: {
             imageShow.sltQImage(image)
         }
     }
 
+    // 文件拖动控件
     DropArea {
         anchors.fill: parent
         onDropped: {

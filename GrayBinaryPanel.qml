@@ -1,3 +1,6 @@
+/**
+  * 灰度二值化qml面板
+  */
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
@@ -10,6 +13,7 @@ Rectangle {
     anchors.fill: parent
 
 //    signal gbProcess(real type, real param)
+    // 信号 发送二值化类型以及相关的处理参数
     signal imgProcess(real type, QtObject param)
 
     property var selectLib: 1
