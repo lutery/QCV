@@ -36,9 +36,9 @@ namespace onechchy {
         {
             uchar* sptr = srcMat.ptr(y);
             uchar* dptr = dstMat.ptr(y);
-            for (int x = 0; x < dstMat.cols; x += 4)
+            for (int x = 0; x < srcMat.cols; ++x)
             {
-                dptr[x >> 2] = (uchar)((sptr[x + 2]*19595 + sptr[x + 1]*38469 + sptr[x + 0]*7472) >> 16);
+                dptr[x] = (uchar)((sptr[x * 4 + 2]*19595 + sptr[x * 4 + 1]*38469 + sptr[x * 4 + 0]*7472) >> 16);
             }
         }
     }
@@ -49,9 +49,9 @@ namespace onechchy {
         {
             uchar* sptr = srcMat.ptr(y);
             uchar* dptr = dstMat.ptr(y);
-            for (int x = 0; x < dstMat.cols; x += 3)
+            for (int x = 0; x < srcMat.cols; ++x)
             {
-                dptr[x / 3] = (uchar)((sptr[x + 2]*19595 + sptr[x + 1]*38469 + sptr[x + 0]*7472) >> 16);
+                dptr[x] = (uchar)((sptr[x * 3 + 2]*19595 + sptr[x * 3 + 1]*38469 + sptr[x * 3 + 0]*7472) >> 16);
             }
         }
     }

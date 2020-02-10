@@ -25,7 +25,7 @@ namespace onechchy {
         pGCVHandle->setMpNext(pBCVHandle);
         pBCVHandle->setMpNext(pOSTUHandle);
         pOSTUHandle->setMpNext(pTriangleHandle);
-        pGThirdHandle->setMpNext(pGThirdHandle);
+        pTriangleHandle->setMpNext(pGThirdHandle);
     }
 
     void SImage::setTransImg(TransformImage* value)
