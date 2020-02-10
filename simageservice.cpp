@@ -31,6 +31,8 @@ namespace onechchy {
      */
     void SImageService::sltImageOpera(SImageService::ImageOpera opera, QImage image)
     {
+        qDebug() << "sltImageOpera process";
+
         mUnDoImg.push_back(image);
         mReDoImg.clear();
 
@@ -206,8 +208,11 @@ namespace onechchy {
 
     void SImageService::grayBinary(QImage &image)
     {
+        qDebug() << "grayBinary";
         if (mOperaParam != nullptr)
         {
+            qDebug() << "mOperaParam";
+
             QImage resultImg = mpSImage->grayBinary(image, mOperaParam);
 
             if (!resultImg.isNull())

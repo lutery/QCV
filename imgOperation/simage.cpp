@@ -9,6 +9,8 @@
 #include "grayBinary/bopencvhandle.h"
 #include "grayBinary/bostuopencvhandle.h"
 #include "grayBinary/btriangleopencvhandle.h"
+#include "grayBinary/gthirdhandle.h"
+#include <QDebug>
 
 namespace onechchy {
     SImage::SImage(QObject *parent) : QObject(parent)
@@ -16,12 +18,14 @@ namespace onechchy {
         auto pGCVHandle = new GOpenCVHandle();
         auto pBCVHandle = new BOpenCVHandle();
         auto pOSTUHandle = new BOSTUOpenCVHandle();
+        auto pGThirdHandle = new GThirdHandle();
         auto pTriangleHandle = new BTriangleOpenCVHandle();
 
         this->mpGBHandle = std::unique_ptr<VGBHandle>(pGCVHandle);
         pGCVHandle->setMpNext(pBCVHandle);
         pBCVHandle->setMpNext(pOSTUHandle);
         pOSTUHandle->setMpNext(pTriangleHandle);
+        pGThirdHandle->setMpNext(pGThirdHandle);
     }
 
     void SImage::setTransImg(TransformImage* value)
@@ -68,6 +72,7 @@ namespace onechchy {
 
     QImage SImage::grayBinary(QImage& image, ImageOperaParam *param)
     {
+        qDebug() << "process grayBinary method is " << param->gbMethod();
         cv::Mat mat;
 
         mat = this->mpGBHandle->GBHanlde(param->gbMethod(), param, onechchy::QImage2cvMat(image));

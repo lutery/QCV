@@ -1,5 +1,6 @@
 #include "gopencvhandle.h"
 #include "simageservice.h"
+#include <QDebug>
 
 namespace onechchy {
     GOpenCVHandle::GOpenCVHandle()
@@ -14,17 +15,13 @@ namespace onechchy {
 
     bool GOpenCVHandle::canHanlde(int method)
     {
+        qDebug() << "BOSTUOpenCVHandle canHandle process";
         return method == (int)SImageService::GBMethodType::GeneralGrayOpenCV;
     }
 
     cv::Mat GOpenCVHandle::InnerGBHandler(int method, ImageOperaParam *param, cv::Mat &srcMat)
     {
         cv::Mat dstMat;
-
-        if (srcMat.empty())
-        {
-            return dstMat;
-        }
 
         if (srcMat.channels() == 4)
         {

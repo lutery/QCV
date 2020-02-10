@@ -1,4 +1,5 @@
 SOURCES += \
+    $$PWD/gthirdhandle.cpp \
     $$PWD\bopencvhandle.cpp \
     $$PWD\bostuopencvhandle.cpp \
     $$PWD\btriangleopencvhandle.cpp \
@@ -6,6 +7,7 @@ SOURCES += \
     $$PWD\vgbhandle.cpp
 
 HEADERS += \
+    $$PWD/gthirdhandle.h \
     $$PWD\bopencvhandle.h \
     $$PWD\bostuopencvhandle.h \
     $$PWD\btriangleopencvhandle.h \

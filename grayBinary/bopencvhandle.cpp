@@ -1,5 +1,6 @@
 #include "bopencvhandle.h"
 #include "simageservice.h"
+#include <QDebug>
 
 namespace onechchy{
     BOpenCVHandle::BOpenCVHandle()
@@ -14,6 +15,7 @@ namespace onechchy{
 
     bool BOpenCVHandle::canHanlde(int method)
     {
+        qDebug() << "BOpenCVHandle canHandle process";
         return method == (int)SImageService::GBMethodType::CustomBinaryOpenCV;
     }
 

@@ -1,5 +1,6 @@
 #include "bostuopencvhandle.h"
 #include "simageservice.h"
+#include <QDebug>
 
 namespace onechchy {
     BOSTUOpenCVHandle::BOSTUOpenCVHandle()
@@ -14,6 +15,7 @@ namespace onechchy {
 
     bool BOSTUOpenCVHandle::canHanlde(int method)
     {
+        qDebug() << "BOSTUOpenCVHandle canHandle process";
         return method == (int)SImageService::GBMethodType::OSTUOpenCV;
     }
 
