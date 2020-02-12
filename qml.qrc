@@ -9,6 +9,7 @@
         <file>Preview.qml</file>
         <file>RotatePanel.qml</file>
         <file>SaveImage.qml</file>
+        <file>TransformPanel.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>
@@ -31,9 +32,12 @@
         <file>CameraSelectionList.qml</file>
         <file>FacesMethodList.qml</file>
         <file>FaceInfoModel.qml</file>
+        <file>TransformModel.qml</file>
+        <file>MethodModel.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
+        <file>RadioDelegate.qml</file>
     </qresource>
     <qresource prefix="/camera">
         <file>CameraSidePanel.qml</file>
