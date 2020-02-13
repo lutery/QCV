@@ -18,7 +18,9 @@ Item {
         spacing: 8
         Text {
             id: id_radio
-            text: qsTr("text")
+            text: name
+            font.pixelSize: 18
+            Layout.fillWidth: true
         }
     }
 }

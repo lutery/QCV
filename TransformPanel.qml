@@ -20,14 +20,68 @@ Rectangle {
         spacing: 4
 
         ColumnLayout{
-            Layout.fillWidth: true
+            id: transformLayout
+//            width: 120
+            Layout.minimumWidth: 64
+            Layout.maximumWidth: 64
+//            Layout.fillWidth: true
             Layout.fillHeight: true
+            anchors.left: parent.left
+
+            ListView {
+                id: transformType
+                anchors.fill: parent
+                delegate: Qt.createComponent("qrc:/listview/delegate/RadioDelegate.qml")
+                //ToDo 这里看是否可以使用其他的方式动态加载独立的模型文件
+                model: transformTypeModel.item
+                clip: true
+                highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+            }
+        }
+
+        Rectangle {
+            id: blank_rt
+            Layout.maximumWidth: 8
+            Layout.minimumWidth: 8
+            Layout.fillHeight: true
+//            color: "red"
+            anchors.left: transformLayout.right
+        }
+
+        ColumnLayout{
+            Layout.minimumWidth: 64
+            Layout.maximumWidth: 64
+            Layout.fillHeight: true
+            anchors.left: blank_rt.right
 
             ListView {
                 id: methodType
                 anchors.fill: parent
-
+                delegate: Qt.createComponent("qrc:/listview/delegate/RadioDelegate.qml")
+                model: methodTypeModel.item
+                clip: true
+                highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
             }
         }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            Loader {
+                id: settingPanel
+                anchors.fill: parent
+            }
+        }
+    }
+
+    Loader{
+        id: transformTypeModel
+        source: "qrc:/listview/model/TransformModel.qml"
+    }
+
+    Loader {
+        id: methodTypeModel
+        source: "qrc:/listview/model/MethodModel.qml"
     }
 }
