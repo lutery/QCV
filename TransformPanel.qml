@@ -36,6 +36,19 @@ Rectangle {
                 model: transformTypeModel.item
                 clip: true
                 highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+
+                signal listItemChanged(string dstPanel)
+                onListItemChanged: {
+                    console.log("transformType onTransformChange " + dstPanel)
+
+                    settingPanel.source = dstPanel
+                    settingPanel.item.imgProcessParam.connect(onImgProcessParam)
+                }
+//                function onListItemChanged(dstPanel) {
+//                    console.log("transformType onTransformChange")
+
+//                    settingPanel.source = dstPanel
+//                }
             }
         }
 
@@ -61,6 +74,7 @@ Rectangle {
                 model: methodTypeModel.item
                 clip: true
                 highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+                signal listItemChanged(string dstPanel)
             }
         }
 
@@ -83,5 +97,11 @@ Rectangle {
     Loader {
         id: methodTypeModel
         source: "qrc:/listview/model/MethodModel.qml"
+    }
+
+    function onImgProcessParam(param){
+        console.log("transformPanel onImgParam exec")
+
+        transformPanel.imgProcess(SImageService.ResizeImg, param)
     }
 }

@@ -57,6 +57,9 @@ namespace onechchy {
             this->grayBinary(image);
             break;
 
+        case ImageOpera::ResizeImg:
+            break;
+
         default:
             break;
         }

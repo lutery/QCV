@@ -110,4 +110,24 @@ namespace onechchy {
     {
         mParam.rotateParam.rotateAngle = param;
     }
+
+    int ImageOperaParam::widthParam() const
+    {
+        return mParam.commonParam.intOne;
+    }
+
+    void ImageOperaParam::setWidthParam(const int width)
+    {
+        mParam.commonParam.intOne = width;
+    }
+
+    int ImageOperaParam::heightParam() const
+    {
+        return mParam.commonParam.intTwo;
+    }
+
+    void ImageOperaParam::setHeightParam(const int height)
+    {
+        mParam.commonParam.intTwo = height;
+    }
 }

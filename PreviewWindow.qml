@@ -49,6 +49,11 @@ Window {
         case SImageService.GrayBinary:
             imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
+            break
+
+        case SImageService.ResizeImg:
+            imageService.operaParam = param;
+            imageService.sltImageOpera(0, imageShow.copyImage())
         }
     }
 

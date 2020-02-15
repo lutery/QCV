@@ -9,7 +9,11 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: radioDelegate.ListView.view.currentIndex = index
+        onClicked: {
+            console.log("radio delegate clicked")
+            radioDelegate.ListView.view.currentIndex = index
+            radioDelegate.ListView.view.listItemChanged(method)
+        }
     }
 
     RowLayout {

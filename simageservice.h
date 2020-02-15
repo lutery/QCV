@@ -39,6 +39,7 @@ namespace onechchy {
             ImageSplit = 2,
             Save = 3,
             GrayBinary = 4,
+            ResizeImg = 5
         };
 
         // 切边方向

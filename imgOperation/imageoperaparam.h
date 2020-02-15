@@ -85,6 +85,12 @@ namespace onechchy {
         int rotateParam() const;
         Q_INVOKABLE void setRotateParam(const int param);
 
+        int widthParam() const;
+        Q_INVOKABLE void setWidthParam(const int width);
+
+        int heightParam() const;
+        Q_INVOKABLE void setHeightParam(const int height);
+
     signals:
 
     public slots:
