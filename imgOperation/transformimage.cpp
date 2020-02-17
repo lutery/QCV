@@ -117,4 +117,20 @@ namespace onechchy {
 
         return dstImg;
     }
+
+    cv::Mat TransformImage::resizeImg(const cv::Mat &&src, int dstWidth, int dstHeight)
+    {
+        cv::Mat dstMat;
+
+        if (dstWidth > 0 && dstHeight > 0)
+        {
+            cv::resize(src, dstMat, cv::Size(dstWidth, dstHeight));
+        }
+        else
+        {
+            dstMat = src;
+        }
+
+        return dstMat;
+    }
 }

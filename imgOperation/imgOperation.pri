@@ -1,4 +1,5 @@
 SOURCES += \
+    $$PWD/thirdtransformimage.cpp \
     $$PWD\imageoperaparam.cpp \
     $$PWD\imagesplit.cpp \
     $$PWD\imageutil.cpp \
@@ -7,6 +8,7 @@ SOURCES += \
     $$PWD\util.cpp
 
 HEADERS += \
+    $$PWD/thirdtransformimage.h \
     $$PWD\imageoperaparam.h \
     $$PWD\imagesplit.h \
     $$PWD\imageutil.h \

@@ -25,6 +25,7 @@ namespace onechchy {
         Q_ENUMS(ImageSplitType)
         Q_ENUMS(GBMethodType)
         Q_ENUMS(RotateType)
+        Q_ENUMS(ResizeType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
@@ -84,6 +85,12 @@ namespace onechchy {
         enum class RotateType{
             AutoRectifying,
             ManualRotate,
+        };
+
+        enum class ResizeType {
+            NEAREST = 1,
+            LINEAR = 2,
+            CUBIC = 3
         };
 
         ImageOperaParam *operaParam() const;

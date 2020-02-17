@@ -130,4 +130,14 @@ namespace onechchy {
     {
         mParam.commonParam.intTwo = height;
     }
+
+    int ImageOperaParam::resizeType() const
+    {
+
+    }
+
+    void ImageOperaParam::setResizeType(const int resizeType)
+    {
+
+    }
 }

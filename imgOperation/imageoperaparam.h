@@ -42,6 +42,12 @@ namespace onechchy {
             int rotateAngle = 0;
         }rotateParam;
 
+        struct{
+            int width = 0;
+            int height = 0;
+
+        }
+
     };
 
     /**
@@ -90,6 +96,9 @@ namespace onechchy {
 
         int heightParam() const;
         Q_INVOKABLE void setHeightParam(const int height);
+
+        int resizeType() const;
+        Q_INVOKABLE void setResizeType(const int resizeType);
 
     signals:
 

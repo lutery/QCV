@@ -69,9 +69,23 @@ Rectangle {
 
             ListView {
                 id: methodType
-                anchors.fill: parent
+//                anchors.fill: parent
+                Layout.fillWidth: true
+                Layout.fillHeight: true
                 delegate: Qt.createComponent("qrc:/listview/delegate/RadioDelegate.qml")
                 model: methodTypeModel.item
+                clip: true
+                highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+                signal listItemChanged(string dstPanel)
+            }
+
+            ListView {
+                id: resizeType
+//                anchors.fill: parent
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                delegate: Qt.createComponent("qrc:/listview/delegate/RadioDelegate.qml")
+                model: resizeTypeModel.item
                 clip: true
                 highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
                 signal listItemChanged(string dstPanel)
@@ -97,6 +111,11 @@ Rectangle {
     Loader {
         id: methodTypeModel
         source: "qrc:/listview/model/MethodModel.qml"
+    }
+
+    Loader{
+        id: resizeTypeModel
+        source: "qrc:/listview/model/ResizeTypeModel.qml"
     }
 
     function onImgProcessParam(param){

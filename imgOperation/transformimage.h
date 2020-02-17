@@ -20,6 +20,8 @@ namespace onechchy {
 
         cv::Mat inclineDFT(const cv::Mat&& p);
 
+        cv::Mat resizeImg(const cv::Mat&& src, int dstWidth, int dstHeight);
+
     signals:
 
     public slots:
