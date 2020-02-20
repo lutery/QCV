@@ -57,7 +57,8 @@ namespace onechchy {
             this->grayBinary(image);
             break;
 
-        case ImageOpera::ResizeImg:
+        case ImageOpera::TransformImg:
+            this->transformImg(image);
             break;
 
         default:
@@ -217,6 +218,23 @@ namespace onechchy {
             qDebug() << "mOperaParam";
 
             QImage resultImg = mpSImage->grayBinary(image, mOperaParam);
+
+            if (!resultImg.isNull())
+            {
+                mCurImg = resultImg;
+                this->updateImg(resultImg);
+            }
+        }
+    }
+
+    void SImageService::transformImg(QImage &image)
+    {
+        qDebug() << "transformImg";
+        if (mOperaParam != nullptr)
+        {
+            qDebug() << "mOperaParam";
+
+            QImage resultImg = mpSImage->transformImg(image, mOperaParam);
 
             if (!resultImg.isNull())
             {

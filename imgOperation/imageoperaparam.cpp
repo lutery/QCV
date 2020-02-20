@@ -113,31 +113,31 @@ namespace onechchy {
 
     int ImageOperaParam::widthParam() const
     {
-        return mParam.commonParam.intOne;
+        return mParam.transformParam.width;
     }
 
     void ImageOperaParam::setWidthParam(const int width)
     {
-        mParam.commonParam.intOne = width;
+        mParam.transformParam.width = width;
     }
 
     int ImageOperaParam::heightParam() const
     {
-        return mParam.commonParam.intTwo;
+        return mParam.transformParam.height;
     }
 
     void ImageOperaParam::setHeightParam(const int height)
     {
-        mParam.commonParam.intTwo = height;
+        mParam.transformParam.height = height;
     }
 
-    int ImageOperaParam::resizeType() const
+    int ImageOperaParam::transformType() const
     {
-
+        return mParam.transformParam.type;
     }
 
-    void ImageOperaParam::setResizeType(const int resizeType)
+    void ImageOperaParam::setTransformType(const int transformType)
     {
-
+        mParam.transformParam.type = transformType;
     }
 }

@@ -45,8 +45,8 @@ namespace onechchy {
         struct{
             int width = 0;
             int height = 0;
-
-        }
+            int type = 0;
+        }transformParam;
 
     };
 
@@ -97,8 +97,8 @@ namespace onechchy {
         int heightParam() const;
         Q_INVOKABLE void setHeightParam(const int height);
 
-        int resizeType() const;
-        Q_INVOKABLE void setResizeType(const int resizeType);
+        int transformType() const;
+        Q_INVOKABLE void setTransformType(const int resizeType);
 
     signals:
 

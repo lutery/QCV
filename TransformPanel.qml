@@ -121,6 +121,34 @@ Rectangle {
     function onImgProcessParam(param){
         console.log("transformPanel onImgParam exec")
 
-        transformPanel.imgProcess(SImageService.ResizeImg, param)
+        var method = SImageService.Resize_NEAREST_OpenCV
+        if (methodType.currentItem.methodId == 1){
+
+            if (resizeType.currentItem.methodId == 1){
+                method = SImageService.Resize_NEAREST_OpenCV
+            }
+            else if (resizeType.currentItem.methodId == 2){
+                method = SImageService.Resize_LINEAR_OpenCV
+            }
+            else if (resizeType.currentItem.methodId == 3){
+                method = SImageService.Resize_CUBIC_OpenCV
+            }
+
+        }
+        else if (methodType.currentItem.methodId == 2){
+
+            if (resizeType.currentItem.methodId == 1){
+                method = SImageService.Resize_NEAREST_Third
+            }
+            else if (resizeType.currentItem.methodId == 2){
+                method = SImageService.Resize_LINEAR_Third
+            }
+            else if (resizeType.currentItem.methodId == 3){
+                method = SImageService.Resize_CUBIC_Third
+            }
+        }
+
+        param.setTransformType(method)
+        transformPanel.imgProcess(SImageService.TransformImg, param)
     }
 }

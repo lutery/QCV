@@ -51,9 +51,9 @@ Window {
             imageService.sltImageOpera(o, imageShow.copyImage())
             break
 
-        case SImageService.ResizeImg:
+        case SImageService.TransformImg:
             imageService.operaParam = param;
-            imageService.sltImageOpera(0, imageShow.copyImage())
+            imageService.sltImageOpera(o, imageShow.copyImage())
         }
     }
 

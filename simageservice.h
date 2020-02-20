@@ -25,7 +25,7 @@ namespace onechchy {
         Q_ENUMS(ImageSplitType)
         Q_ENUMS(GBMethodType)
         Q_ENUMS(RotateType)
-        Q_ENUMS(ResizeType)
+        Q_ENUMS(TransformType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
@@ -40,7 +40,7 @@ namespace onechchy {
             ImageSplit = 2,
             Save = 3,
             GrayBinary = 4,
-            ResizeImg = 5
+            TransformImg = 5
         };
 
         // 切边方向
@@ -87,10 +87,13 @@ namespace onechchy {
             ManualRotate,
         };
 
-        enum class ResizeType {
-            NEAREST = 1,
-            LINEAR = 2,
-            CUBIC = 3
+        enum class TransformType {
+            Resize_NEAREST_OpenCV = 1,
+            Resize_LINEAR_OpenCV = 2,
+            Resize_CUBIC_OpenCV = 3,
+            Resize_NEAREST_Third = 4,
+            Resize_LINEAR_Third = 5,
+            Resize_CUBIC_Third = 6
         };
 
         ImageOperaParam *operaParam() const;
@@ -118,6 +121,7 @@ namespace onechchy {
         void imageSplitOpera(QImage& image);
         void saveImage(QImage& image);
         void grayBinary(QImage& image);
+        void transformImg(QImage& image);
     };
 }
 

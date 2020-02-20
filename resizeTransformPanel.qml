@@ -9,7 +9,7 @@ Rectangle {
     id: resizePanel
     anchors.fill: parent
 
-    signal imgProcessParam(QtObject param)
+    signal imgProcessParam(ImageOperaParam param)
 
     ImageOperaParam {
         id: operaParams
@@ -67,6 +67,9 @@ Rectangle {
             if (width > 0 &&
                     height > 0){
                 console.log("width: " + width + ", height: " + height)
+
+//                var operaParams = new ImageOperaParam();
+
                 operaParams.setWidthParam(width)
                 operaParams.setHeightParam(height)
 

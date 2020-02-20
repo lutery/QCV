@@ -10,6 +10,7 @@
 #include "grayBinary/bostuopencvhandle.h"
 #include "grayBinary/btriangleopencvhandle.h"
 #include "grayBinary/gthirdhandle.h"
+#include "transform/reiszenearopencv.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -26,6 +27,8 @@ namespace onechchy {
         pBCVHandle->setMpNext(pOSTUHandle);
         pOSTUHandle->setMpNext(pTriangleHandle);
         pTriangleHandle->setMpNext(pGThirdHandle);
+
+        mapTransform[(int)SImageService::TransformType::Resize_NEAREST_OpenCV] = std::unique_ptr<ITransformImg>(new ReiszeNearOpencv());
     }
 
     void SImage::setTransImg(TransformImage* value)
@@ -76,6 +79,19 @@ namespace onechchy {
         cv::Mat mat;
 
         mat = this->mpGBHandle->GBHanlde(param->gbMethod(), param, onechchy::QImage2cvMat(image));
+
+        return onechchy::cvMat2QImage(mat);
+    }
+
+    QImage SImage::transformImg(QImage &image, ImageOperaParam *param)
+    {
+        qDebug() << "process transform method is " << param->transformType();
+        cv::Mat mat;
+
+        if (this->mapTransform.count(param->transformType()) > 0)
+        {
+            mat = this->mapTransform[param->transformType()]->transform(onechchy::QImage2cvMat(image), param);
+        }
 
         return onechchy::cvMat2QImage(mat);
     }

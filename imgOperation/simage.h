@@ -4,6 +4,7 @@
 #include <QObject>
 #include <memory>
 #include <QColor>
+#include <map>
 
 namespace onechchy {
     class TransformImage;
@@ -11,6 +12,7 @@ namespace onechchy {
     class ImageSplit;
     class ImageOperaParam;
     class VGBHandle;
+    class ITransformImg;
 
     class SImage : public QObject
     {
@@ -27,6 +29,7 @@ namespace onechchy {
         QImage trimBorder(QImage&,int trimType, QColor bgColor);
         QImage imageSplit(QImage&, int, int);
         QImage grayBinary(QImage&image, ImageOperaParam* param);
+        QImage transformImg(QImage& image, ImageOperaParam* param);
 
 
     signals:
@@ -38,6 +41,7 @@ namespace onechchy {
         std::unique_ptr<ITrimingBorder> mpTrimBorder;
         std::unique_ptr<ImageSplit> mpImageSplit;
         std::unique_ptr<VGBHandle> mpGBHandle;
+        std::map<int, std::unique_ptr<ITransformImg>> mapTransform;
     };
 }
 

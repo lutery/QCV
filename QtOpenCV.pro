@@ -59,6 +59,7 @@ include($$PWD/faceIdentify/faceIdentify.pri)
 include($$PWD/grayBinary/grayBinary.pri)
 include($$PWD/imgOperation/imgOperation.pri)
 include($$PWD/trimBorder/trimBorder.pri)
+include($$PWD/transform/transform.pri)
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
