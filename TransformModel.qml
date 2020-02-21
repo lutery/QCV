@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import SImageServiceQML 1.0
 
 ListModel {
     ListElement {

@@ -11,6 +11,8 @@
 #include "grayBinary/btriangleopencvhandle.h"
 #include "grayBinary/gthirdhandle.h"
 #include "transform/reiszenearopencv.h"
+#include "transform/resizelinearopencv.h"
+#include "transform/resizecubicopencv.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -29,6 +31,8 @@ namespace onechchy {
         pTriangleHandle->setMpNext(pGThirdHandle);
 
         mapTransform[(int)SImageService::TransformType::Resize_NEAREST_OpenCV] = std::unique_ptr<ITransformImg>(new ReiszeNearOpencv());
+        mapTransform[(int)SImageService::TransformType::Resize_LINEAR_OpenCV] = std::unique_ptr<ITransformImg>(new ResizeLinearOpencv());
+        mapTransform[(int)SImageService::TransformType::Resize_CUBIC_OpenCV] = std::unique_ptr<ITransformImg>(new ResizeCubicOpencv());
     }
 
     void SImage::setTransImg(TransformImage* value)

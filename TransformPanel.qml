@@ -122,32 +122,37 @@ Rectangle {
         console.log("transformPanel onImgParam exec")
 
         var method = SImageService.Resize_NEAREST_OpenCV
-        if (methodType.currentItem.methodId == 1){
+        var methodItem = methodType.model.get(methodType.currentIndex)
+        var resizeItem = resizeType.model.get(resizeType.currentIndex)
+        console.log("methodType.currentItem.methodId : " + methodItem.methodId)
+        console.log("resizeType.currentItem.methodId : " + resizeItem.methodId)
+        if (methodItem.methodId == 1){
 
-            if (resizeType.currentItem.methodId == 1){
+            if (resizeItem.methodId == 1){
                 method = SImageService.Resize_NEAREST_OpenCV
             }
-            else if (resizeType.currentItem.methodId == 2){
+            else if (resizeItem.methodId == 2){
                 method = SImageService.Resize_LINEAR_OpenCV
             }
-            else if (resizeType.currentItem.methodId == 3){
+            else if (resizeItem.methodId == 3){
                 method = SImageService.Resize_CUBIC_OpenCV
             }
 
         }
-        else if (methodType.currentItem.methodId == 2){
+        else if (methodItem.methodId == 2){
 
-            if (resizeType.currentItem.methodId == 1){
+            if (resizeItem.methodId == 1){
                 method = SImageService.Resize_NEAREST_Third
             }
-            else if (resizeType.currentItem.methodId == 2){
+            else if (resizeItem.methodId == 2){
                 method = SImageService.Resize_LINEAR_Third
             }
-            else if (resizeType.currentItem.methodId == 3){
+            else if (resizeItem.methodId == 3){
                 method = SImageService.Resize_CUBIC_Third
             }
         }
 
+        console.log("method is " + method)
         param.setTransformType(method)
         transformPanel.imgProcess(SImageService.TransformImg, param)
     }

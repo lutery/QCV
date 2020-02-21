@@ -10,7 +10,7 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            console.log("radio delegate clicked")
+            console.log("radio delegate clicked index is " + index)
             radioDelegate.ListView.view.currentIndex = index
             radioDelegate.ListView.view.listItemChanged(method)
         }
