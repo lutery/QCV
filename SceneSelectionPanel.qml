@@ -21,7 +21,7 @@ Rectangle {
         ListElement { name: "相机"; source: "qrc:/camera/CameraPanel.qml" }
         ListElement { name: "人脸识别"; source: "qrc:/camera/FaceRecognition.qml" }
         ListElement { name: "图像变换"; source: "TransformPanel.qml" }
-//        ListElement { name: "Resize"; source: "CameraResize.qml" }
+        ListElement { name: "机器学习"; source: "MachineLearning.qml" }
 //        ListElement { name: "Rotate"; source: "CameraRotate.qml" }
 //        ListElement { name: "Spin"; source: "CameraSpin.qml" }
     }

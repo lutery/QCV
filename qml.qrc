@@ -10,6 +10,7 @@
         <file>RotatePanel.qml</file>
         <file>SaveImage.qml</file>
         <file>TransformPanel.qml</file>
+        <file>MachineLearning.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>
@@ -35,6 +36,7 @@
         <file>TransformModel.qml</file>
         <file>MethodModel.qml</file>
         <file>ResizeTypeModel.qml</file>
+        <file>MLTypeModel.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
