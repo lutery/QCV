@@ -140,4 +140,34 @@ namespace onechchy {
     {
         mParam.transformParam.type = transformType;
     }
+
+    int ImageOperaParam::remapType() const
+    {
+        return mParam.remapParam.type;
+    }
+
+    void ImageOperaParam::setRemapType(const int remapType)
+    {
+        mParam.remapParam.type = remapType;
+    }
+
+    float ImageOperaParam::waveRange() const
+    {
+        return mParam.remapParam.range;
+    }
+
+    void ImageOperaParam::setWaveRange(const float range)
+    {
+        mParam.remapParam.range = range;
+    }
+
+    float ImageOperaParam::waveFreq() const
+    {
+        return mParam.remapParam.freq;
+    }
+
+    void ImageOperaParam::setWaveFreq(const float freq)
+    {
+        mParam.remapParam.freq = freq;
+    }
 }

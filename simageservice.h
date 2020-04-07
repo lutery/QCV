@@ -26,6 +26,7 @@ namespace onechchy {
         Q_ENUMS(GBMethodType)
         Q_ENUMS(RotateType)
         Q_ENUMS(TransformType)
+        Q_ENUMS(RemapType)
 
         Q_PROPERTY(ImageOperaParam *operaParam READ operaParam WRITE setOperaParam)
 
@@ -40,7 +41,8 @@ namespace onechchy {
             ImageSplit = 2,
             Save = 3,
             GrayBinary = 4,
-            TransformImg = 5
+            TransformImg = 5,
+            Remap = 6
         };
 
         // 切边方向
@@ -87,6 +89,7 @@ namespace onechchy {
             ManualRotate,
         };
 
+        // 图像变换类型
         enum class TransformType {
             Resize_NEAREST_OpenCV = 1,
             Resize_LINEAR_OpenCV = 2,
@@ -94,6 +97,10 @@ namespace onechchy {
             Resize_NEAREST_Third = 4,
             Resize_LINEAR_Third = 5,
             Resize_CUBIC_Third = 6
+        };
+
+        enum class RemapType{
+            Remap_wave = 1
         };
 
         ImageOperaParam *operaParam() const;
@@ -122,6 +129,7 @@ namespace onechchy {
         void saveImage(QImage& image);
         void grayBinary(QImage& image);
         void transformImg(QImage& image);
+        void remapImg(QImage& image);
     };
 }
 

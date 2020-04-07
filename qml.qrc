@@ -41,6 +41,7 @@
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
         <file>RadioDelegate.qml</file>
+        <file>LinkageDelegate.qml</file>
     </qresource>
     <qresource prefix="/camera">
         <file>CameraSidePanel.qml</file>
@@ -53,5 +54,8 @@
     </qresource>
     <qresource prefix="/transform/view">
         <file>resizeTransformPanel.qml</file>
+    </qresource>
+    <qresource prefix="/view">
+        <file>ThreeListView.qml</file>
     </qresource>
 </RCC>

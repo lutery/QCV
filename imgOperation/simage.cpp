@@ -100,6 +100,43 @@ namespace onechchy {
         return onechchy::cvMat2QImage(mat);
     }
 
+    QImage SImage::remapImg(QImage &image, ImageOperaParam *param)
+    {
+        switch (param->remapType())
+        {
+        case SImageService::RemapType::Remap_wave:
+            return this->remapWave(image, param);
+            break;
+
+        default:
+            qDebug() << "unknow remap type is " << param->remapType();
+            break;
+        }
+
+        return image;
+    }
+
+    QImage SImage::remapWave(QImage &image, ImageOperaParam *param)
+    {
+        cv::Mat srcImg = onechchy::QImage2cvMat(image);
+        cv::Mat srcX(srcImg.rows, srcImg.cols, CV_32F);
+        cv::Mat srcY(srcImg.rows, srcImg.cols, CV_32F);
+
+        for (int i = 0; i < srcImg.rows; ++i)
+        {
+            for (int j = 0; j < srcImg.cols; ++j)
+            {
+                srcX.at<float>(i, j) = j;
+                srcY.at<float>(i, j) = i + param->waveRange() * sin(param->waveFreq() / 10.0);
+            }
+        }
+
+        cv::Mat dstImg(srcImg.rows, srcImg.cols, srcImg.type());
+        cv::remap(srcImg, dstImg, srcX, srcY, cv::INTER_LINEAR);
+
+        return onechchy::cvMat2QImage(dstImg);
+    }
+
     void SImage::setImageSplit(ImageSplit* value)
     {
         mpImageSplit = std::unique_ptr<ImageSplit>(value);

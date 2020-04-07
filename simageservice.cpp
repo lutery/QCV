@@ -61,6 +61,9 @@ namespace onechchy {
             this->transformImg(image);
             break;
 
+        case ImageOpera::Remap:
+            break;
+
         default:
             break;
         }
@@ -240,6 +243,21 @@ namespace onechchy {
             {
                 mCurImg = resultImg;
                 this->updateImg(resultImg);
+            }
+        }
+    }
+
+    void SImageService::remapImg(QImage &image)
+    {
+        qDebug() << "remap Image";
+        if (mOperaParam != nullptr)
+        {
+            QImage resultImg = mpSImage->remapImg(image, mOperaParam);
+
+            if (!resultImg.isNull())
+            {
+                mCurImg = resultImg;
+                this->updateImg(mCurImg);
             }
         }
     }

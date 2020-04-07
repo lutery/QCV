@@ -48,6 +48,12 @@ namespace onechchy {
             int type = 0;
         }transformParam;
 
+        struct{
+           int type = 0;
+           float range = 0.0f;
+           float freq = 0.0f;
+        }remapParam;
+
     };
 
     /**
@@ -99,6 +105,15 @@ namespace onechchy {
 
         int transformType() const;
         Q_INVOKABLE void setTransformType(const int resizeType);
+
+        int remapType() const;
+        Q_INVOKABLE void setRemapType(const int remapType);
+
+        float waveRange() const;
+        Q_INVOKABLE void setWaveRange(const float range);
+
+        float waveFreq() const;
+        Q_INVOKABLE void setWaveFreq(const float freq);
 
     signals:
 
