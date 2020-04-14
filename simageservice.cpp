@@ -62,6 +62,7 @@ namespace onechchy {
             break;
 
         case ImageOpera::Remap:
+            this->remapImg(image);
             break;
 
         default:

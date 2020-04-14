@@ -102,7 +102,7 @@ namespace onechchy {
 
     QImage SImage::remapImg(QImage &image, ImageOperaParam *param)
     {
-        switch (param->remapType())
+        switch ((SImageService::RemapType)param->remapType())
         {
         case SImageService::RemapType::Remap_wave:
             return this->remapWave(image, param);
