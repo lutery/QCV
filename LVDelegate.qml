@@ -13,7 +13,9 @@ Item {
 
     RowLayout{
         anchors.left: parent.left
+//        Layout.alignment: left
         anchors.verticalCenter: parent.verticalCenter
+//        Layout.alignment: verticalCenter
         spacing: 8
         Text{
             id: id_lv

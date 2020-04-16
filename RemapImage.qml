@@ -29,7 +29,32 @@ Rectangle {
                 id: methodType
                 anchors.fill: parent
                 delegate: Qt.createComponent("qrc:/listview/delegate/LVDelegate.qml")
+                model: remapModel.item
+                clip: true
             }
         }
+
+        ColumnLayout {
+            Button {
+                text: "水纹"
+                onClicked: {
+                    console.log("开始水纹重采样")
+                    if (methodType.currentIndex >= 0){
+                        var method = methodType.model.get(methodType.currentIndex).method
+
+                        operaParam.setWaveRange(10)
+                        operaParam.setWaveFreq(2.0)
+                        operaParam.setRemapType(method)
+
+                        remapPanel.imgProcess(SImageService.Remap, operaParam)
+                    }
+                }
+            }
+        }
+    }
+
+    Loader {
+        id: remapModel
+        source: "qrc:/listview/model/RemapModel.qml"
     }
 }

@@ -54,6 +54,12 @@ Window {
         case SImageService.TransformImg:
             imageService.operaParam = param;
             imageService.sltImageOpera(o, imageShow.copyImage())
+            break
+
+        case SImageService.Remap:
+            imageService.operaParam = param
+            imageService.sltImageOpera(o, imageShow.copyImage())
+            break
         }
     }
 

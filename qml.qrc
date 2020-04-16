@@ -38,6 +38,7 @@
         <file>MethodModel.qml</file>
         <file>ResizeTypeModel.qml</file>
         <file>MLTypeModel.qml</file>
+        <file>RemapModel.qml</file>
     </qresource>
     <qresource prefix="/listview/delegate">
         <file>LVDelegate.qml</file>
