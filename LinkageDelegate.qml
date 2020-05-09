@@ -12,7 +12,7 @@ Item {
         onClicked: {
             console.log("radio delegate clicked index is " + index)
             radioDelegate.ListView.view.currentIndex = index
-            radioDelegate.ListView.view.listItemChanged(index, )
+            radioDelegate.ListView.view.listItemChanged(index)
         }
     }
 

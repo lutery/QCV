@@ -168,6 +168,6 @@ namespace onechchy {
 
     void ImageOperaParam::setWaveFreq(const float freq)
     {
-        mParam.remapParam.freq = freq;
+        mParam.remapParam.freq = (freq == 0 ? 1 : freq);
     }
 }

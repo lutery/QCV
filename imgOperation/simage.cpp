@@ -127,6 +127,7 @@ namespace onechchy {
             for (int j = 0; j < srcImg.cols; ++j)
             {
                 srcX.at<float>(i, j) = j;
+                // ToDo 这里需要避免waveFreq为0
                 srcY.at<float>(i, j) = i + param->waveRange() * sin(j / param->waveFreq());
             }
         }

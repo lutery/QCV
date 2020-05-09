@@ -60,4 +60,10 @@
     <qresource prefix="/view">
         <file>ThreeListView.qml</file>
     </qresource>
+    <qresource prefix="/remap">
+        <file>WaterWave.qml</file>
+    </qresource>
+    <qresource prefix="/view/imagesplit">
+        <file>ImageSplitView.qml</file>
+    </qresource>
 </RCC>

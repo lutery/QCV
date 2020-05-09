@@ -1,4 +1,5 @@
 SOURCES += \
+    $$PWD/colordetector.cpp \
     $$PWD/thirdtransformimage.cpp \
     $$PWD\imageoperaparam.cpp \
     $$PWD\imagesplit.cpp \
@@ -8,6 +9,7 @@ SOURCES += \
     $$PWD\util.cpp
 
 HEADERS += \
+    $$PWD/colordetector.h \
     $$PWD/thirdtransformimage.h \
     $$PWD\imageoperaparam.h \
     $$PWD\imagesplit.h \
