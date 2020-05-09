@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.5
+import SImageServiceQML 1.0
+import SImageOperaParamQML 1.0
 
 Rectangle {
     anchors.fill: parent
@@ -30,6 +32,7 @@ Rectangle {
 
         onClicked: {
             console.log("开始分割")
+            console.log(cluserCount.text)
 
             var splitType = 0x00;
 
@@ -43,7 +46,7 @@ Rectangle {
                 splitType = SImageService.GrabCut
             }
 
-            operaParams.setClusterCount(cluserCount)
+            operaParams.setClusterCount(cluserCount.text)
             operaParams.setImageSplitType(splitType)
 
 //                    splitPanel.imgSplit(splitType, cluserCount.text)
