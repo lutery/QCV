@@ -21,42 +21,19 @@ Window {
       * param param: 处理参数
       */
     function imageOperation(o, param){
+        console.log("Preview Window")
         console.log(o)
 
         switch (o){
         case SImageService.AutoRectifying:
-            console.log("click auto rotate")
-            imageService.operaParam = param
-            imageService.sltImageOpera(o, imageShow.copyImage())
-            break
-
         case SImageService.TrimBorder:
-            imageService.operaParam = param;
-            imageService.sltImageOpera(o, imageShow.copyImage())
-            break
-
         case SImageService.ImageSplit:
-            imageService.operaParam = param;
-            imageService.sltImageOpera(o, imageShow.copyImage())
-            break
-
         case SImageService.Save:
-            imageService.operaParam = param;
-            imageService.sltImageOpera(o, imageShow.copyImage())
-            break;
-
         // 图像二值化
         case SImageService.GrayBinary:
-            imageService.operaParam = param;
-            imageService.sltImageOpera(o, imageShow.copyImage())
-            break
-
         case SImageService.TransformImg:
-            imageService.operaParam = param;
-            imageService.sltImageOpera(o, imageShow.copyImage())
-            break
-
         case SImageService.Remap:
+        case SImageService.ColorDetect:
             imageService.operaParam = param
             imageService.sltImageOpera(o, imageShow.copyImage())
             break

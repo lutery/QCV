@@ -13,12 +13,12 @@ namespace onechchy {
 
     int ImageOperaParam::trimType() const
     {
-        return mParam.trimParam.trimType;
+        return mParam.commonParam.methodType;
     }
 
     void ImageOperaParam::setTrimType(int trimType)
     {
-        mParam.trimParam.trimType = trimType;
+        mParam.commonParam.methodType = trimType;
     }
 
     int ImageOperaParam::trimBorder() const
@@ -53,12 +53,12 @@ namespace onechchy {
     
     int ImageOperaParam::imageSplitType() const
     {
-        return mParam.splitParam.imageSplitType;
+        return mParam.commonParam.methodType;
     }
     
     void ImageOperaParam::setImageSplitType(int imageSplitType)
     {
-        mParam.splitParam.imageSplitType = imageSplitType;
+        mParam.commonParam.methodType = imageSplitType;
     }
     
     QString ImageOperaParam::selectPath() const
@@ -93,12 +93,12 @@ namespace onechchy {
 
     int ImageOperaParam::rotateMethod() const
     {
-        return mParam.rotateParam.rotateType;
+        return mParam.commonParam.methodType;
     }
 
     void ImageOperaParam::setRotateMethod(const int method)
     {
-        mParam.rotateParam.rotateType = method;
+        mParam.commonParam.methodType = method;
     }
 
     int ImageOperaParam::rotateParam() const
@@ -133,22 +133,22 @@ namespace onechchy {
 
     int ImageOperaParam::transformType() const
     {
-        return mParam.transformParam.type;
+        return mParam.commonParam.methodType;
     }
 
     void ImageOperaParam::setTransformType(const int transformType)
     {
-        mParam.transformParam.type = transformType;
+        mParam.commonParam.methodType = transformType;
     }
 
     int ImageOperaParam::remapType() const
     {
-        return mParam.remapParam.type;
+        return mParam.commonParam.methodType;
     }
 
     void ImageOperaParam::setRemapType(const int remapType)
     {
-        mParam.remapParam.type = remapType;
+        mParam.commonParam.methodType = remapType;
     }
 
     float ImageOperaParam::waveRange() const
@@ -169,5 +169,26 @@ namespace onechchy {
     void ImageOperaParam::setWaveFreq(const float freq)
     {
         mParam.remapParam.freq = (freq == 0 ? 1 : freq);
+    }
+
+    QColor ImageOperaParam::detectColor() const
+    {
+        return mParam.detectParam.color;
+    }
+
+    void ImageOperaParam::setDetectColor(const QColor color)
+    {
+        mParam.detectParam.color = color;
+    }
+
+    int ImageOperaParam::DetectType() const
+    {
+        return mParam.commonParam.methodType;
+    }
+
+    // ToDo 整合所有的设置type方法
+    void ImageOperaParam::setDetectType(const int type)
+    {
+        mParam.commonParam.methodType = type;
     }
 }

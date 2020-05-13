@@ -17,14 +17,14 @@ namespace onechchy {
             // 切哪个方向的边
             int trimBorder = 0x00;
             // 切边的方法
-            int trimType = 0;
+//            int trimType = 0;
             // 背景颜色
             QColor bgColor;
         } trimParam;
 
         struct{
             int clusterCount = 2;
-            int imageSplitType = 0x01;
+//            int imageSplitType = 0x01;
         } splitParam;
 
         struct{
@@ -35,25 +35,33 @@ namespace onechchy {
         struct{
             int intOne = 0;
             int intTwo = 0;
+            int methodType = 0;
         }commonParam;
 
+        // 图形旋转参数
         struct{
-            int rotateType = -1;
+//            int rotateType = -1;
             int rotateAngle = 0;
         }rotateParam;
 
+        // 图形变换参数
         struct{
             int width = 0;
             int height = 0;
-            int type = 0;
+//            int type = 0;
         }transformParam;
 
+        // 重采样参数
         struct{
-           int type = 0;
+//           int type = 0;
            float range = 0.0f;
            float freq = 0.0f;
         }remapParam;
 
+        // 颜色检测参数
+        struct {
+            QColor color;
+        }detectParam;
     };
 
     /**
@@ -106,6 +114,7 @@ namespace onechchy {
         int transformType() const;
         Q_INVOKABLE void setTransformType(const int resizeType);
 
+        // 重采样
         int remapType() const;
         Q_INVOKABLE void setRemapType(const int remapType);
 
@@ -114,6 +123,15 @@ namespace onechchy {
 
         float waveFreq() const;
         Q_INVOKABLE void setWaveFreq(const float freq);
+        //
+
+        // 颜色检测
+        QColor detectColor() const;
+        Q_INVOKABLE void setDetectColor(const QColor color);
+
+        int DetectType() const;
+        Q_INVOKABLE void setDetectType(const int type);
+        //
 
     signals:
 

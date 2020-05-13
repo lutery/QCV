@@ -42,7 +42,8 @@ namespace onechchy {
             Save = 3,
             GrayBinary = 4,
             TransformImg = 5,
-            Remap = 6
+            Remap = 6,
+            ColorDetect = 7
         };
 
         // 切边方向
@@ -51,6 +52,11 @@ namespace onechchy {
             Top = 0x02,
             Right = 0x04,
             Bottom = 0x08
+        };
+
+        // 颜色检测
+        enum class DetectType {
+            DetectType_Simple = 1
         };
 
         // 切边类型

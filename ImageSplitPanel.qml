@@ -26,106 +26,37 @@ Rectangle {
             Layout.fillHeight: true
 //            Layout.alignment: Qt.AlignCenter
 
-            ButtonGroup{
+            ListView {
                 id: splitType
-            }
+                anchors.fill: parent
 
-            RadioButton{
-                id: kmeansRadio
-                text: "KMeans"
-                ButtonGroup.group: splitType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
-            }
+                delegate: Qt.createComponent("qrc:/listview/delegate/RadioDelegate.qml")
+                model: splitTypeModel.item
+                clip: true
+                highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
 
-            RadioButton{
-                id: gmmRadio
-                text: "高斯混合模型"
-                ButtonGroup.group: splitType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
-            }
+                signal listItemChanged(string dstPanel)
+                onListItemChanged: {
+                    console.log("image split panel dstpanel is " + dstPanel)
 
-            RadioButton{
-                id: watershedRadio
-                text: "分水岭"
-                ButtonGroup.group: splitType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
-            }
-
-            RadioButton{
-                id: grabcutRadio
-                text: "Grabcut"
-                ButtonGroup.group: splitType
-                anchors.leftMargin: 4
-                anchors.rightMargin: 4
-                anchors.topMargin: 4
-                checked: true
-                focus: true
+                    settingPanel.source = dstPanel
+                }
             }
         }
 
         Loader {
+            id: settingPanel
+
             Layout.fillWidth: true
             Layout.fillHeight: true
 
             source: "qrc:/view/imagesplit/ImageSplitView.qml"
         }
+    }
 
-//        ColumnLayout{
-//            Layout.fillWidth: true
-//            Layout.fillHeight: true
-
-//            RowLayout{
-//                Text{
-//                    text: "分割块"
-//                    height: 60
-//                }
-
-//                TextField{
-//                    id: cluserCount
-//                    width: 30
-//                    height: 60
-//                    placeholderText: "2"
-//                }
-//            }
-
-//            Button{
-//                id: trimBorder
-//                text: "图片分割"
-//                onClicked: {
-//                    console.log("开始分割")
-
-//                    var splitType = 0x00;
-
-//                    if (kmeansRadio.checked){
-//                        splitType = SImageService.KMeans
-//                    }else if (gmmRadio.checked){
-//                        splitType = SImageService.GMM
-//                    }else if (watershedRadio.checked){
-//                        splitType = SImageService.Watershed
-//                    }else if (grabcutRadio.checked){
-//                        splitType = SImageService.GrabCut
-//                    }
-
-//                    operaParams.setClusterCount(cluserCount)
-//                    operaParams.setImageSplitType(splitType)
-
-////                    splitPanel.imgSplit(splitType, cluserCount.text)
-//                    splitPanel.imgProcess(SImageService.ImageSplit, operaParams)
-//                }
-//            }
-//        }
+    Loader {
+        id: splitTypeModel
+        source: "qrc:/listview/model/ImageSplit.qml"
     }
 }
 
