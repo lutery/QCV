@@ -2,7 +2,7 @@
 
 namespace onechchy {
 
-    cv::Mat FloodDectector::detector(cv::Mat &srcMat, cv::Vec3b &dstColor)
+    cv::Mat FloodDectector::detector(const cv::Mat &srcMat, cv::Vec3b &dstColor)
     {
         cv::Mat output = srcMat.clone();
 
@@ -22,7 +22,7 @@ namespace onechchy {
         return -1;
     }
 
-    cv::Mat onechchy::AbsdiffDectector::detector(cv::Mat &srcMat, cv::Vec3b &dstColor)
+    cv::Mat onechchy::AbsdiffDectector::detector(const cv::Mat &srcMat, cv::Vec3b &dstColor)
     {
         cv::Mat output;
         cv::absdiff(srcMat, cv::Scalar(dstColor), output);
@@ -43,7 +43,7 @@ namespace onechchy {
         return -1;
     }
 
-    cv::Mat NormDectector::detector(cv::Mat &srcMat, cv::Vec3b &dstColor)
+    cv::Mat NormDectector::detector(const cv::Mat &srcMat, cv::Vec3b &dstColor)
     {
         cv::Mat result(srcMat.size(), CV_8U);
 
@@ -73,7 +73,7 @@ namespace onechchy {
                     );
     }
 
-    cv::Mat SimpleDectector::detector(cv::Mat &srcMat, cv::Vec3b &dstColor)
+    cv::Mat SimpleDectector::detector(const cv::Mat &srcMat, cv::Vec3b &dstColor)
     {
         cv::Mat result(srcMat.size(), CV_8U);
 

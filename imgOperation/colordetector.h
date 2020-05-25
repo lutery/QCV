@@ -4,13 +4,15 @@
 #include <opencv2/opencv.hpp>
 
 namespace onechchy {
+// todo http://blog.csdn.net/chen134225/article/details/80812591
+
     class IColorDetector
     {
     public:
         explicit IColorDetector(){}
 
     public:
-        virtual cv::Mat detector(cv::Mat& srcMat, cv::Vec3b &dstColor) = 0;
+        virtual cv::Mat detector(const cv::Mat& srcMat, cv::Vec3b &dstColor) = 0;
         virtual int getDistanceToTargetColor(const cv::Vec3b& color, const cv::Vec3b& detectColor) = 0;
 
         int getMaxDist() const;
@@ -25,7 +27,7 @@ namespace onechchy {
     private:
         // IColorDetector interface
     public:
-        cv::Mat detector(cv::Mat &srcMat, cv::Vec3b &dstColor) override;
+        cv::Mat detector(const cv::Mat &srcMat, cv::Vec3b &dstColor) override;
 
         // IColorDetector interface
     public:
@@ -37,7 +39,7 @@ namespace onechchy {
     private:
         // IColorDetector interface
     public:
-        cv::Mat detector(cv::Mat &srcMat, cv::Vec3b &dstColor) override;
+        cv::Mat detector(const cv::Mat &srcMat, cv::Vec3b &dstColor) override;
 
         // IColorDetector interface
     public:
@@ -49,7 +51,7 @@ namespace onechchy {
     private:
         // IColorDetector interface
     public:
-        cv::Mat detector(cv::Mat &srcMat, cv::Vec3b &dstColor) override;
+        cv::Mat detector(const cv::Mat &srcMat, cv::Vec3b &dstColor) override;
 
         // IColorDetector interface
     public:
@@ -61,7 +63,7 @@ namespace onechchy {
     private:
         // IColorDetector interface
     public:
-        cv::Mat detector(cv::Mat &srcMat, cv::Vec3b &dstColor) override;
+        cv::Mat detector(const cv::Mat &srcMat, cv::Vec3b &dstColor) override;
 
         // IColorDetector interface
     public:

@@ -129,7 +129,7 @@ namespace onechchy {
         QColor detectColor() const;
         Q_INVOKABLE void setDetectColor(const QColor color);
 
-        int DetectType() const;
+        int detectType() const;
         Q_INVOKABLE void setDetectType(const int type);
         //
 

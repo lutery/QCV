@@ -21,6 +21,7 @@ namespace onechchy {
         Q_OBJECT
         Q_ENUMS(ImageOpera)
         Q_ENUMS(Border)
+        Q_ENUMS(DetectType)
         Q_ENUMS(TrimType)
         Q_ENUMS(ImageSplitType)
         Q_ENUMS(GBMethodType)
@@ -56,7 +57,7 @@ namespace onechchy {
 
         // 颜色检测
         enum class DetectType {
-            DetectType_Simple = 1
+            Color_Simple = 1
         };
 
         // 切边类型
@@ -136,6 +137,7 @@ namespace onechchy {
         void grayBinary(QImage& image);
         void transformImg(QImage& image);
         void remapImg(QImage& image);
+        void colorDected(QImage& image);
     };
 }
 

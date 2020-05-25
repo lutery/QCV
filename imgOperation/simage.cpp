@@ -13,6 +13,7 @@
 #include "transform/reiszenearopencv.h"
 #include "transform/resizelinearopencv.h"
 #include "transform/resizecubicopencv.h"
+#include "colordetector.h"
 #include <QDebug>
 
 namespace onechchy {
@@ -33,6 +34,8 @@ namespace onechchy {
         mapTransform[(int)SImageService::TransformType::Resize_NEAREST_OpenCV] = std::unique_ptr<ITransformImg>(new ReiszeNearOpencv());
         mapTransform[(int)SImageService::TransformType::Resize_LINEAR_OpenCV] = std::unique_ptr<ITransformImg>(new ResizeLinearOpencv());
         mapTransform[(int)SImageService::TransformType::Resize_CUBIC_OpenCV] = std::unique_ptr<ITransformImg>(new ResizeCubicOpencv());
+
+        mapColorDected[(int)SImageService::DetectType::Color_Simple] = std::unique_ptr<IColorDetector>(new SimpleDectector());
     }
 
     void SImage::setTransImg(TransformImage* value)
@@ -114,6 +117,19 @@ namespace onechchy {
         }
 
         return image;
+    }
+
+    QImage SImage::colorDected(QImage &image, ImageOperaParam *param)
+    {
+        cv::Mat mat;
+
+        if (mapColorDected.count(param->detectType()) > 0)
+        {
+            cv::Vec3b dstColor(param->detectColor().red(), param->detectColor().green(), param->detectColor().blue());
+            mat = this->mapColorDected[param->detectType()]->detector(onechchy::QImage2cvMat(image), dstColor);
+        }
+
+        return onechchy::cvMat2QImage(mat);
     }
 
     QImage SImage::remapWave(QImage &image, ImageOperaParam *param)

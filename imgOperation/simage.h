@@ -13,6 +13,7 @@ namespace onechchy {
     class ImageOperaParam;
     class VGBHandle;
     class ITransformImg;
+    class IColorDetector;
 
     /**
      * @brief The SImage class
@@ -35,6 +36,7 @@ namespace onechchy {
         QImage grayBinary(QImage&image, ImageOperaParam* param);
         QImage transformImg(QImage& image, ImageOperaParam* param);
         QImage remapImg(QImage& image, ImageOperaParam* param);
+        QImage colorDected(QImage& image, ImageOperaParam* param);
 
 
     signals:
@@ -54,6 +56,7 @@ namespace onechchy {
         std::unique_ptr<VGBHandle> mpGBHandle;
         // key value is 图像操作类enum 图像操作类
         std::map<int, std::unique_ptr<ITransformImg>> mapTransform;
+        std::map<int, std::unique_ptr<IColorDetector>> mapColorDected;
     };
 }
 

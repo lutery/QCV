@@ -181,7 +181,7 @@ namespace onechchy {
         mParam.detectParam.color = color;
     }
 
-    int ImageOperaParam::DetectType() const
+    int ImageOperaParam::detectType() const
     {
         return mParam.commonParam.methodType;
     }

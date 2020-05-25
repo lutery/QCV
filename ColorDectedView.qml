@@ -76,9 +76,10 @@ Rectangle {
 
         onClicked: {
             console.log("开始检测")
+            console.log(SImageService.DetectType.Color_Simple)
 
             operaParams.setDetectColor(selectColor.color)
-            operaParams.setDetectType(SImageService.DetectType_Simple)
+            operaParams.setDetectType(SImageService.DetectType.Color_Simple)
 
             splitPanel.imgProcess(SImageService.ColorDetect, operaParams)
         }

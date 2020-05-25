@@ -65,6 +65,10 @@ namespace onechchy {
             this->remapImg(image);
             break;
 
+        case ImageOpera::ColorDetect:
+            this->colorDected(image);
+            break;
+
         default:
             break;
         }
@@ -254,6 +258,22 @@ namespace onechchy {
         if (mOperaParam != nullptr)
         {
             QImage resultImg = mpSImage->remapImg(image, mOperaParam);
+
+            if (!resultImg.isNull())
+            {
+                mCurImg = resultImg;
+                this->updateImg(mCurImg);
+            }
+        }
+    }
+
+    void SImageService::colorDected(QImage &image)
+    {
+        qDebug() << "start to color dected";
+
+        if (mOperaParam != nullptr)
+        {
+            QImage resultImg = mpSImage->colorDected(image, mOperaParam);
 
             if (!resultImg.isNull())
             {
