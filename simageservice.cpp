@@ -53,6 +53,9 @@ namespace onechchy {
             this->saveImage(image);
             break;
 
+        case ImageOpera::Open:
+            this->openImage(image);
+
         case ImageOpera::GrayBinary:
             this->grayBinary(image);
             break;

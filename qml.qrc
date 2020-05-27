@@ -12,6 +12,7 @@
         <file>TransformPanel.qml</file>
         <file>MachineLearning.qml</file>
         <file>RemapImage.qml</file>
+        <file>OpenImage.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>resource/image/Zero1.jpg</file>

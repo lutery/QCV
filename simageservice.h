@@ -44,7 +44,8 @@ namespace onechchy {
             GrayBinary = 4,
             TransformImg = 5,
             Remap = 6,
-            ColorDetect = 7
+            ColorDetect = 7,
+            Open = 8
         };
 
         // 切边方向

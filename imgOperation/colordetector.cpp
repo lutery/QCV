@@ -76,12 +76,12 @@ namespace onechchy {
     cv::Mat SimpleDectector::detector(const cv::Mat &srcMat, cv::Vec3b &dstColor)
     {
         cv::Mat result(srcMat.size(), CV_8U);
-
+        // #e88e6c
         cv::Mat_<cv::Vec3b>::const_iterator it = srcMat.begin<cv::Vec3b>();
         cv::Mat_<cv::Vec3b>::const_iterator itend = srcMat.end<cv::Vec3b>();
         cv::Mat_<uchar>::iterator itout = result.begin<uchar>();
 
-        for(; it != itend; ++itout)
+        for(; it != itend; ++itout, ++it)
         {
             if(getDistanceToTargetColor(*it, dstColor) <= mMaxDist){
                 *itout = 255;
