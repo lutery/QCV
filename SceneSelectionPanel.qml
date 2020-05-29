@@ -18,6 +18,7 @@ Rectangle {
         ListElement { name: "切边"; source: "TrimmingPanel.qml" }
         ListElement { name: "自动纠偏"; source: "RotatePanel.qml" }
         ListElement { name: "保存"; source: "SaveImage.qml" }
+        ListElement { name: "打开"; source: "OpenImage.qml" }
         ListElement { name: "相机"; source: "qrc:/camera/CameraPanel.qml" }
         ListElement { name: "人脸识别"; source: "qrc:/camera/FaceRecognition.qml" }
         ListElement { name: "图像变换"; source: "TransformPanel.qml" }

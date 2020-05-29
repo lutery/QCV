@@ -29,6 +29,7 @@ Window {
         case SImageService.TrimBorder:
         case SImageService.ImageSplit:
         case SImageService.Save:
+        case SImageService.Open:
         // 图像二值化
         case SImageService.GrayBinary:
         case SImageService.TransformImg:

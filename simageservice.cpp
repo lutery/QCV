@@ -54,7 +54,8 @@ namespace onechchy {
             break;
 
         case ImageOpera::Open:
-            this->openImage(image);
+            this->openImage();
+            break;
 
         case ImageOpera::GrayBinary:
             this->grayBinary(image);
@@ -218,6 +219,17 @@ namespace onechchy {
         {
             QString savePath = mOperaParam->selectPath();
             image.save(savePath);
+        }
+    }
+
+    void SImageService::openImage()
+    {
+        if (mOperaParam != nullptr)
+        {
+            QString openPath = mOperaParam->selectPath();
+            QImage openImg(openPath);
+
+            this->updateImg(openImg);
         }
     }
 

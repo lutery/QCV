@@ -7,11 +7,13 @@ import SImageOperaParamQML 1.0
 import QtQuick.Dialogs 1.2
 
 Window {
-    id:previewWin
+    id:saveWin
     visible: false
     width: 640
     height: 480
     title: qsTr("Hello World")
+
+    signal imgProcess(real type, QtObject param)
 
     FileDialog{
         id: saveDialog
@@ -28,7 +30,7 @@ Window {
 
             operaParams.setSelectPath(filePath)
 
-            previewWin.imageOperation(SImageService.Save, operaParams)
+            saveWin.imgProcess(SImageService.Save, operaParams)
 
             console.log(filePath)
 

@@ -7,11 +7,24 @@ import SImageOperaParamQML 1.0
 import QtQuick.Dialogs 1.2
 
 Window {
-    id:previewWin
+    id:openWin
     visible: false
     width: 640
     height: 480
     title: qsTr("Hello World")
+
+    signal imgProcess(real type, QtObject param)
+
+//    ImageOperaParam {
+//        id: operaParams
+//    }
+
+    Component {
+        id: operaParaObj
+            ImageOperaParam {
+                id: operaParams
+            }
+    }
 
     FileDialog{
         id: saveDialog
@@ -25,10 +38,11 @@ Window {
             console.log("You choose: " + saveDialog.fileUrls);
 
             var filePath = fileUrls[0].substr(8)
+            var operaParams = operaParaObj.createObject()
 
             operaParams.setSelectPath(filePath)
 
-            previewWin.imageOperation(SImageService.Open, operaParams)
+            openWin.imgProcess(SImageService.Open, operaParams)
 
             console.log(filePath)
 

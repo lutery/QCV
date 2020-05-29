@@ -63,12 +63,12 @@ namespace onechchy {
     
     QString ImageOperaParam::selectPath() const
     {
-        return mParam.saveParam.selectPath;
+        return mSaveOpenPath;
     }
     
     void ImageOperaParam::setSelectPath(const QString &selectPath)
     {
-        mParam.saveParam.selectPath = selectPath;
+        mSaveOpenPath = selectPath;
     }
 
     int ImageOperaParam::gbMethod() const

@@ -28,33 +28,33 @@ Window {
        id: cameraWin
     }
 
-    // 保存文件对话框
-    FileDialog{
-        id: saveDialog
-        title: "保存图片"
-        folder: shortcuts.home
-        selectFolder: false
-        selectExisting: false
-        nameFilters: ["Image files (*.jpg)", "Image files (*.png)", "Image files (*.bmp)"]
-        onAccepted: {
-            console.log("You choose: " + saveDialog.fileUrls);
+//    // 保存文件对话框
+//    FileDialog{
+//        id: saveDialog
+//        title: "保存图片"
+//        folder: shortcuts.home
+//        selectFolder: false
+//        selectExisting: false
+//        nameFilters: ["Image files (*.jpg)", "Image files (*.png)", "Image files (*.bmp)"]
+//        onAccepted: {
+//            console.log("You choose: " + saveDialog.fileUrls);
 
-            var filePath = fileUrls[0].substr(8)
+//            var filePath = fileUrls[0].substr(8)
 
-            operaParams.setSelectPath(filePath)
+//            operaParams.setSelectPath(filePath)
 
-            previewWin.imageOperation(SImageService.Save, operaParams)
+//            previewWin.imageOperation(SImageService.Save, operaParams)
 
-            console.log(filePath)
+//            console.log(filePath)
 
-//            Qt.quit()
-        }
+////            Qt.quit()
+//        }
 
-        onRejected: {
-            console.log("Canceled")
-//            Qt.quic()
-        }
-    }
+//        onRejected: {
+//            console.log("Canceled")
+////            Qt.quic()
+//        }
+//    }
 
     RowLayout{
         anchors.margins: 4

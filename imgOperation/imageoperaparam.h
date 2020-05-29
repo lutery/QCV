@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QColor>
 #include <QString>
+#include <string>
 
 namespace onechchy {
 
@@ -28,7 +29,7 @@ namespace onechchy {
         } splitParam;
 
         struct{
-            QString selectPath = "";
+            QString selectPath;
         }saveParam;
 
         // 通用参数 双整形
@@ -139,6 +140,7 @@ namespace onechchy {
 
     private:
         ParamUnion mParam;
+        QString mSaveOpenPath;
 
         // 需要切的边
 //        int mTrimBorder = 0x00;

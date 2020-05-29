@@ -135,6 +135,7 @@ namespace onechchy {
         void trimBorderOpera(QImage& image);
         void imageSplitOpera(QImage& image);
         void saveImage(QImage& image);
+        void openImage();
         void grayBinary(QImage& image);
         void transformImg(QImage& image);
         void remapImg(QImage& image);
