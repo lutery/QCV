@@ -19,7 +19,7 @@ namespace onechchy {
         void setMaxDist(int maxDist);
 
     protected:
-        int mMaxDist = 100;
+        int mMaxDist = 200;
     };
 
     class SimpleDectector : public IColorDetector

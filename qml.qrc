@@ -64,6 +64,7 @@
     </qresource>
     <qresource prefix="/remap">
         <file>WaterWave.qml</file>
+        <file>DilateErodePanel.qml</file>
     </qresource>
     <qresource prefix="/view/imagesplit">
         <file>ImageSplitView.qml</file>

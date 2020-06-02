@@ -227,9 +227,10 @@ namespace onechchy {
         if (mOperaParam != nullptr)
         {
             QString openPath = mOperaParam->selectPath();
-            QImage openImg(openPath);
 
-            this->updateImg(openImg);
+            mCurImg = QImage(openPath);
+
+            this->updateImg(mCurImg);
         }
     }
 

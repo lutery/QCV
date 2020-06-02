@@ -108,7 +108,9 @@ namespace onechchy {
         };
 
         enum class RemapType{
-            Remap_wave = 1
+            Remap_wave = 1,
+            Remap_dilate = 2,
+            Remap_erode = 3
         };
 
         ImageOperaParam *operaParam() const;

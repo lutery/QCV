@@ -1,4 +1,5 @@
 #include "colordetector.h"
+#include <QDebug>
 
 namespace onechchy {
 
@@ -96,9 +97,16 @@ namespace onechchy {
 
     int SimpleDectector::getDistanceToTargetColor(const cv::Vec3b &color, const cv::Vec3b &detectColor)
     {
-        return abs(color[0] - detectColor[0]) +
+        int difValue = abs(color[0] - detectColor[0]) +
                 abs(color[1] - detectColor[1]) +
                 abs(color[2] - detectColor[2]);
+
+//        if (difValue < 200)
+//        {
+//            qDebug() << "difValue:" << difValue;
+//        }
+
+        return difValue;
     }
     
     int IColorDetector::getMaxDist() const
