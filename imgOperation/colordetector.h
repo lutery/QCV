@@ -9,7 +9,7 @@ namespace onechchy {
     class IColorDetector
     {
     public:
-        explicit IColorDetector(){}
+        IColorDetector(){}
 
     public:
         virtual cv::Mat detector(const cv::Mat& srcMat, cv::Vec3b &dstColor) = 0;

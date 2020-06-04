@@ -64,10 +64,13 @@
     </qresource>
     <qresource prefix="/remap">
         <file>WaterWave.qml</file>
-        <file>DilateErodePanel.qml</file>
+        <file>DilateErode.qml</file>
     </qresource>
     <qresource prefix="/view/imagesplit">
         <file>ImageSplitView.qml</file>
         <file>ColorDectedView.qml</file>
+    </qresource>
+    <qresource prefix="/combox/model">
+        <file>MorphShapeModel.qml</file>
     </qresource>
 </RCC>
