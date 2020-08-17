@@ -191,4 +191,44 @@ namespace onechchy {
     {
         mParam.commonParam.methodType = type;
     }
+
+    int ImageOperaParam::borderType() const
+    {
+        return mParam.dilateParam.borderType;
+    }
+
+    void ImageOperaParam::setBorderType(int boderType)
+    {
+        mParam.dilateParam.borderType = boderType;
+    }
+
+    int ImageOperaParam::borderWidth() const
+    {
+        return mParam.dilateParam.width;
+    }
+
+    void ImageOperaParam::setBorderWidth(int width)
+    {
+        mParam.dilateParam.width = width;
+    }
+
+    int ImageOperaParam::borderHeight() const
+    {
+        return mParam.dilateParam.height;
+    }
+
+    void ImageOperaParam::setBorderHeight(int height)
+    {
+        mParam.dilateParam.height = height;
+    }
+
+    unsigned char ImageOperaParam::bayerParam() const
+    {
+        return mParam.bayerParam.bayer;
+    }
+
+    void ImageOperaParam::setBayerParam(unsigned char bayer)
+    {
+        mParam.bayerParam.bayer;
+    }
 }

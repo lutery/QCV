@@ -63,6 +63,16 @@ namespace onechchy {
         struct {
             QColor color;
         }detectParam;
+
+        struct{
+            int borderType;
+            int width;
+            int height;
+        }dilateParam;
+
+        struct{
+            unsigned char bayer = 3;
+        }bayerParam;
     };
 
     /**
@@ -133,6 +143,19 @@ namespace onechchy {
         int detectType() const;
         Q_INVOKABLE void setDetectType(const int type);
         //
+
+        int borderType() const;
+        Q_INVOKABLE void setBorderType(int boderType);
+
+        int borderWidth() const;
+        Q_INVOKABLE void setBorderWidth(int width);
+
+        int borderHeight() const;
+        Q_INVOKABLE void setBorderHeight(int height);
+
+        // 抖色参数
+        unsigned char bayerParam() const;
+        Q_INVOKABLE void setBayerParam(unsigned char bayer);
 
     signals:
 

@@ -22,6 +22,8 @@ Rectangle {
             ComboBox {
                 id: morphShape
                 model: morphShapeModel.item
+                textRole: "name"
+                valueRole: "shapeId"
 
                 Layout.fillWidth: true
             }

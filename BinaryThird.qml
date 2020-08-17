@@ -8,4 +8,8 @@ ListModel {
         name: "自定义阈值"
         method: SImageService.CustomBinaryThird
     }
+
+    ListElement {
+        name: "bayer表"
+    }
 }

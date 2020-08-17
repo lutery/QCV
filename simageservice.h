@@ -89,6 +89,7 @@ namespace onechchy {
             CustomBinaryThird = 4,
             OSTUOpenCV = 5,
             TriangleOpenCV = 6,
+            BayerDither = 7
         };
 
         // 旋转类型

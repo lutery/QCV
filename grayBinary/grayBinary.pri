@@ -1,4 +1,5 @@
 SOURCES += \
+    $$PWD/ditherhandler.cpp \
     $$PWD/gthirdhandle.cpp \
     $$PWD\bopencvhandle.cpp \
     $$PWD\bostuopencvhandle.cpp \
@@ -7,6 +8,7 @@ SOURCES += \
     $$PWD\vgbhandle.cpp
 
 HEADERS += \
+    $$PWD/ditherhandler.h \
     $$PWD/gthirdhandle.h \
     $$PWD\bopencvhandle.h \
     $$PWD\bostuopencvhandle.h \
