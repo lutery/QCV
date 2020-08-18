@@ -10,6 +10,7 @@
 #include "grayBinary/bostuopencvhandle.h"
 #include "grayBinary/btriangleopencvhandle.h"
 #include "grayBinary/gthirdhandle.h"
+#include "grayBinary/ditherhandler.h"
 #include "transform/reiszenearopencv.h"
 #include "transform/resizelinearopencv.h"
 #include "transform/resizecubicopencv.h"
@@ -24,12 +25,14 @@ namespace onechchy {
         auto pOSTUHandle = new BOSTUOpenCVHandle();
         auto pGThirdHandle = new GThirdHandle();
         auto pTriangleHandle = new BTriangleOpenCVHandle();
+        auto pBayerDiather = new BayerHandler();
 
         this->mpGBHandle = std::unique_ptr<VGBHandle>(pGCVHandle);
         pGCVHandle->setMpNext(pBCVHandle);
         pBCVHandle->setMpNext(pOSTUHandle);
         pOSTUHandle->setMpNext(pTriangleHandle);
         pTriangleHandle->setMpNext(pGThirdHandle);
+        pGThirdHandle->setMpNext(pBayerDiather);
 
         mapTransform[(int)SImageService::TransformType::Resize_NEAREST_OpenCV] = std::unique_ptr<ITransformImg>(new ReiszeNearOpencv());
         mapTransform[(int)SImageService::TransformType::Resize_LINEAR_OpenCV] = std::unique_ptr<ITransformImg>(new ResizeLinearOpencv());

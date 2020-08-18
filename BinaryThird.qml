@@ -11,5 +11,6 @@ ListModel {
 
     ListElement {
         name: "bayer表"
+        method: SImageService.BayerDither
     }
 }

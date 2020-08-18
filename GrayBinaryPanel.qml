@@ -183,7 +183,23 @@ Rectangle {
                         console.log(param)
 
                         operaParams.setGBMethod(method)
-                        operaParams.setGBParam(param)
+                        if (method == SImageService.BayerDither)
+                        {
+                            if (param > 4)
+                            {
+                                param = 4
+                            }
+                            else if (param < 1)
+                            {
+                                param = 1
+                            }
+
+                            operaParams.setBayerParam(param)
+                        }
+                        else
+                        {
+                            operaParams.setGBParam(param)
+                        }
 
 //                        gbPanel.gbProcess(method, param);
                         gbPanel.imgProcess(SImageService.GrayBinary, operaParams);

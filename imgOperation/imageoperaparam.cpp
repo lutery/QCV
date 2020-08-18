@@ -224,11 +224,11 @@ namespace onechchy {
 
     unsigned char ImageOperaParam::bayerParam() const
     {
-        return mParam.bayerParam.bayer;
+        return mParam.commonParam.intTwo;
     }
 
     void ImageOperaParam::setBayerParam(unsigned char bayer)
     {
-        mParam.bayerParam.bayer;
+        mParam.commonParam.intTwo = bayer;
     }
 }

@@ -1,5 +1,6 @@
 #include "ditherhandler.h"
 #include "simageservice.h"
+#include <math.h>
 
 namespace onechchy
 {
@@ -20,13 +21,13 @@ namespace onechchy
 
         for (int i = 1; i < n; i++)
         {
-            cv::Mat curM = cv::Mat(2 >> i, 2 >> i, CV_8UC1);
-            cv::Mat lastU = cv::Mat::ones(1 >> i, 1 >> i, CV_8UC1);
+            cv::Mat curM = cv::Mat(2 << i, 2 << i, CV_8UC1);
+            cv::Mat lastU = cv::Mat::ones(1 << i, 1 << i, CV_8UC1);
 
-            curM(cv::Rect(0, 0, 1 >> i, 1 >> i)) = 4 * lastM;
-            curM(cv::Rect(1 >> i, 0, 1 >> i, 1 >> i)) = 4 * lastM + 2 * lastU;
-            curM(cv::Rect(0, 1 >> i, 1 >> i, 1 >> i)) = 4 * lastM + 3 * lastU;
-            curM(cv::Rect(1 >> i, 1 >> i, 1 >> i, 1 >> i)) = 4 * lastM + 1 * lastU;
+            curM(cv::Rect(0, 0, 1 << i, 1 << i)) = 4 * lastM;
+            curM(cv::Rect(1 << i, 0, 1 << i, 1 << i)) = 4 * lastM + 2 * lastU;
+            curM(cv::Rect(0, 1 << i, 1 << i, 1 << i)) = 4 * lastM + 3 * lastU;
+            curM(cv::Rect(1 << i, 1 << i, 1 << i, 1 << i)) = 4 * lastM + 1 * lastU;
 
             lastM = curM;
         }
@@ -38,12 +39,14 @@ namespace onechchy
     {
         cv::Mat bwMat = cv::Mat(srcMat.rows, srcMat.cols, CV_8UC1, cv::Scalar(255));
 
-        unsigned char* pDemoData = srcMat.data;
-        int demoStep = srcMat.step;
+        unsigned char* pSrcData = srcMat.data;
+        int srcStep = srcMat.step;
         unsigned char* pbwData = bwMat.data;
         int bwStep = bwMat.step;
         unsigned char* pbayerData = bayerMat.data;
         int bayerStep = bayerMat.step;
+        uchar posLimit = std::pow(2, bayerRatio) - 1;
+        uchar grayLevel = 8 - bayerRatio * 2;
         for (int i = 0; i < srcMat.rows; ++i)
         {
             /*unsigned char* pRow = demoMat.ptr<unsigned char>(i);
@@ -57,12 +60,18 @@ namespace onechchy
                     pbwRow[j] = 0;
                 }*/
 
-                if (((pDemoData[i * demoStep + j] >> ()) < pm3Data[(i & 0x07) * m3Step + (j & 0x07)]))
+                // m1 2X2 0x01 2^bayerRatio - 1
+                // m2 4X4 0x03
+                // m3 8X8 0x07
+                // m4 16X16 0x15
+                if (((pSrcData[i * srcStep + j] >> grayLevel) < pbayerData[(i & posLimit) * bayerStep + (j & posLimit)]))
                 {
                     pbwData[i * bwStep + j] = 0;
                 }
             }
         }
+
+        return bwMat;
     }
 
     bool BayerHandler::canHanlde(int method)
@@ -81,7 +90,9 @@ namespace onechchy
 
         cv::Mat bayerTable = this->createBayer(bayerRatio);
 
-        cv::Mat dstMat;
+        cv::Mat dstMat = this->toBayer(srcMat, bayerTable, bayerRatio);
+
+        return dstMat;
     }
 
 }

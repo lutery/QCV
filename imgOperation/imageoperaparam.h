@@ -69,10 +69,6 @@ namespace onechchy {
             int width;
             int height;
         }dilateParam;
-
-        struct{
-            unsigned char bayer = 3;
-        }bayerParam;
     };
 
     /**
