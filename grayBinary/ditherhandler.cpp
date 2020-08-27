@@ -1,6 +1,10 @@
 #include "ditherhandler.h"
 #include "simageservice.h"
 #include <math.h>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonParseError>
 
 namespace onechchy
 {
@@ -81,7 +85,24 @@ namespace onechchy
 
     cv::Mat BayerHandler::InnerGBHandler(int method, ImageOperaParam *param, cv::Mat &srcMat)
     {
-        int bayerRatio = param->bayerParam();
+        QString jsonParam = param->jsonParam();
+        QJsonParseError err_rpt;
+        QJsonDocument root_doc = QJsonDocument::fromJson(jsonParam.toUtf8(), &err_rpt);
+
+        if (err_rpt.error != QJsonParseError::NoError)
+        {
+            qDebug() << "JSON格式错误";
+            return srcMat;
+        }
+
+        if (srcMat.channels() > 1)
+        {
+            cv::imwrite("F:/Test/mat.png", srcMat);
+            qDebug() << "not gray img";
+            return srcMat;
+        }
+
+        int bayerRatio = root_doc.object().value("value").toInt();
 
         if (srcMat.empty() && (bayerRatio > 0 && bayerRatio <= 4))
         {

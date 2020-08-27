@@ -28,33 +28,39 @@ Window {
        id: cameraWin
     }
 
+    ImageOperaParam {
+        id: operaParams
+    }
+
 //    // 保存文件对话框
-//    FileDialog{
-//        id: saveDialog
-//        title: "保存图片"
-//        folder: shortcuts.home
-//        selectFolder: false
-//        selectExisting: false
-//        nameFilters: ["Image files (*.jpg)", "Image files (*.png)", "Image files (*.bmp)"]
-//        onAccepted: {
-//            console.log("You choose: " + saveDialog.fileUrls);
+    FileDialog{
+        id: saveDialog
+        title: "保存图片"
+        folder: shortcuts.home
+        selectFolder: false
+        selectExisting: false
+        nameFilters: ["Image files (*.jpg)", "Image files (*.png)", "Image files (*.bmp)"]
+        visible: false
 
-//            var filePath = fileUrls[0].substr(8)
+        onAccepted: {
+            console.log("You choose: " + saveDialog.fileUrls);
 
-//            operaParams.setSelectPath(filePath)
+            var filePath = fileUrls[0].substr(8)
 
-//            previewWin.imageOperation(SImageService.Save, operaParams)
+            operaParams.setSelectPath(filePath)
 
-//            console.log(filePath)
+            previewWin.imageOperation(SImageService.Save, operaParams)
 
-////            Qt.quit()
-//        }
+            console.log(filePath)
 
-//        onRejected: {
-//            console.log("Canceled")
-////            Qt.quic()
-//        }
-//    }
+//            Qt.quit()
+        }
+
+        onRejected: {
+            console.log("Canceled")
+//            Qt.quic()
+        }
+    }
 
     RowLayout{
         anchors.margins: 4
@@ -102,6 +108,11 @@ Window {
                 else if (sceneSource == "qrc:/camera/CameraPanel.qml"){
                     cameraWin.source = ""
                     cameraWin.source = sceneSource
+                }
+                else if (sceneSource == "SaveImage.qml")
+                {
+                    // 由于保存对话框使用Loader的方式打开会有问题，所以这里进行拦截
+                    saveDialog.visible = true
                 }
                 else{
                     settingPanel.source = sceneSource

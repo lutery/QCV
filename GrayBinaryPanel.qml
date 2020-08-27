@@ -5,6 +5,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQml 2.2
+import Qt.labs.settings 1.1
 import SImageServiceQML 1.0
 import SImageOperaParamQML 1.0
 
@@ -124,6 +125,14 @@ Rectangle {
                 delegate: Qt.createComponent("qrc:/listview/delegate/LVDelegate.qml")
 //                model: Qt.createComponent("qrc:/listview/model/GrayOpenCV.qml").createObject(methodType)
                 model: methodTypeModel.item
+
+                signal listItemChanged(int index)
+
+                onListItemChanged: {
+                    console.log(index)
+
+                    gbparam.text = methodType.model.get(index).param
+                }
             }
 
 //            Component{
@@ -150,31 +159,61 @@ Rectangle {
         }
 
         ColumnLayout{
+            id: paramLayout
+
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            RowLayout{
-                Text{
-                    text: "参数"
-                    height: 60
-                }
+            Text{
+                id: paramTxt
+                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                text: "参数"
+                height: 60
+            }
 
-                TextField{
+            Rectangle {
+
+                Layout.fillHeight: true
+//                Layout.fillWidth: true
+                width:gbPanel.width / 4
+
+                border.color: "black"
+                border.width: 2
+                smooth: true
+                radius: 5
+
+                TextArea{
                     id: gbparam
-                    width: 30
-                    height: 60
-//                    placeholderText: "128"
-                    text: "128"
+
+                    anchors.fill: parent
+//                    Layout.fillWidth: true
+//                    Layout.fillHeight: true
+//                    width: Layout.fillWidth
+//                    height: Layout.fillHeight
+//                    Layout.alignment: Qt.AlignLeft |  Qt.AlignRight | Qt.AlignTop | Qt.AlignBottom
+
+    //                    placeholderText: "128"
+                    text: "128\n128\n128\n128\n128\n128\n128\n128\n128\n128\n128\n128"
+
+                    wrapMode: Text.WordWrap
                 }
             }
 
             Button{
                 id: trimBorder
                 text: "开始处理"
+
+                Layout.alignment: Qt.AlignBottom | Qt.AlignRight
+
                 onClicked: {
                     console.log("开始处理")
 
+//                    var paramsJson = "{\"name\":\"ceshi\", \"list\":[1, 2, 3, 4]}";
+//                    var jsonObj = JSON.parse(paramsJson)
+//                    console.log(jsonObj)
+
                     if (methodType.currentIndex >= 0){
+
                         console.log(methodType.currentIndex);
                         var method = methodType.model.get(methodType.currentIndex).method;
                         var param = gbparam.text;
@@ -183,23 +222,24 @@ Rectangle {
                         console.log(param)
 
                         operaParams.setGBMethod(method)
-                        if (method == SImageService.BayerDither)
-                        {
-                            if (param > 4)
-                            {
-                                param = 4
-                            }
-                            else if (param < 1)
-                            {
-                                param = 1
-                            }
+                        operaParams.setJsonParam(param)
+//                        if (method == SImageService.BayerDither)
+//                        {
+//                            if (param > 4)
+//                            {
+//                                param = 4
+//                            }
+//                            else if (param < 1)
+//                            {
+//                                param = 1
+//                            }
 
-                            operaParams.setBayerParam(param)
-                        }
-                        else
-                        {
-                            operaParams.setGBParam(param)
-                        }
+//                            operaParams.setBayerParam(param)
+//                        }
+//                        else
+//                        {
+//                            operaParams.setGBParam(param)
+//                        }
 
 //                        gbPanel.gbProcess(method, param);
                         gbPanel.imgProcess(SImageService.GrayBinary, operaParams);

@@ -6,10 +6,12 @@
 #include <QString>
 #include <string>
 
-namespace onechchy {
+namespace onechchy
+{
 
     // 图像处理参数联合体
-    union ParamUnion{
+    struct ParamUnion
+    {
         ParamUnion(){}
         ~ParamUnion(){}
 
@@ -38,6 +40,12 @@ namespace onechchy {
             int intTwo = 0;
             int methodType = 0;
         }commonParam;
+
+        struct
+        {
+            int methodType = 0;
+            QString param;
+        }jsonParam;
 
         // 图形旋转参数
         struct{
@@ -152,6 +160,9 @@ namespace onechchy {
         // 抖色参数
         unsigned char bayerParam() const;
         Q_INVOKABLE void setBayerParam(unsigned char bayer);
+
+        QString jsonParam() const;
+        Q_INVOKABLE void setJsonParam(QString jsonParam);
 
     signals:
 

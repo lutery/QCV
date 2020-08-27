@@ -28,7 +28,7 @@ Window {
 
     FileDialog{
         id: saveDialog
-        title: "打开图片"
+        title: qsTr("打开图片")
         folder: shortcuts.home
         selectFolder: false
         selectExisting: true

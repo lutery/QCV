@@ -138,20 +138,45 @@ namespace onechchy {
             // 8-bits unsigned, NO. OF CHANNELS = 3
             else if(mat.type() == CV_8UC3)
             {
+//                // Copy input Mat
+//                const uchar *pSrc = (const uchar*)mat.data;
+//                // Create QImage with same dimensions as input Mat
+//                QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
+////                return image.rgbSwapped();
+//                return image;
                 // Copy input Mat
-                const uchar *pSrc = (const uchar*)mat.data;
+                uchar *pSrc = mat.data;
                 // Create QImage with same dimensions as input Mat
-                QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
-                return image.rgbSwapped();
+                QImage image(mat.cols, mat.rows, QImage::Format_RGB888);
+                for (int row = 0; row < mat.rows; ++row)
+                {
+                    uchar* pDstRow = image.scanLine(row);
+                    memcpy(pDstRow, pSrc, mat.step);
+                    pSrc += mat.step;
+                }
+//                return image.rgbSwapped();
+                return image;
             }
             else if(mat.type() == CV_8UC4)
             {
-                qDebug() << "CV_8UC4";
-                // Copy input Mat
-                const uchar *pSrc = (const uchar*)mat.data;
+//                qDebug() << "CV_8UC4";
+//                // Copy input Mat
+//                const uchar *pSrc = (const uchar*)mat.data;
+//                // Create QImage with same dimensions as input Mat
+//                QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_ARGB32);
+//                return image.copy();
+
+                uchar *pSrc = mat.data;
                 // Create QImage with same dimensions as input Mat
-                QImage image(pSrc, mat.cols, mat.rows, mat.step, QImage::Format_ARGB32);
-                return image.copy();
+                QImage image(mat.cols, mat.rows, QImage::Format_ARGB32);
+                for (int row = 0; row < mat.rows; ++row)
+                {
+                    uchar* pDstRow = image.scanLine(row);
+                    memcpy(pDstRow, pSrc, mat.step);
+                    pSrc += mat.step;
+                }
+//                return image.rgbSwapped();
+                return image;
             }
             else
             {
@@ -163,6 +188,8 @@ namespace onechchy {
 
     cv::Mat QImage2cvMat(const QImage &image)
     {
+        // ToDo 这边不再进行RB交换，后面在处理时需要进行修改注意，不论是QImage还是Mat，内存像素排序均为bgra，会出现崩溃大概是因为从Mat转回QImage时内存读写错误导致的，不能简单的认为QImage rgb888与mat的CV_8UC3相同
+        // 如果不进行RB交换，那么显示不会有问题
         cv::Mat mat;
         qDebug() << image.format();
         switch(image.format())
@@ -170,16 +197,22 @@ namespace onechchy {
         case QImage::Format_ARGB32:
         case QImage::Format_RGB32:
         case QImage::Format_ARGB32_Premultiplied:
-            mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
-            cv::cvtColor(mat, mat, cv::COLOR_BGRA2RGB);
+            mat = cv::Mat(image.height(), image.width(), CV_8UC4);
+            memcpy(mat.data, (void*)image.constBits(), image.bytesPerLine() * image.height());
+//            mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+//            cv::cvtColor(mat, mat, cv::COLOR_BGRA2RGB);
             break;
         case QImage::Format_RGB888:
-            mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
-            cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
+            mat = cv::Mat(image.height(), image.width(), CV_8UC3);
+            memcpy(mat.data, (void*)image.constBits(), image.bytesPerLine() * image.height());
+//            mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
+//            cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
             break;
         case QImage::Format_Indexed8:
         case QImage::Format_Grayscale8:
-            mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
+            mat = cv::Mat(image.height(), image.width(), CV_8UC1);
+            memcpy(mat.data, (void*)image.constBits(), image.bytesPerLine() * image.height());
+//            mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
             break;
         }
         return mat;

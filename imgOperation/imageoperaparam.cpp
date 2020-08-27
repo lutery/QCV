@@ -73,12 +73,12 @@ namespace onechchy {
 
     int ImageOperaParam::gbMethod() const
     {
-        return mParam.commonParam.intOne;
+        return mParam.jsonParam.methodType;
     }
 
     void ImageOperaParam::setGBMethod(const int method)
     {
-        mParam.commonParam.intOne = method;
+        mParam.jsonParam.methodType = method;
     }
 
     int ImageOperaParam::gbParam() const
@@ -230,5 +230,15 @@ namespace onechchy {
     void ImageOperaParam::setBayerParam(unsigned char bayer)
     {
         mParam.commonParam.intTwo = bayer;
+    }
+
+    QString ImageOperaParam::jsonParam() const
+    {
+        return mParam.jsonParam.param;
+    }
+
+    void ImageOperaParam::setJsonParam(QString jsonParam)
+    {
+        mParam.jsonParam.param = jsonParam;
     }
 }

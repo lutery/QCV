@@ -11,6 +11,7 @@
 #include "grayBinary/btriangleopencvhandle.h"
 #include "grayBinary/gthirdhandle.h"
 #include "grayBinary/ditherhandler.h"
+#include "grayBinary/badaptiveopencvhandle.h"
 #include "transform/reiszenearopencv.h"
 #include "transform/resizelinearopencv.h"
 #include "transform/resizecubicopencv.h"
@@ -21,18 +22,25 @@ namespace onechchy {
     SImage::SImage(QObject *parent) : QObject(parent)
     {
         auto pGCVHandle = new GOpenCVHandle();
-        auto pBCVHandle = new BOpenCVHandle();
-        auto pOSTUHandle = new BOSTUOpenCVHandle();
-        auto pGThirdHandle = new GThirdHandle();
-        auto pTriangleHandle = new BTriangleOpenCVHandle();
-        auto pBayerDiather = new BayerHandler();
+//        auto pBCVHandle = new BOpenCVHandle();
+//        auto pOSTUHandle = new BOSTUOpenCVHandle();
+//        auto pGThirdHandle = new GThirdHandle();
+//        auto pTriangleHandle = new BTriangleOpenCVHandle();
+//        auto pBayerDiather = new BayerHandler();
+//        auto pAdapHandler = new BAdaptiveOpenCVHandle();
 
         this->mpGBHandle = std::unique_ptr<VGBHandle>(pGCVHandle);
-        pGCVHandle->setMpNext(pBCVHandle);
-        pBCVHandle->setMpNext(pOSTUHandle);
-        pOSTUHandle->setMpNext(pTriangleHandle);
-        pTriangleHandle->setMpNext(pGThirdHandle);
-        pGThirdHandle->setMpNext(pBayerDiather);
+        pGCVHandle->setMpNext(new BOpenCVHandle())
+                ->setMpNext(new BOSTUOpenCVHandle())
+                ->setMpNext(new GThirdHandle())
+                ->setMpNext(new BTriangleOpenCVHandle())
+                ->setMpNext(new BayerHandler())
+                ->setMpNext(new BAdaptiveOpenCVHandle());
+//        pBCVHandle->setMpNext(pOSTUHandle);
+//        pOSTUHandle->setMpNext(pTriangleHandle);
+//        pTriangleHandle->setMpNext(pGThirdHandle);
+//        pGThirdHandle->setMpNext(pBayerDiather);
+//        pBayerDiather->setMpNext(pAdapHandler);
 
         mapTransform[(int)SImageService::TransformType::Resize_NEAREST_OpenCV] = std::unique_ptr<ITransformImg>(new ReiszeNearOpencv());
         mapTransform[(int)SImageService::TransformType::Resize_LINEAR_OpenCV] = std::unique_ptr<ITransformImg>(new ResizeLinearOpencv());
@@ -90,6 +98,7 @@ namespace onechchy {
 
         mat = this->mpGBHandle->GBHanlde(param->gbMethod(), param, onechchy::QImage2cvMat(image));
 
+//        cv::imwrite("F:/Test/mat.png", mat);
         return onechchy::cvMat2QImage(mat);
     }
 

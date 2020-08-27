@@ -28,7 +28,17 @@ namespace onechchy{
             return dstMat;
         }
 
-        int threshold = param->gbParam();
+        QString jsonParam = param->jsonParam();
+        QJsonParseError err_rpt;
+        QJsonDocument root_doc = QJsonDocument::fromJson(jsonParam.toUtf8(), &err_rpt);
+
+        if (err_rpt.error != QJsonParseError::NoError)
+        {
+            qDebug() << "JSON格式错误";
+            return dstMat;
+        }
+
+        int threshold = root_doc.object().value("value").toInt();
 
         if (threshold < 0)
         {

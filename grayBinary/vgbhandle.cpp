@@ -49,8 +49,10 @@ namespace onechchy {
         return mpNext.get();
     }
 
-    void VGBHandle::setMpNext(VGBHandle *value)
+    VGBHandle* VGBHandle::setMpNext(VGBHandle *value)
     {
         mpNext = std::shared_ptr<VGBHandle>(value);
+
+        return mpNext.get();
     }
 }

@@ -1,6 +1,10 @@
 #ifndef VGBHANDLE_H
 #define VGBHANDLE_H
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonParseError>
 #include <memory>
 #include <opencv2/opencv.hpp>
 #include "imgOperation/imageoperaparam.h"
@@ -17,7 +21,7 @@ namespace onechchy {
         cv::Mat GBHanlde(int method, ImageOperaParam *param, cv::Mat& srcMat);
 
         VGBHandle* getMpNext() const;
-        void setMpNext(VGBHandle* value);
+        VGBHandle* setMpNext(VGBHandle* value);
 
     private:
         virtual bool canHanlde(int method) = 0;

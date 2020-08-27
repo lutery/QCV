@@ -3,7 +3,8 @@
 
 #include "vgbhandle.h"
 
-namespace onechchy {
+namespace onechchy
+{
     class BTriangleOpenCVHandle : public VGBHandle
     {
     public:

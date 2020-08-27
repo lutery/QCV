@@ -7,10 +7,12 @@ ListModel {
     ListElement {
         name: "自定义阈值"
         method: SImageService.CustomBinaryThird
+        param: "{\"name\":\"threshold\", \"value\":128}"
     }
 
     ListElement {
         name: "bayer表"
         method: SImageService.BayerDither
+        param:"{\"name\":\"bayerRatio\", \"value\":3}"
     }
 }

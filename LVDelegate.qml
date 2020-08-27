@@ -8,7 +8,10 @@ Item {
 
     MouseArea{
         anchors.fill: parent
-        onClicked: lvdelegate.ListView.view.currentIndex = index
+        onClicked: {
+            lvdelegate.ListView.view.currentIndex = index
+            lvdelegate.ListView.view.listItemChanged(index)
+        }
     }
 
     RowLayout{

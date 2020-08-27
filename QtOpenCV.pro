@@ -32,10 +32,10 @@ RESOURCES += qml.qrc
 LIBS += -fopenmp
 
 CONFIG (debug, debug|release){
-    LIBS += -lopencv_world420d -ldlib19.17.0_debug_64bit_msvc1916
+    LIBS += -lopencv_world440d -ldlib19.17.0_debug_64bit_msvc1916
     DEFINES += IDEBUG
 }else{
-    LIBS += -lopencv_world420 -ldlib19.19.0_release_64bit_msvc1916
+    LIBS += -lopencv_world440 -ldlib19.19.0_release_64bit_msvc1916
     DEFINES += NDEBUG
 }
 
